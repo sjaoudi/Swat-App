@@ -14,6 +14,11 @@
 
 @implementation FirstViewController
 
+
+- (IBAction)clickTheButton:(id)sender {
+    NSLog(@"Git test.");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
