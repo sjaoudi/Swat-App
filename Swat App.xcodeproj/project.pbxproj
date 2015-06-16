@@ -15,6 +15,7 @@
 		AA2971361B2E78EC00D4FDF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2971351B2E78EC00D4FDF9 /* Images.xcassets */; };
 		AA2971391B2E78EC00D4FDF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA2971371B2E78EC00D4FDF9 /* LaunchScreen.xib */; };
 		AA2971451B2E78EC00D4FDF9 /* Swat_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2971441B2E78EC00D4FDF9 /* Swat_AppTests.m */; };
+		AA2BE1DE1B2FCECD00A7C6A9 /* rssParser.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2BE1DD1B2FCECD00A7C6A9 /* rssParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,8 @@
 		AA29713E1B2E78EC00D4FDF9 /* Swat AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swat AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2971431B2E78EC00D4FDF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA2971441B2E78EC00D4FDF9 /* Swat_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Swat_AppTests.m; sourceTree = "<group>"; };
+		AA2BE1DD1B2FCECD00A7C6A9 /* rssParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = rssParser.m; sourceTree = "<group>"; };
+		AA2BE1DF1B2FCEF400A7C6A9 /* rssParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rssParser.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +91,8 @@
 				AA29712A1B2E78EB00D4FDF9 /* AppDelegate.m */,
 				AA29712C1B2E78EB00D4FDF9 /* FirstViewController.h */,
 				AA29712D1B2E78EC00D4FDF9 /* FirstViewController.m */,
+				AA2BE1DD1B2FCECD00A7C6A9 /* rssParser.m */,
+				AA2BE1DF1B2FCEF400A7C6A9 /* rssParser.h */,
 				AA29712F1B2E78EC00D4FDF9 /* SecondViewController.h */,
 				AA2971301B2E78EC00D4FDF9 /* SecondViewController.m */,
 				AA2971321B2E78EC00D4FDF9 /* Main.storyboard */,
@@ -228,6 +233,7 @@
 				AA29712B1B2E78EB00D4FDF9 /* AppDelegate.m in Sources */,
 				AA29712E1B2E78EC00D4FDF9 /* FirstViewController.m in Sources */,
 				AA2971281B2E78EB00D4FDF9 /* main.m in Sources */,
+				AA2BE1DE1B2FCECD00A7C6A9 /* rssParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +428,7 @@
 				AA29714A1B2E78EC00D4FDF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AA29714B1B2E78EC00D4FDF9 /* Build configuration list for PBXNativeTarget "Swat AppTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +437,7 @@
 				AA29714D1B2E78EC00D4FDF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

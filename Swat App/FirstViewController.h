@@ -15,3 +15,14 @@
 
 @end
 
+@interface Event: NSObject {
+    NSString *Title;
+    NSString *Time;
+    NSString *Description;
+}
+
+@property (nonatomic, retain) NSString *Title;
+@property (nonatomic, retain) NSString *Time;
+@property (nonatomic, retain) NSString *Description;
+
+@end
