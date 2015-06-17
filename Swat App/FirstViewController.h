@@ -8,21 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
+@interface FirstViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
 -(IBAction)clickTheButton:(id)sender;
 
+@property NSMutableArray *allEntries;
 
 @end
 
-@interface Event: NSObject {
-    NSString *Title;
-    NSString *Time;
-    NSString *Description;
-}
-
-@property (nonatomic, retain) NSString *Title;
-@property (nonatomic, retain) NSString *Time;
-@property (nonatomic, retain) NSString *Description;
-
-@end
+NSMutableArray *_allEntries;

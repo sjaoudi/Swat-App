@@ -16,6 +16,7 @@
 		AA2971361B2E78EC00D4FDF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2971351B2E78EC00D4FDF9 /* Images.xcassets */; };
 		AA2971391B2E78EC00D4FDF9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA2971371B2E78EC00D4FDF9 /* LaunchScreen.xib */; };
 		AA2971451B2E78EC00D4FDF9 /* Swat_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2971441B2E78EC00D4FDF9 /* Swat_AppTests.m */; };
+		AA5B75F71B3113C600FF4241 /* RSSEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5B75F61B3113C600FF4241 /* RSSEntry.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		AA29713E1B2E78EC00D4FDF9 /* Swat AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swat AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2971431B2E78EC00D4FDF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA2971441B2E78EC00D4FDF9 /* Swat_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Swat_AppTests.m; sourceTree = "<group>"; };
+		AA5B75F61B3113C600FF4241 /* RSSEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSSEntry.m; sourceTree = "<group>"; };
+		AA5B75F81B31141500FF4241 /* RSSEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSSEntry.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +104,10 @@
 			children = (
 				AA2971291B2E78EB00D4FDF9 /* AppDelegate.h */,
 				AA29712A1B2E78EB00D4FDF9 /* AppDelegate.m */,
-				AA29712C1B2E78EB00D4FDF9 /* FirstViewController.h */,
+				AA5B75F61B3113C600FF4241 /* RSSEntry.m */,
+				AA5B75F81B31141500FF4241 /* RSSEntry.h */,
 				AA29712D1B2E78EC00D4FDF9 /* FirstViewController.m */,
+				AA29712C1B2E78EB00D4FDF9 /* FirstViewController.h */,
 				AA29712F1B2E78EC00D4FDF9 /* SecondViewController.h */,
 				AA2971301B2E78EC00D4FDF9 /* SecondViewController.m */,
 				AA2971321B2E78EC00D4FDF9 /* Main.storyboard */,
@@ -287,6 +292,7 @@
 				AA29712B1B2E78EB00D4FDF9 /* AppDelegate.m in Sources */,
 				AA29712E1B2E78EC00D4FDF9 /* FirstViewController.m in Sources */,
 				AA2971281B2E78EB00D4FDF9 /* main.m in Sources */,
+				AA5B75F71B3113C600FF4241 /* RSSEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
