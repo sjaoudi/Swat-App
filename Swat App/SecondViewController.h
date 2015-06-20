@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController : UIViewController <NSXMLParserDelegate>
 
+@property(nonatomic, strong) NSString *currentElement;
+@property(nonatomic, strong) NSString *currentTitle;
 
 @end
-
