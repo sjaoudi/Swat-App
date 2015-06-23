@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MWFeedParser.h>
 
-@interface SecondViewController : UIViewController <MWFeedParserDelegate> {
+@interface SecondViewController : UITableViewController <MWFeedParserDelegate> {
     MWFeedParser *feedParser;
     NSMutableArray *parsedItems;
     
@@ -19,6 +19,6 @@
 }
 
 @property (nonatomic, strong) NSArray *itemsToDisplay;
-@property(nonatomic, strong) IBOutlet UITableView *tableView;
+//@property(nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end
