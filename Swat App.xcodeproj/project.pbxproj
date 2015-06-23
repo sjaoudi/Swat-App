@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2577ED8D4944388D7CD9D281 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 402F7E616A469D4D5554B322 /* libPods.a */; };
+		AA06F89E1B38F1F2000FECF5 /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA06F89D1B38F1F2000FECF5 /* DetailTableViewController.m */; };
 		AA2971281B2E78EB00D4FDF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2971271B2E78EB00D4FDF9 /* main.m */; };
 		AA29712B1B2E78EB00D4FDF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA29712A1B2E78EB00D4FDF9 /* AppDelegate.m */; };
 		AA29712E1B2E78EC00D4FDF9 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA29712D1B2E78EC00D4FDF9 /* FirstViewController.m */; };
@@ -33,6 +34,8 @@
 		257BDEDF80226F973B799FA2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		402F7E616A469D4D5554B322 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		70F3B3E436FF15CF785521E7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		AA06F89D1B38F1F2000FECF5 /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
+		AA06F89F1B38F202000FECF5 /* DetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
 		AA2971221B2E78EB00D4FDF9 /* Swat App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swat App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2971261B2E78EB00D4FDF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA2971271B2E78EB00D4FDF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				AA29712C1B2E78EB00D4FDF9 /* FirstViewController.h */,
 				AA29712F1B2E78EC00D4FDF9 /* SecondViewController.h */,
 				AA2971301B2E78EC00D4FDF9 /* SecondViewController.m */,
+				AA06F89F1B38F202000FECF5 /* DetailTableViewController.h */,
+				AA06F89D1B38F1F2000FECF5 /* DetailTableViewController.m */,
 				AA2971321B2E78EC00D4FDF9 /* Main.storyboard */,
 				AA2971351B2E78EC00D4FDF9 /* Images.xcassets */,
 				AA2971371B2E78EC00D4FDF9 /* LaunchScreen.xib */,
@@ -288,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA06F89E1B38F1F2000FECF5 /* DetailTableViewController.m in Sources */,
 				AA2971311B2E78EC00D4FDF9 /* SecondViewController.m in Sources */,
 				AA29712B1B2E78EB00D4FDF9 /* AppDelegate.m in Sources */,
 				AA29712E1B2E78EC00D4FDF9 /* FirstViewController.m in Sources */,

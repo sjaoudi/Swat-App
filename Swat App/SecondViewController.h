@@ -7,10 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MWFeedParser.h>
 
-@interface SecondViewController : UIViewController <NSXMLParserDelegate>
+@interface SecondViewController : UIViewController <MWFeedParserDelegate> {
+    MWFeedParser *feedParser;
+    NSMutableArray *parsedItems;
+    
+    NSArray *itemsToDisplay;
+    NSDateFormatter *formatter;
+    
+}
 
-@property(nonatomic, strong) NSString *currentElement;
-@property(nonatomic, strong) NSString *currentTitle;
+@property (nonatomic, strong) NSArray *itemsToDisplay;
+@property(nonatomic, strong) IBOutlet UITableView *tableView;
 
 @end

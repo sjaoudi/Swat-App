@@ -7,7 +7,6 @@
         <!--Events-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
                 <viewController id="9pv-A4-QxB" customClass="FirstViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
@@ -50,6 +49,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Events" image="first" id="acW-dT-cKf"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
@@ -112,24 +112,6 @@
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
-        <!--Item 2-->
-        <scene sceneID="ExJ-Uk-ai3">
-            <objects>
-                <viewController id="P9j-Ff-FZx" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="lfI-6Y-ZsR"/>
-                        <viewControllerLayoutGuide type="bottom" id="MNy-0b-F0O"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="M6a-XV-SxY">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="nqR-B0-IRN"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MMV-pP-Ypi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
         <!--Item 1-->
         <scene sceneID="Oxa-5c-eEc">
             <objects>
@@ -160,7 +142,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="EZP-y4-ElE" kind="relationship" relationship="viewControllers" id="qwh-yU-o57"/>
-                        <segue destination="P9j-Ff-FZx" kind="relationship" relationship="viewControllers" id="Idy-I0-OPZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i2p-Rv-8S3" userLabel="First Responder" sceneMemberID="firstResponder"/>

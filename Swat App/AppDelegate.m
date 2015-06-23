@@ -7,18 +7,24 @@
 //
 
 #import "AppDelegate.h"
+#import "MWFeedParser.h"
 
-@interface AppDelegate ()
+//@interface AppDelegate ()
 
-@end
+//@end
 
 @implementation AppDelegate
+
+@synthesize window;
+@synthesize navigationController;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
     NSLog(@"App has launched.");
+    [window addSubview:[navigationController view]];
+    [window makeKeyAndVisible];
     
     return YES;
 }
