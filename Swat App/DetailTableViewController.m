@@ -101,8 +101,8 @@ typedef enum { SectionDetailSummary } DetailRows;
                 break;
             }
             case SectionDetail: {
-                // Sumary
-                //cell.textLabel.text = summaryString;
+                // Summary
+                cell.textLabel.text = summaryString;
                 cell.textLabel.text = item.summary;
                 cell.textLabel.numberOfLines = 0; // Multiline
                 break;

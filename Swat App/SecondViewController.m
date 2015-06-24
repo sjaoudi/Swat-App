@@ -10,6 +10,7 @@
 #import "MWFeedParser.h"
 #import "MWFeedParser.h"
 #import "DetailTableViewController.h"
+#import "NSString+HTML.h"
 
 
 //@interface SecondViewController ()
@@ -41,6 +42,9 @@
     feedParser.connectionType = ConnectionTypeAsynchronously;
     [feedParser parse];
     
+    //self.tableView.frame = CGRectMake(0,40,200,480);
+    //[self.tableView reloadData];
+    
 }
 
 -(void)updateTableWithParsedItems {
@@ -61,7 +65,7 @@
 }
 
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
-    NSLog(@"Parsed Feed Item: “%@”", item.title);
+    //NSLog(@"Parsed Feed Item: “%@”", item.title);
     if (item) [parsedItems addObject:item];
 }
 
@@ -97,40 +101,87 @@
 }
 
 // Appearance of table view cells
-- (UITableViewCell *)tableView:(UITableView *)tableView cellforRowAtIndexPath:(NSIndexPath *)indexPath {
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellforRowAtIndexPath:(NSIndexPath *)indexPath {
+//    static NSString *CellIdentifier = @"Cell";
+//    
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    NSLog(@"the cell is %@", cell);
+//    
+//    if (cell == nil) {
+//        // Try other styles
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//    }
+//    
+//    // Cell configuration
+//    
+//    MWFeedItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
+//    if (item) {
+//        
+//        // Process
+//        //NSString *itemTitle = item.title ? [item.title stringByConvertingHTMLtoPlainText] : @"[No Title]";
+//        //NSString *itemSummary = item.summary ? [item.summary stringByConvertingHTMLToPlainText] : @"[No Summary]";
+//        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+//        //cell.textLabel.text = itemTitle;
+//        NSMutableString *subtitle = [NSMutableString string];
+//        if (item.date) [subtitle appendFormat:@"%@: ", [formatter stringFromDate:item.date]];
+//        //[subtitle appendString:itemSummary];
+//        cell.detailTextLabel.text = subtitle;
+//    }
+//    return cell;
+//}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     static NSString *CellIdentifier = @"Cell";
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        // Try other styles
+    //NSLog(@"the cell is %@", cell);
+    
+    // This is added for a Search Bar - otherwise it will crash due to
+    //'UITableView dataSource must return a cell from tableView:cellForRowAtIndexPath:'
+    
+    if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    // Cell configuration
-    
+    // Configure the cell.
     MWFeedItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
     if (item) {
         
+        //NSString *testString = @"title test";
+        
         // Process
-        //NSString *itemTitle = item.title ? [item.title stringByConvertingHTMLtoPlainText] : @"[No Title]";
-        //NSString *itemSummary = item.summary ? [item.summary stringByConvertingHTMLToPlainText] : @"[No Summary]";
+        NSString *itemTitle = item.title ? [item.title stringByConvertingHTMLToPlainText] : @"[No Title]";
+        NSString *itemSummary = item.summary ? [item.summary stringByConvertingHTMLToPlainText] : @"[No Summary]";
+        
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
-        //cell.textLabel.text = itemTitle;
+        cell.textLabel.text = itemTitle;
+        //cell.textLabel.text = testString;
         NSMutableString *subtitle = [NSMutableString string];
+        
         if (item.date) [subtitle appendFormat:@"%@: ", [formatter stringFromDate:item.date]];
-        //[subtitle appendString:itemSummary];
+        [subtitle appendString:itemSummary];
         cell.detailTextLabel.text = subtitle;
     }
+    
+    
     return cell;
+    
 }
 
+
+
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     
     //Show detail
     DetailTableViewController *detail = [[DetailTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     detail.item = (MWFeedItem *)[itemsToDisplay objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:detail animated:YES];
+    
+    NSLog(@"row pressed");
     
     // Deselect
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
