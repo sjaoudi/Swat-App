@@ -42,6 +42,8 @@
     feedParser.connectionType = ConnectionTypeAsynchronously;
     [feedParser parse];
     
+    //self.tableView.contentInset = UIEdgeInsetsMake(44,0,0,0);
+    
     //self.tableView.frame = CGRectMake(0,40,200,480);
     //[self.tableView reloadData];
     

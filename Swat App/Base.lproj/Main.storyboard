@@ -61,6 +61,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="gVP-h5-mgE">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="RSS Feed" id="zJp-Jo-P4c"/>
+                            </items>
+                        </navigationBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" id="CYg-GY-U2l">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -77,8 +84,15 @@
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="kBV-7M-7QO">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    <items>
+                        <barButtonItem title="Item" id="SBP-hM-yEP"/>
+                    </items>
+                </toolbar>
             </objects>
-            <point key="canvasLocation" x="706" y="421"/>
+            <point key="canvasLocation" x="697" y="505"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="I2W-9m-YVy">
@@ -127,20 +141,20 @@
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="MrW-hH-kFe">
+        <scene sceneID="rAa-o1-DdF">
             <objects>
-                <viewController id="gI0-NO-a3K" sceneMemberID="viewController">
+                <viewController id="Yjz-Ni-dWZ" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xvI-NP-18A"/>
-                        <viewControllerLayoutGuide type="bottom" id="dSw-Nb-Cm0"/>
+                        <viewControllerLayoutGuide type="top" id="7xl-BY-52O"/>
+                        <viewControllerLayoutGuide type="bottom" id="xiP-tX-gug"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="FGv-hK-bBD">
+                    <view key="view" contentMode="scaleToFill" id="3b4-q5-iZG">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rsY-vf-UQU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bcd-a0-cBy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
