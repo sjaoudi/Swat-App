@@ -163,7 +163,20 @@
         NSMutableString *subtitle = [NSMutableString string];
         
         if (item.date) {
-            [subtitle appendFormat:@"%@:asdfasdf ", [formatter stringFromDate:item.date]];
+//            NSError *error = NULL;
+//            NSString *endTimeRegexString = @"<b>End Time:<\\/b>&nbsp;<\\/td><td>(.+)<\\/td><\\/tr><\\/table><br \\/>";
+//            NSRegularExpression *endTimeRegex =
+//            [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
+//                                                      options:0
+//                                                        error:&error];
+            
+            NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+            [timeFormatter setDateFormat:@"hh:mm a"];
+            
+            DetailTableViewController *c = [[DetailTableViewController alloc] init];
+            //NSString *timeRange = [c determineTimeRange:timeFormatter];
+            //[subtitle appendFormat:timeRange, [formatter stringFromDate:item.date]];
+            //[subtitle appendFormat:timeRange];
         }
         [subtitle appendString:itemSummary];
         cell.detailTextLabel.text = subtitle;

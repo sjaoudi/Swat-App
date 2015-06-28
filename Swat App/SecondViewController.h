@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MWFeedParser.h>
+#import "DetailTableViewController.h"
 
 @interface SecondViewController : UITableViewController <MWFeedParserDelegate> {
     MWFeedParser *feedParser;

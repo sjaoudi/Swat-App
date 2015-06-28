@@ -35,37 +35,34 @@ typedef enum { SectionDetailSummary } DetailRows;
     [NSRegularExpression regularExpressionWithPattern:allDayRegexString
                                               options:0
                                                 error:&error];
-    NSString *endTimeRegexString = @"<b>End Time:<\\/b>&nbsp;<\\/td><td>(.+)<\\/td><\\/tr><\\/table><br \\/>";
-    NSRegularExpression *endTimeRegex =
-    [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
-                                              options:0
-                                                error:&error];
+//    NSString *endTimeRegexString = @"<b>End Time:<\\/b>&nbsp;<\\/td><td>(.+)<\\/td><\\/tr><\\/table><br \\/>";
+//    NSRegularExpression *endTimeRegex =
+//    [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
+//                                              options:0
+//                                                error:&error];
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    //[formatter setDateStyle:NSDateFormatterMediumStyle];
-    //[formatter setTimeStyle:NSDateFormatterMediumStyle];
-    [formatter setDateFormat:@"MMMM d, yyyy, hh:mm a"];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM d, yyyy"];
+    
+    NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"hh:mm a"];
+    
     
     // Date
     if (item.date) {
         //NSLog(@"%@", item.content);
-        NSDateFormatter *format = [[NSDateFormatter alloc] init];
-        [format setDateFormat:@"MMMM dd, yyyy"];
+        //NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        //[format setDateFormat:@"MMMM dd, yyyy"];
         
-        NSString *allDayString = [self findAllDay:item.date :allDayRegex :format];
+        NSString *allDayString = [self findAllDay:item.date :allDayRegex :dateFormatter];
         //NSLog(@"all day");
         self.dateString = allDayString;
         if (!allDayString) {
-            NSTextCheckingResult *textCheckingResult = [endTimeRegex firstMatchInString:item.content options:0 range:NSMakeRange(0, item.content.length)];
+            NSString *endTime = [self determineTimeRange :timeFormatter];
+            NSString *eventDate = [dateFormatter stringFromDate:item.date];
             
-            NSRange matchRange = [textCheckingResult rangeAtIndex:1];
-            NSString *endTime = [item.content substringWithRange:matchRange];
-
-            NSString *withEndTime =[formatter stringFromDate:item.date];
-
-            withEndTime = [withEndTime stringByAppendingString:@" - "];
-            withEndTime = [withEndTime stringByAppendingString:endTime];
-            self.dateString = withEndTime;
+            eventDate = [eventDate stringByAppendingString:@", "];
+            self.dateString = [eventDate stringByAppendingString:endTime];
         }
     }
     else {
@@ -200,28 +197,42 @@ typedef enum { SectionDetailSummary } DetailRows;
 - (NSString *) findAllDay:(NSDate *)givenDate :(NSRegularExpression *)regex :(NSDateFormatter *)format {
     
     NSDate *eventDate = item.date;
-//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-//    [formatter setDateStyle:NSDateFormatterMediumStyle];
-//    [formatter setTimeStyle:NSDateFormatterMediumStyle];
-    
-//    NSCalendar *gregorianCal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-//    NSDateComponents *dateComps = [gregorianCal components: (NSCalendarUnitHour | NSCalendarUnitMinute)
-//                                                  fromDate: eventDate];
     
     NSUInteger numberOfMatches = [regex numberOfMatchesInString:item.content
                                                         options:0
                                                           range:NSMakeRange(0, [item.content length])];
     
-    //NSDate *date = [format dateFromString:eventDate];
     NSString *finalDateString = [format stringFromDate:eventDate];
     
     if (numberOfMatches > 0) {
-        
-        //NSLog(@"%@", finalDateString);
         NSString *allDayString = [finalDateString stringByAppendingString:@", All Day"];
         return allDayString;
     }
     return NULL;
+}
+
+- (NSString *) determineTimeRange: (NSDateFormatter *)timeFormatter {
+    NSError *error = NULL;
+    NSString *endTimeRegexString = @"<b>End Time:<\\/b>&nbsp;<\\/td><td>(.+)<\\/td><\\/tr><\\/table><br \\/>";
+    NSRegularExpression *endTimeRegex =
+    [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
+                                              options:0
+                                                error:&error];
+
+    NSTextCheckingResult *textCheckingResult = [endTimeRegex firstMatchInString:item.content options:0 range:NSMakeRange(0, item.content.length)];
+    NSRange matchRange = [textCheckingResult rangeAtIndex:1];
+    NSString *endTime = [item.content substringWithRange:matchRange];
+    
+    NSString *withEndTime =[timeFormatter stringFromDate:item.date];
+    
+    //NSString *withEndTime = @" - ";
+    
+    withEndTime = [withEndTime stringByAppendingString:@" - "];
+    withEndTime = [withEndTime stringByAppendingString:endTime];
+    
+    NSLog(@"%@", withEndTime);
+    
+    return withEndTime;
 }
 
 @end
