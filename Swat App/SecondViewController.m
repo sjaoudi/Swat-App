@@ -162,7 +162,9 @@
         //cell.textLabel.text = testString;
         NSMutableString *subtitle = [NSMutableString string];
         
-        if (item.date) [subtitle appendFormat:@"%@: ", [formatter stringFromDate:item.date]];
+        if (item.date) {
+            [subtitle appendFormat:@"%@:asdfasdf ", [formatter stringFromDate:item.date]];
+        }
         [subtitle appendString:itemSummary];
         cell.detailTextLabel.text = subtitle;
     }

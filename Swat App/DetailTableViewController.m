@@ -28,12 +28,49 @@ typedef enum { SectionDetailSummary } DetailRows;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // Regex for checking
+    NSError *error = NULL;
+    NSString *allDayRegexString = @"&nbsp;<b>All Day</b>";
+    NSRegularExpression *allDayRegex =
+    [NSRegularExpression regularExpressionWithPattern:allDayRegexString
+                                              options:0
+                                                error:&error];
+    NSString *endTimeRegexString = @"<b>End Time:<\\/b>&nbsp;<\\/td><td>(.+)<\\/td><\\/tr><\\/table><br \\/>";
+    NSRegularExpression *endTimeRegex =
+    [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
+                                              options:0
+                                                error:&error];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    //[formatter setDateStyle:NSDateFormatterMediumStyle];
+    //[formatter setTimeStyle:NSDateFormatterMediumStyle];
+    [formatter setDateFormat:@"MMMM d, yyyy, hh:mm a"];
+    
     // Date
     if (item.date) {
-        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateStyle:NSDateFormatterMediumStyle];
-        [formatter setTimeStyle:NSDateFormatterMediumStyle];
-        self.dateString = [formatter stringFromDate:item.date];
+        //NSLog(@"%@", item.content);
+        NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        [format setDateFormat:@"MMMM dd, yyyy"];
+        
+        NSString *allDayString = [self findAllDay:item.date :allDayRegex :format];
+        //NSLog(@"all day");
+        self.dateString = allDayString;
+        if (!allDayString) {
+            NSTextCheckingResult *textCheckingResult = [endTimeRegex firstMatchInString:item.content options:0 range:NSMakeRange(0, item.content.length)];
+            
+            NSRange matchRange = [textCheckingResult rangeAtIndex:1];
+            NSString *endTime = [item.content substringWithRange:matchRange];
+
+            NSString *withEndTime =[formatter stringFromDate:item.date];
+
+            withEndTime = [withEndTime stringByAppendingString:@" - "];
+            withEndTime = [withEndTime stringByAppendingString:endTime];
+            self.dateString = withEndTime;
+        }
+    }
+    else {
+        //self.dateString = [formatter stringFromDate:item.date];
+        self.summaryString = @"[No Date]";
     }
     
     // Summary
@@ -108,10 +145,12 @@ typedef enum { SectionDetailSummary } DetailRows;
                 
                 NSString *fixedSummary;
                 NSString *CDATA = @"!<[CDATA[";
-                NSLog(@"Summary:%@", item.summary);
+                //NSLog(@"Summary:%@", item.summary);
+                // Removes CDATA Info from summary.
+                
                 //if ([item.summary hasPrefix:CDATA]) { // Expression not working
                 if (item.summary) {
-                    NSLog(@"has the prefix");
+                    //NSLog(@"has the prefix");
                     fixedSummary = [item.summary substringWithRange:NSMakeRange([CDATA length], [item.summary length]-[CDATA length]-3)];
                 }
                 
@@ -156,6 +195,33 @@ typedef enum { SectionDetailSummary } DetailRows;
     }
     // Deselect
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (NSString *) findAllDay:(NSDate *)givenDate :(NSRegularExpression *)regex :(NSDateFormatter *)format {
+    
+    NSDate *eventDate = item.date;
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateStyle:NSDateFormatterMediumStyle];
+//    [formatter setTimeStyle:NSDateFormatterMediumStyle];
+    
+//    NSCalendar *gregorianCal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//    NSDateComponents *dateComps = [gregorianCal components: (NSCalendarUnitHour | NSCalendarUnitMinute)
+//                                                  fromDate: eventDate];
+    
+    NSUInteger numberOfMatches = [regex numberOfMatchesInString:item.content
+                                                        options:0
+                                                          range:NSMakeRange(0, [item.content length])];
+    
+    //NSDate *date = [format dateFromString:eventDate];
+    NSString *finalDateString = [format stringFromDate:eventDate];
+    
+    if (numberOfMatches > 0) {
+        
+        //NSLog(@"%@", finalDateString);
+        NSString *allDayString = [finalDateString stringByAppendingString:@", All Day"];
+        return allDayString;
+    }
+    return NULL;
 }
 
 @end
