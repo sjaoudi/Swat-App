@@ -183,7 +183,7 @@
     detail.item = (MWFeedItem *)[itemsToDisplay objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:detail animated:YES];
     
-    NSLog(@"row pressed");
+    //NSLog(@"row pressed");
     
     // Deselect
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

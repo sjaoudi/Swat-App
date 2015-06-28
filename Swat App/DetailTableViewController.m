@@ -39,6 +39,8 @@ typedef enum { SectionDetailSummary } DetailRows;
     // Summary
     if (item.summary) {
         self.summaryString = [item.summary stringByConvertingHTMLToPlainText];
+        
+        
     }
     else {
         self.summaryString = @"[No Summary]";
@@ -95,15 +97,27 @@ typedef enum { SectionDetailSummary } DetailRows;
                         break;
                     case SectionHeaderAuthor:
                         cell.textLabel.text = item.author ? item.author : @"[No Author]";
-                        NSLog(@"%@", item.summary);
+                        
+                        //NSLog(@"%@", item.summary);
                         break;
                 }
                 break;
             }
             case SectionDetail: {
                 // Summary
-                cell.textLabel.text = summaryString;
-                cell.textLabel.text = item.summary;
+                
+                NSString *fixedSummary;
+                NSString *CDATA = @"!<[CDATA[";
+                NSLog(@"Summary:%@", item.summary);
+                //if ([item.summary hasPrefix:CDATA]) { // Expression not working
+                if (item.summary) {
+                    NSLog(@"has the prefix");
+                    fixedSummary = [item.summary substringWithRange:NSMakeRange([CDATA length], [item.summary length]-[CDATA length]-3)];
+                }
+                
+                //cell.textLabel.text = summaryString;
+                //cell.textLabel.text = item.summary;
+                cell.textLabel.text = fixedSummary;
                 cell.textLabel.numberOfLines = 0; // Multiline
                 break;
             }
