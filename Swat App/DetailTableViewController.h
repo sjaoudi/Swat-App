@@ -24,5 +24,7 @@
 @property (nonatomic, strong) NSString *dateString, *summaryString;
 
 - (NSString *) determineTimeRange:(NSDateFormatter *)timeFormatter :(NSString *)content :(NSDate *)date;
+- (NSString *) findAllDay:(NSDate *)givenDate :(NSString *)content :(NSDateFormatter *)format;
+
 
 @end

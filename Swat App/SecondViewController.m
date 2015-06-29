@@ -151,10 +151,10 @@
     MWFeedItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
     if (item) {
         
-        //NSString *testString = @"title test";
-        
         // Process
         NSString *itemTitle = item.title ? [item.title stringByConvertingHTMLToPlainText] : @"[No Title]";
+        
+        
         NSString *itemSummary = item.summary ? [item.summary stringByConvertingHTMLToPlainText] : @"[No Summary]";
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
@@ -163,23 +163,30 @@
         NSMutableString *subtitle = [NSMutableString string];
         
         if (item.date) {
-//            NSError *error = NULL;
-//            NSString *endTimeRegexString = @"<b>End Time:<\\/b>&nbsp;<\\/td><td>(.+)<\\/td><\\/tr><\\/table><br \\/>";
-//            NSRegularExpression *endTimeRegex =
-//            [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
-//                                                      options:0
-//                                                        error:&error];
             
             NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
             [timeFormatter setDateFormat:@"hh:mm a"];
             
             DetailTableViewController *c = [[DetailTableViewController alloc] init];
-            NSString *timeRange = [c determineTimeRange:timeFormatter :item.content :item.date];
-            //[subtitle appendFormat:timeRange, [formatter stringFromDate:item.date]];
-            [subtitle appendFormat:timeRange];
+            NSString *allDay = [c findAllDay:item.date :item.content :timeFormatter];
+            if (!allDay) {
+                NSString *timeRange = [c determineTimeRange:timeFormatter :item.content :item.date];
+                if (!timeRange) {
+                    NSString *singleTime = [c determineTimeRange:timeFormatter :item.content :item.date];
+                    [subtitle appendFormat:singleTime, [timeFormatter stringFromDate:item.date]];
+                }
+                else {
+                    [subtitle appendFormat:timeRange, [timeFormatter stringFromDate:item.date]];
+                }
+            }
+            else {
+                [subtitle appendString:@"All Day"];
+            }
         }
+        
         [subtitle appendString:itemSummary];
         cell.detailTextLabel.text = subtitle;
+        
     }
     
     

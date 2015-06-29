@@ -54,7 +54,7 @@ typedef enum { SectionDetailSummary } DetailRows;
         //NSDateFormatter *format = [[NSDateFormatter alloc] init];
         //[format setDateFormat:@"MMMM dd, yyyy"];
         
-        NSString *allDayString = [self findAllDay:item.date :allDayRegex :dateFormatter];
+        NSString *allDayString = [self findAllDay:item.date :item.content :dateFormatter];
         //NSLog(@"all day");
         self.dateString = allDayString;
         if (!allDayString) {
@@ -87,7 +87,8 @@ typedef enum { SectionDetailSummary } DetailRows;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
-        case 0: return 4;
+        //case 0: return 4;
+        case 0: return 3;
         default: return 1;
     }
 }
@@ -129,11 +130,11 @@ typedef enum { SectionDetailSummary } DetailRows;
                         cell.textLabel.textColor = [UIColor blueColor];
                         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
                         break;
-                    case SectionHeaderAuthor:
-                        cell.textLabel.text = item.author ? item.author : @"[No Author]";
+                    //case SectionHeaderAuthor:
+                        //cell.textLabel.text = item.author ? item.author : @"[No Author]";
                         
                         //NSLog(@"%@", item.summary);
-                        break;
+                        //break;
                 }
                 break;
             }
@@ -194,13 +195,19 @@ typedef enum { SectionDetailSummary } DetailRows;
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (NSString *) findAllDay:(NSDate *)givenDate :(NSRegularExpression *)regex :(NSDateFormatter *)format {
+- (NSString *) findAllDay:(NSDate *)givenDate :(NSString *)content :(NSDateFormatter *)format {
+    NSError *error = NULL;
+    NSString *allDayRegexString = @"&nbsp;<b>All Day</b>";
+    NSRegularExpression *allDayRegex =
+    [NSRegularExpression regularExpressionWithPattern:allDayRegexString
+                                              options:0
+                                                error:&error];
     
-    NSDate *eventDate = item.date;
+    NSDate *eventDate = givenDate;
     
-    NSUInteger numberOfMatches = [regex numberOfMatchesInString:item.content
+    NSUInteger numberOfMatches = [allDayRegex numberOfMatchesInString:content
                                                         options:0
-                                                          range:NSMakeRange(0, [item.content length])];
+                                                          range:NSMakeRange(0, [content length])];
     
     NSString *finalDateString = [format stringFromDate:eventDate];
     
@@ -220,17 +227,19 @@ typedef enum { SectionDetailSummary } DetailRows;
                                                 error:&error];
     
     NSTextCheckingResult *textCheckingResult = [endTimeRegex firstMatchInString:content options:0 range:NSMakeRange(0, content.length)];
+    if (!textCheckingResult) {
+        NSString *withoutEndTime =[timeFormatter stringFromDate:date];
+        return withoutEndTime;
+
+    }
     NSRange matchRange = [textCheckingResult rangeAtIndex:1];
     NSString *endTime = [content substringWithRange:matchRange];
     
     NSString *withEndTime =[timeFormatter stringFromDate:date];
     
-    //NSString *withEndTime = @" - ";
     
     withEndTime = [withEndTime stringByAppendingString:@" - "];
     withEndTime = [withEndTime stringByAppendingString:endTime];
-    
-    //NSLog(@"%@", withEndTime);
     
     return withEndTime;
 }
