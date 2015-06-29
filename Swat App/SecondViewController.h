@@ -21,5 +21,6 @@
 
 @property (nonatomic, strong) NSArray *itemsToDisplay;
 //@property(nonatomic, strong) IBOutlet UITableView *tableView;
+- (NSString *)removeDateTitle :(NSString *)title;
 
 @end

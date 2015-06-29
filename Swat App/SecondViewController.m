@@ -64,6 +64,7 @@
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info {
     NSLog(@"Parsed Feed Info: “%@”", info.title);
     self.title = info.title;
+    //self.title = @"Events Feed";
 }
 
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
@@ -149,11 +150,15 @@
     
     // Configure the cell.
     MWFeedItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
+    
+    
+    
     if (item) {
         
         // Process
-        NSString *itemTitle = item.title ? [item.title stringByConvertingHTMLToPlainText] : @"[No Title]";
         
+        //NSString *itemTitle = item.title ? [item.title stringByConvertingHTMLToPlainText] : @"[No Title]";
+        NSString *itemTitle = item.title ? [self removeDateTitle:item.title] : @"[No Title]";
         
         NSString *itemSummary = item.summary ? [item.summary stringByConvertingHTMLToPlainText] : @"[No Summary]";
         
@@ -163,6 +168,8 @@
         NSMutableString *subtitle = [NSMutableString string];
         
         if (item.date) {
+            
+            [self determineDateRange:item.content];
             
             NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
             [timeFormatter setDateFormat:@"hh:mm a"];
@@ -183,15 +190,10 @@
                 [subtitle appendString:@"All Day"];
             }
         }
-        
         [subtitle appendString:itemSummary];
         cell.detailTextLabel.text = subtitle;
-        
     }
-    
-    
     return cell;
-    
 }
 
 
@@ -216,7 +218,52 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (NSString *)removeDateTitle :(NSString *)title {
+    NSError *error = NULL;
+    NSString *titleDateRegexString = @"(.+) \\(";
+    NSRegularExpression *titleDateRegex =
+    [NSRegularExpression regularExpressionWithPattern:titleDateRegexString
+                                              options:0
+                                                error:&error];
+    NSTextCheckingResult *textCheckingResult = [titleDateRegex firstMatchInString:title options:0 range:NSMakeRange(0, title.length)];
+    NSRange matchRange = [textCheckingResult rangeAtIndex:1];
+    NSString *datelessTitle = [title substringWithRange:matchRange];
+    return datelessTitle;
+    
+}
 
+- (NSMutableArray *)createDateRangeArray :(NSDate *)startDate :(NSDate *)endDate{
+    
+    NSMutableArray *dateRangeArray;
+    
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
+    NSDateComponents *days = [[NSDateComponents alloc] init];
+    
+    NSInteger dayCount = 0;
+    while ( TRUE ) {
+        [days setDay: ++dayCount];
+        NSDate *date = [gregorianCalendar dateByAddingComponents: days toDate: startDate options: 0];
+        if ( [date compare: endDate] == NSOrderedDescending )
+            break;
+        // Do something with date like add it to an array, etc.
+        [dateRangeArray addObject:date];
+    }
+    return dateRangeArray;
+}
 
+- (void)determineDateRange :(NSString *)content {
+    NSError *error = NULL;
+    NSString *startDateRegexString = @"";
+    NSRegularExpression *titleDateRegex =
+    [NSRegularExpression regularExpressionWithPattern:startDateRegexString
+                                              options:0
+                                                error:&error];
+    NSTextCheckingResult *textCheckingResult = [titleDateRegex firstMatchInString:content options:0 range:NSMakeRange(0, content.length)];
+    NSRange matchRange = [textCheckingResult rangeAtIndex:1];
+    NSString *startDate = [content substringWithRange:matchRange];
+   
+    NSLog(@"%@", startDate);
+    
+}
 
 @end
