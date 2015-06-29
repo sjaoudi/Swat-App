@@ -23,6 +23,6 @@
 @property (nonatomic, strong) MWFeedItem *item;
 @property (nonatomic, strong) NSString *dateString, *summaryString;
 
-- (NSString *) determineTimeRange:(NSDateFormatter *)timeFormatter;
+- (NSString *) determineTimeRange:(NSDateFormatter *)timeFormatter :(NSString *)content :(NSDate *)date;
 
 @end

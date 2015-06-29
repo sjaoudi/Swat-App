@@ -174,9 +174,9 @@
             [timeFormatter setDateFormat:@"hh:mm a"];
             
             DetailTableViewController *c = [[DetailTableViewController alloc] init];
-            //NSString *timeRange = [c determineTimeRange:timeFormatter];
+            NSString *timeRange = [c determineTimeRange:timeFormatter :item.content :item.date];
             //[subtitle appendFormat:timeRange, [formatter stringFromDate:item.date]];
-            //[subtitle appendFormat:timeRange];
+            [subtitle appendFormat:timeRange];
         }
         [subtitle appendString:itemSummary];
         cell.detailTextLabel.text = subtitle;
@@ -208,6 +208,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 
 @end

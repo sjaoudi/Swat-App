@@ -58,7 +58,7 @@ typedef enum { SectionDetailSummary } DetailRows;
         //NSLog(@"all day");
         self.dateString = allDayString;
         if (!allDayString) {
-            NSString *endTime = [self determineTimeRange :timeFormatter];
+            NSString *endTime = [self determineTimeRange :timeFormatter :item.content :item.date];
             NSString *eventDate = [dateFormatter stringFromDate:item.date];
             
             eventDate = [eventDate stringByAppendingString:@", "];
@@ -211,26 +211,26 @@ typedef enum { SectionDetailSummary } DetailRows;
     return NULL;
 }
 
-- (NSString *) determineTimeRange: (NSDateFormatter *)timeFormatter {
+- (NSString *) determineTimeRange:(NSDateFormatter *)timeFormatter :(NSString *)content :(NSDate *)date{
     NSError *error = NULL;
     NSString *endTimeRegexString = @"<b>End Time:<\\/b>&nbsp;<\\/td><td>(.+)<\\/td><\\/tr><\\/table><br \\/>";
     NSRegularExpression *endTimeRegex =
     [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
                                               options:0
                                                 error:&error];
-
-    NSTextCheckingResult *textCheckingResult = [endTimeRegex firstMatchInString:item.content options:0 range:NSMakeRange(0, item.content.length)];
-    NSRange matchRange = [textCheckingResult rangeAtIndex:1];
-    NSString *endTime = [item.content substringWithRange:matchRange];
     
-    NSString *withEndTime =[timeFormatter stringFromDate:item.date];
+    NSTextCheckingResult *textCheckingResult = [endTimeRegex firstMatchInString:content options:0 range:NSMakeRange(0, content.length)];
+    NSRange matchRange = [textCheckingResult rangeAtIndex:1];
+    NSString *endTime = [content substringWithRange:matchRange];
+    
+    NSString *withEndTime =[timeFormatter stringFromDate:date];
     
     //NSString *withEndTime = @" - ";
     
     withEndTime = [withEndTime stringByAppendingString:@" - "];
     withEndTime = [withEndTime stringByAppendingString:endTime];
     
-    NSLog(@"%@", withEndTime);
+    //NSLog(@"%@", withEndTime);
     
     return withEndTime;
 }
