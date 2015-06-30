@@ -138,7 +138,6 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    //NSLog(@"the cell is %@", cell);
     
     // This is added for a Search Bar - otherwise it will crash due to
     //'UITableView dataSource must return a cell from tableView:cellForRowAtIndexPath:'
@@ -168,8 +167,6 @@
         NSMutableString *subtitle = [NSMutableString string];
         
         if (item.date) {
-            
-            [self determineDateRange:item.content];
             
             NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
             [timeFormatter setDateFormat:@"hh:mm a"];
@@ -201,10 +198,28 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    
     //Show detail
     DetailTableViewController *detail = [[DetailTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     detail.item = (MWFeedItem *)[itemsToDisplay objectAtIndex:indexPath.row];
+    
+    NSMutableArray *dates = [self determineDateRange:detail.item.content];
+    //NSLog(@"%@", dates);
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/d/yyyy"];
+    
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    NSDate *date1 = [dateFormatter dateFromString:dates[0]];
+    NSDate *date2 = [dateFormatter dateFromString:dates[1]];
+    //NSLog(@"%@, %@", dates[0], dates[1]);
+    //NSLog(@"%@, %@", date1, date2);
+    
+    NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
+    NSLog(@"%@", datesArray);
+    
+   
+    //[self determineDateRange:detail.item.content];
     [self.navigationController pushViewController:detail animated:YES];
     
     //NSLog(@"row pressed");
@@ -234,36 +249,60 @@
 
 - (NSMutableArray *)createDateRangeArray :(NSDate *)startDate :(NSDate *)endDate{
     
-    NSMutableArray *dateRangeArray;
+    NSLog(@"%@, %@", startDate, endDate);
+    NSMutableArray *dateRangeArray = [[NSMutableArray alloc] init];
     
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
     NSDateComponents *days = [[NSDateComponents alloc] init];
     
     NSInteger dayCount = 0;
     while ( TRUE ) {
-        [days setDay: ++dayCount];
         NSDate *date = [gregorianCalendar dateByAddingComponents: days toDate: startDate options: 0];
+        [days setDay: ++dayCount];
         if ( [date compare: endDate] == NSOrderedDescending )
             break;
-        // Do something with date like add it to an array, etc.
+        // Add date to the array
         [dateRangeArray addObject:date];
     }
     return dateRangeArray;
 }
 
-- (void)determineDateRange :(NSString *)content {
+- (NSMutableArray *)determineDateRange :(NSString *)content {
+    
+    NSMutableArray *startEndDates = [[NSMutableArray alloc] init];
+    
     NSError *error = NULL;
-    NSString *startDateRegexString = @"";
-    NSRegularExpression *titleDateRegex =
+    NSString *startDateRegexString = @"Start Date:<\\/b>&nbsp;<\\/td><td style=\"padding-bottom:1px;\">(\\d+\\/\\d+\\/\\d+)<\\/td><td>";
+    NSRegularExpression *startDateRegex =
     [NSRegularExpression regularExpressionWithPattern:startDateRegexString
                                               options:0
                                                 error:&error];
-    NSTextCheckingResult *textCheckingResult = [titleDateRegex firstMatchInString:content options:0 range:NSMakeRange(0, content.length)];
-    NSRange matchRange = [textCheckingResult rangeAtIndex:1];
-    NSString *startDate = [content substringWithRange:matchRange];
-   
-    NSLog(@"%@", startDate);
+    NSTextCheckingResult *textCheckingResultStart = [startDateRegex firstMatchInString:content options:0 range:NSMakeRange(0, content.length)];
+    if (!textCheckingResultStart) return NULL;
+    NSRange matchRangeStart = [textCheckingResultStart rangeAtIndex:1];
+    NSString *startDate = [content substringWithRange:matchRangeStart];
+    [startEndDates addObject:startDate];
+    //NSLog(@"%@", startDate);
     
+    
+    NSString *endDateRegexString = @"End Date:<\\/b>&nbsp;<\\/td><td>(\\d+\\/\\d+\\/\\d+)<\\/td><td>";
+    NSRegularExpression *endDateRegex =
+    [NSRegularExpression regularExpressionWithPattern:endDateRegexString
+                                              options:0
+                                                error:&error];
+    NSTextCheckingResult *textCheckingResultEnd = [endDateRegex firstMatchInString:content options:0 range:NSMakeRange(0, content.length)];
+    if (!textCheckingResultEnd) return NULL;
+    NSRange matchRangeEnd = [textCheckingResultEnd rangeAtIndex:1];
+    NSString *endDate = [content substringWithRange:matchRangeEnd];
+    
+    // Return an array of a single date if startDate == endDate
+//    if ([startDate isEqualToString:endDate]) {
+//        return startEndDates;
+//    }
+    [startEndDates addObject:endDate];
+    //NSLog(@"%@", endDate);
+    
+    return startEndDates;
 }
 
 @end
