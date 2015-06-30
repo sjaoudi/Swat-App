@@ -33,6 +33,8 @@
     parsedItems = [[NSMutableArray alloc] init];
     self.itemsToDisplay = [NSArray array];
     
+    allDates = [[NSMutableArray alloc] init];
+    
     // Refresh button (?)
     
     NSURL *feedURL = [NSURL URLWithString:@"http://calendar.swarthmore.edu/calendar/RSSSyndicator.aspx?category=&location=&type=N&starting=5/1/2015&ending=5/15/2015&binary=Y&keywords=&ics=Y"];
@@ -69,7 +71,33 @@
 
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
     //NSLog(@"Parsed Feed Item: “%@”", item.title);
-    if (item) [parsedItems addObject:item];
+    if (item) {
+        [parsedItems addObject:item];
+        NSMutableArray *datesArray = [self createDateRange:item.content];
+        
+        NSString *dateString1 = @"01-May-15";
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"MMM dd, yyyy HH:mm";
+        NSDate *date1 = [dateFormatter dateFromString:dateString1];
+        
+        NSString *dateString2 = @"15-May-15";
+        NSDate *date2 = [dateFormatter dateFromString:dateString2];
+        
+        for (int i=0; i < datesArray.count; i++) {
+            NSLog(@"%@", date1);
+            if (([datesArray[i] compare:date1] == NSOrderedDescending) && ([datesArray[i] compare:date2] == NSOrderedAscending)) {
+                [allDates addObject:datesArray[i]];
+                //NSLog(@"%@", datesArray[i]);
+            }
+            else {
+                //NSLog(@"hi");
+            }
+        }
+    }
+    
+    NSLog(@"%@", allDates);
+    
+    
 }
 
 - (void)feedParserDidFinish:(MWFeedParser *)parser {
@@ -94,7 +122,7 @@
 }
 
 // Number of sections in table view
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView :(NSString *)content{
     return 1;
 }
 
@@ -150,6 +178,21 @@
     // Configure the cell.
     MWFeedItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
     
+//    NSMutableArray *dates = [self determineDateRange:item.content];
+//
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"MM/d/yyyy"];
+//    
+//    [dateFormatter setLocale:[NSLocale currentLocale]];
+//    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+//    NSDate *date1 = [dateFormatter dateFromString:dates[0]];
+//    NSDate *date2 = [dateFormatter dateFromString:dates[1]];
+//    
+//    NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
+    //NSMutableArray *datesArray = [self createDateRange:item.content];
+
+    NSLog(@"%ld", allDates.count);
+    exit(0);
     
     
     if (item) {
@@ -158,7 +201,6 @@
         
         //NSString *itemTitle = item.title ? [item.title stringByConvertingHTMLToPlainText] : @"[No Title]";
         NSString *itemTitle = item.title ? [self removeDateTitle:item.title] : @"[No Title]";
-        
         NSString *itemSummary = item.summary ? [item.summary stringByConvertingHTMLToPlainText] : @"[No Summary]";
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
@@ -216,7 +258,7 @@
     //NSLog(@"%@, %@", date1, date2);
     
     NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
-    NSLog(@"%@", datesArray);
+    //NSLog(@"%@", datesArray);
     
    
     //[self determineDateRange:detail.item.content];
@@ -249,7 +291,7 @@
 
 - (NSMutableArray *)createDateRangeArray :(NSDate *)startDate :(NSDate *)endDate{
     
-    NSLog(@"%@, %@", startDate, endDate);
+    //NSLog(@"%@, %@", startDate, endDate);
     NSMutableArray *dateRangeArray = [[NSMutableArray alloc] init];
     
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
@@ -303,6 +345,24 @@
     //NSLog(@"%@", endDate);
     
     return startEndDates;
+}
+
+- (NSMutableArray *)createDateRange :(NSString *)content {
+    NSMutableArray *dates = [self determineDateRange:content];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/d/yyyy"];
+    
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    NSDate *date1 = [dateFormatter dateFromString:dates[0]];
+    NSDate *date2 = [dateFormatter dateFromString:dates[1]];
+    
+    NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
+    
+    //NSLog(@"%@", datesArray);
+    return datesArray;
+
 }
 
 @end

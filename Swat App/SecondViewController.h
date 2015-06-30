@@ -14,6 +14,8 @@
     MWFeedParser *feedParser;
     NSMutableArray *parsedItems;
     
+    NSMutableArray *allDates;
+    
     NSArray *itemsToDisplay;
     NSDateFormatter *formatter;
     

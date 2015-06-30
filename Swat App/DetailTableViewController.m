@@ -29,12 +29,12 @@ typedef enum { SectionDetailSummary } DetailRows;
     [super viewDidLoad];
     
     // Regex for checking
-    NSError *error = NULL;
-    NSString *allDayRegexString = @"&nbsp;<b>All Day</b>";
-    NSRegularExpression *allDayRegex =
-    [NSRegularExpression regularExpressionWithPattern:allDayRegexString
-                                              options:0
-                                                error:&error];
+//    NSError *error = NULL;
+//    NSString *allDayRegexString = @"&nbsp;<b>All Day</b>";
+//    NSRegularExpression *allDayRegex =
+//    [NSRegularExpression regularExpressionWithPattern:allDayRegexString
+//                                              options:0
+//                                                error:&error];
 //    NSString *endTimeRegexString = @"<b>End Time:<\\/b>&nbsp;<\\/td><td>(.+)<\\/td><\\/tr><\\/table><br \\/>";
 //    NSRegularExpression *endTimeRegex =
 //    [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
