@@ -16,6 +16,7 @@
     
     NSMutableArray *allDates;
     NSMutableDictionary *eventsDictionary;
+    NSArray *eventSectionTitles;
     NSArray *dateRangeToParse;
     NSArray *dateArrays;
     

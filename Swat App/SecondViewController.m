@@ -35,6 +35,7 @@
     
     allDates = [[NSMutableArray alloc] init];
     eventsDictionary = [[NSMutableDictionary alloc] init];
+    eventSectionTitles = [[NSArray alloc] init];
     dateRangeToParse = [[NSArray alloc] init];
     dateArrays = [[NSArray alloc] init];
     
@@ -96,10 +97,6 @@
         //NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         //NSLog(@"%@", dateRangeToParse);
         
-        
-        
-        
-        
         for (int i=0; i< itemDatesArray.count; i++) {
             BOOL isInRange = [self determineIfInRange:dateString1 :dateString2 :itemDatesArray[i]];
             if (isInRange) {
@@ -109,6 +106,7 @@
                     if ([dateRangeToParse[j] isEqualToDate:itemDatesArray[i]]) {
                         //append to corresponding date array
                         //item.date = itemDatesArray[i];
+                        
                         //somehow fix the date of each object
                         [dateArrays[j] addObject:item];
                     }
@@ -134,12 +132,18 @@
     }
     
     //NSLog(@"%@", allDates);
-    
-    
 }
 
 - (void)feedParserDidFinish:(MWFeedParser *)parser {
     NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
+    
+    for (int i = 0; i < dateRangeToParse.count; i++) {
+        [eventsDictionary setObject:dateArrays[i] forKey:dateRangeToParse[i]];
+    }
+    
+    //eventSectionTitles = [[eventsDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare)];
+    NSLog(@"%@", eventsDictionary);
+    
     [self updateTableWithParsedItems];
 }
 
@@ -162,20 +166,26 @@
 // Number of sections in table view
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView :(NSString *)content{
     //return 1;
+    NSLog(@"%lu", dateRangeToParse.count);
     return dateRangeToParse.count;
 }
 
 // Number of rows in table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //NSString *sectionTitle = [dateRangeToParse objectAtIndex:section];
-    //NSArray *dictKeys = [eventsDictionary objectForKey:sectionTitle];
-    return itemsToDisplay.count;
-    //return [dictKeys count];
+    NSString *sectionTitle = [dateRangeToParse objectAtIndex:section];
+    NSArray *sectionEvents = [eventsDictionary objectForKey:sectionTitle];
+    //return itemsToDisplay.count;
+    return [sectionEvents count];
 }
+
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+//{
+//    return dateRangeToParse;
+//}
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 //{
-//    //return [dateRangeToParse objectAtIndex:section];
+//    return [dateRangeToParse objectAtIndex:section];
 //}
 
 // Appearance of table view cells
@@ -238,7 +248,7 @@
 //    NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
     //NSMutableArray *datesArray = [self createDateRange:item.content];
 
-    NSLog(@"%@", dateArrays);
+    //NSLog(@"%@", dateArrays);
     //NSLog(@"%@", eventsDictionary);
     
     
