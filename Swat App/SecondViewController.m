@@ -36,6 +36,7 @@
     allDates = [[NSMutableArray alloc] init];
     eventsDictionary = [[NSMutableDictionary alloc] init];
     dateRangeToParse = [[NSArray alloc] init];
+    dateArrays = [[NSArray alloc] init];
     
     // Refresh button (?)
     
@@ -51,6 +52,9 @@
     NSString *dateString2 = @"15-May-15";
     
     dateRangeToParse = [self dateRangeFromStrings:dateString1 :dateString2];
+    
+    //create array of empty arrays, each corresponding to a date
+    dateArrays = [self createEmptyDateArrays];
     
     
     //[self.tableView reloadData];
@@ -92,17 +96,24 @@
         //NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         //NSLog(@"%@", dateRangeToParse);
         
+        
+        
+        
+        
         for (int i=0; i< itemDatesArray.count; i++) {
             BOOL isInRange = [self determineIfInRange:dateString1 :dateString2 :itemDatesArray[i]];
             if (isInRange) {
                 //NSLog(@"%@", item.date);
                 //[eventsDictionary setObject:item forKey:itemDatesArray[i]];
-                //for (int j=0; j< dateRangeToParse.count; j++) {
-                    //if [dateRangeToParse[j]
-                    
+                for (int j=0; j< dateRangeToParse.count; j++) {
+                    if ([dateRangeToParse[j] isEqualToDate:itemDatesArray[i]]) {
+                        //append to corresponding date array
+                        //item.date = itemDatesArray[i];
+                        //somehow fix the date of each object
+                        [dateArrays[j] addObject:item];
+                    }
+                }
             }
-            
-            
         }
         
         //NSLog(@"%@", eventsDictionary);
@@ -227,9 +238,8 @@
 //    NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
     //NSMutableArray *datesArray = [self createDateRange:item.content];
 
-    //NSLog(@"%@", allDates);
+    NSLog(@"%@", dateArrays);
     //NSLog(@"%@", eventsDictionary);
-    //exit(0);
     
     
     if (item) {
@@ -420,6 +430,16 @@
     else {
         return NO;
     }
+}
+
+- (NSMutableArray *)createEmptyDateArrays {
+    NSMutableArray *emptyDateArray = [[NSMutableArray alloc] init];
+    for (int i; i<dateRangeToParse.count; i++) {
+        NSMutableArray *dateArray = [[NSMutableArray alloc] init];
+        [emptyDateArray addObject:dateArray];
+    }
+    
+    return emptyDateArray;
 }
 
 
