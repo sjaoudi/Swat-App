@@ -34,6 +34,8 @@
     self.itemsToDisplay = [NSArray array];
     
     allDates = [[NSMutableArray alloc] init];
+    eventsDictionary = [[NSMutableDictionary alloc] init];
+    dateRangeToParse = [[NSArray alloc] init];
     
     // Refresh button (?)
     
@@ -44,9 +46,13 @@
     feedParser.connectionType = ConnectionTypeAsynchronously;
     [feedParser parse];
     
-    //self.tableView.contentInset = UIEdgeInsetsMake(44,0,0,0);
     
-    //self.tableView.frame = CGRectMake(0,40,200,480);
+    NSString *dateString1 = @"01-May-15";
+    NSString *dateString2 = @"15-May-15";
+    
+    dateRangeToParse = [self dateRangeFromStrings:dateString1 :dateString2];
+    
+    
     //[self.tableView reloadData];
     
 }
@@ -73,29 +79,50 @@
     //NSLog(@"Parsed Feed Item: “%@”", item.title);
     if (item) {
         [parsedItems addObject:item];
-        NSMutableArray *datesArray = [self createDateRange:item.content];
+        NSMutableArray *itemDatesArray = [self createDateRange:item.content];
+        
+        //NSMutableArray *dateRangeToParse = [[NSMutableArray alloc] init];
         
         NSString *dateString1 = @"01-May-15";
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"MMM dd, yyyy HH:mm";
-        NSDate *date1 = [dateFormatter dateFromString:dateString1];
-        
         NSString *dateString2 = @"15-May-15";
-        NSDate *date2 = [dateFormatter dateFromString:dateString2];
         
-        for (int i=0; i < datesArray.count; i++) {
-            NSLog(@"%@", date1);
-            if (([datesArray[i] compare:date1] == NSOrderedDescending) && ([datesArray[i] compare:date2] == NSOrderedAscending)) {
-                [allDates addObject:datesArray[i]];
-                //NSLog(@"%@", datesArray[i]);
+        //dateRangeToParse = [self createDateRangeArray:date1 :date2];
+        //NSLog(@"%@, %@", itemDatesArray, dateRangeToParse);
+        
+        //NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        //NSLog(@"%@", dateRangeToParse);
+        
+        for (int i=0; i< itemDatesArray.count; i++) {
+            BOOL isInRange = [self determineIfInRange:dateString1 :dateString2 :itemDatesArray[i]];
+            if (isInRange) {
+                //NSLog(@"%@", item.date);
+                //[eventsDictionary setObject:item forKey:itemDatesArray[i]];
+                //for (int j=0; j< dateRangeToParse.count; j++) {
+                    //if [dateRangeToParse[j]
+                    
             }
-            else {
-                //NSLog(@"hi");
-            }
+            
+            
         }
+        
+        //NSLog(@"%@", eventsDictionary);
+        //exit(0);
+        
+        
+//        for (int i=0; i < datesArray.count; i++) {
+//            //NSLog(@"%@", date1);
+//            if (!(([datesArray[i] compare:date1] == NSOrderedAscending) ||
+//                  ([datesArray[i] compare:date2] == NSOrderedDescending))) {
+//                [allDates addObject:datesArray[i]];
+//            }
+//            else if ([datesArray[i] compare:date2] == NSOrderedSame) {
+//                NSLog(@"worked");
+//                [allDates addObject:datesArray[i]];
+//            }
+//        }
     }
     
-    NSLog(@"%@", allDates);
+    //NSLog(@"%@", allDates);
     
     
 }
@@ -123,13 +150,22 @@
 
 // Number of sections in table view
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView :(NSString *)content{
-    return 1;
+    //return 1;
+    return dateRangeToParse.count;
 }
 
 // Number of rows in table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //NSString *sectionTitle = [dateRangeToParse objectAtIndex:section];
+    //NSArray *dictKeys = [eventsDictionary objectForKey:sectionTitle];
     return itemsToDisplay.count;
+    //return [dictKeys count];
 }
+
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    //return [dateRangeToParse objectAtIndex:section];
+//}
 
 // Appearance of table view cells
 //- (UITableViewCell *)tableView:(UITableView *)tableView cellforRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -191,8 +227,9 @@
 //    NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
     //NSMutableArray *datesArray = [self createDateRange:item.content];
 
-    NSLog(@"%ld", allDates.count);
-    exit(0);
+    //NSLog(@"%@", allDates);
+    //NSLog(@"%@", eventsDictionary);
+    //exit(0);
     
     
     if (item) {
@@ -244,22 +281,8 @@
     DetailTableViewController *detail = [[DetailTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
     detail.item = (MWFeedItem *)[itemsToDisplay objectAtIndex:indexPath.row];
     
-    NSMutableArray *dates = [self determineDateRange:detail.item.content];
+    
     //NSLog(@"%@", dates);
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM/d/yyyy"];
-    
-    [dateFormatter setLocale:[NSLocale currentLocale]];
-    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-    NSDate *date1 = [dateFormatter dateFromString:dates[0]];
-    NSDate *date2 = [dateFormatter dateFromString:dates[1]];
-    //NSLog(@"%@, %@", dates[0], dates[1]);
-    //NSLog(@"%@, %@", date1, date2);
-    
-    NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
-    //NSLog(@"%@", datesArray);
-    
    
     //[self determineDateRange:detail.item.content];
     [self.navigationController pushViewController:detail animated:YES];
@@ -306,7 +329,31 @@
         // Add date to the array
         [dateRangeArray addObject:date];
     }
+    
+    
     return dateRangeArray;
+}
+
+- (NSMutableArray *)dateRangeFromStrings :(NSString *)dateString1 :(NSString *)dateString2 {
+    
+    //NSMutableArray *dates = [self determineDateRange:content];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MMMM/yy"];
+    
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    
+    
+    NSDate *date1 = [dateFormatter dateFromString:dateString1];
+    NSDate *date2 = [dateFormatter dateFromString:dateString2];
+    //NSLog(@"%@, %@", dates[0], dates[1]);
+    //NSLog(@"%@, %@", date1, date2);
+    
+    NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
+    //NSLog(@"%@", datesArray);
+    return datesArray;
+    
 }
 
 - (NSMutableArray *)determineDateRange :(NSString *)content {
@@ -324,8 +371,6 @@
     NSRange matchRangeStart = [textCheckingResultStart rangeAtIndex:1];
     NSString *startDate = [content substringWithRange:matchRangeStart];
     [startEndDates addObject:startDate];
-    //NSLog(@"%@", startDate);
-    
     
     NSString *endDateRegexString = @"End Date:<\\/b>&nbsp;<\\/td><td>(\\d+\\/\\d+\\/\\d+)<\\/td><td>";
     NSRegularExpression *endDateRegex =
@@ -337,13 +382,7 @@
     NSRange matchRangeEnd = [textCheckingResultEnd rangeAtIndex:1];
     NSString *endDate = [content substringWithRange:matchRangeEnd];
     
-    // Return an array of a single date if startDate == endDate
-//    if ([startDate isEqualToString:endDate]) {
-//        return startEndDates;
-//    }
     [startEndDates addObject:endDate];
-    //NSLog(@"%@", endDate);
-    
     return startEndDates;
 }
 
@@ -359,10 +398,32 @@
     NSDate *date2 = [dateFormatter dateFromString:dates[1]];
     
     NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
-    
-    //NSLog(@"%@", datesArray);
     return datesArray;
 
 }
 
+- (BOOL)determineIfInRange :(NSString *)dateString1 :(NSString *)dateString2 :(NSDate *)date {
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
+    [dateFormatter setDateFormat:@"dd-MMMM-yy"];
+    
+    NSDate *date1 = [dateFormatter dateFromString:dateString1];
+    NSDate *date2 = [dateFormatter dateFromString:dateString2];
+    
+    if (!(([date compare:date1] == NSOrderedAscending) || ([date compare:date2] == NSOrderedDescending))) {
+        return YES;
+    }
+    else if ([date compare:date2] == NSOrderedSame) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
+
+
 @end
+
+
