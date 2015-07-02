@@ -47,6 +47,7 @@
     feedParser.feedParseType = ParseTypeFull; // Parse all items
     feedParser.connectionType = ConnectionTypeAsynchronously;
     [feedParser parse];
+    //NSLog(@"%@", eventsDictionary);
     
     
     NSString *dateString1 = @"01-May-15";
@@ -59,23 +60,26 @@
     
     
     //[self.tableView reloadData];
+    //self.tableView.dataSource = self;
+    //self.tableView.delegate = self;
     
 }
 
--(void)updateTableWithParsedItems {
+-(void)updateTableWithParsedItems :(NSArray *)events{
     self.itemsToDisplay = [parsedItems sortedArrayUsingDescriptors:
                            [NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES]]];
+    //self.itemsToDisplay = parsedItems;
     self.tableView.userInteractionEnabled = YES;
     self.tableView.alpha = 1;
     [self.tableView reloadData];
 }
 
 - (void)feedParserDidStart:(MWFeedParser *)parser {
-    NSLog(@"Started Parsing: %@", parser.url);
+    //NSLog(@"Started Parsing: %@", parser.url);
 }
 
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info {
-    NSLog(@"Parsed Feed Info: “%@”", info.title);
+    //NSLog(@"Parsed Feed Info: “%@”", info.title);
     self.title = info.title;
     //self.title = @"Events Feed";
 }
@@ -86,22 +90,13 @@
         [parsedItems addObject:item];
         NSMutableArray *itemDatesArray = [self createDateRange:item.content];
         
-        //NSMutableArray *dateRangeToParse = [[NSMutableArray alloc] init];
-        
         NSString *dateString1 = @"01-May-15";
         NSString *dateString2 = @"15-May-15";
-        
-        //dateRangeToParse = [self createDateRangeArray:date1 :date2];
-        //NSLog(@"%@, %@", itemDatesArray, dateRangeToParse);
-        
-        //NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-        //NSLog(@"%@", dateRangeToParse);
         
         for (int i=0; i< itemDatesArray.count; i++) {
             BOOL isInRange = [self determineIfInRange:dateString1 :dateString2 :itemDatesArray[i]];
             if (isInRange) {
                 //NSLog(@"%@", item.date);
-                //[eventsDictionary setObject:item forKey:itemDatesArray[i]];
                 for (int j=0; j< dateRangeToParse.count; j++) {
                     if ([dateRangeToParse[j] isEqualToDate:itemDatesArray[i]]) {
                         //append to corresponding date array
@@ -113,38 +108,27 @@
                 }
             }
         }
-        
-        //NSLog(@"%@", eventsDictionary);
-        //exit(0);
-        
-        
-//        for (int i=0; i < datesArray.count; i++) {
-//            //NSLog(@"%@", date1);
-//            if (!(([datesArray[i] compare:date1] == NSOrderedAscending) ||
-//                  ([datesArray[i] compare:date2] == NSOrderedDescending))) {
-//                [allDates addObject:datesArray[i]];
-//            }
-//            else if ([datesArray[i] compare:date2] == NSOrderedSame) {
-//                NSLog(@"worked");
-//                [allDates addObject:datesArray[i]];
-//            }
-//        }
     }
-    
-    //NSLog(@"%@", allDates);
 }
 
 - (void)feedParserDidFinish:(MWFeedParser *)parser {
-    NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
+    //NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
     
+    // Populate eventsDictionary with events
     for (int i = 0; i < dateRangeToParse.count; i++) {
         [eventsDictionary setObject:dateArrays[i] forKey:dateRangeToParse[i]];
+        //[self updateTableWithParsedItems:dateArrays[i]];
     }
     
-    //eventSectionTitles = [[eventsDictionary allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare)];
-    NSLog(@"%@", eventsDictionary);
+    //NSLog(@"%@", eventsDictionary);
     
-    [self updateTableWithParsedItems];
+    //eventSectionTitles = [[eventsDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)];
+    eventSectionTitles = [eventsDictionary allKeys];
+    
+    
+    //NSLog(@"%@", eventsDictionary);
+    [self.tableView reloadData];
+    [self updateTableWithParsedItems:parsedItems];
 }
 
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error {
@@ -160,64 +144,53 @@
                                               otherButtonTitles:nil];
         [alert show];
     }
-    [self updateTableWithParsedItems];
+
+    //[self updateTableWithParsedItems];
 }
 
 // Number of sections in table view
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView :(NSString *)content{
-    //return 1;
-    NSLog(@"%lu", dateRangeToParse.count);
-    return dateRangeToParse.count;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    //return 10;
+    return eventSectionTitles.count;
 }
 
 // Number of rows in table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    //NSLog(@"%d", section);
+    
     NSString *sectionTitle = [dateRangeToParse objectAtIndex:section];
     NSArray *sectionEvents = [eventsDictionary objectForKey:sectionTitle];
     //return itemsToDisplay.count;
+    //NSLog(@"%l", sectionEvents.count);
     return [sectionEvents count];
 }
 
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
-//{
-//    return dateRangeToParse;
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+//
+//    return [self createStringDateRange:dateRangeToParse];
 //}
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//    return [dateRangeToParse objectAtIndex:section];
-//}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    
+    return [[self createStringDateRange:dateRangeToParse] objectAtIndex:section];
+}
 
-// Appearance of table view cells
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellforRowAtIndexPath:(NSIndexPath *)indexPath {
-//    static NSString *CellIdentifier = @"Cell";
-//    
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    NSLog(@"the cell is %@", cell);
-//    
-//    if (cell == nil) {
-//        // Try other styles
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//    }
-//    
-//    // Cell configuration
-//    
-//    MWFeedItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
-//    if (item) {
-//        
-//        // Process
-//        //NSString *itemTitle = item.title ? [item.title stringByConvertingHTMLtoPlainText] : @"[No Title]";
-//        //NSString *itemSummary = item.summary ? [item.summary stringByConvertingHTMLToPlainText] : @"[No Summary]";
-//        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
-//        //cell.textLabel.text = itemTitle;
-//        NSMutableString *subtitle = [NSMutableString string];
-//        if (item.date) [subtitle appendFormat:@"%@: ", [formatter stringFromDate:item.date]];
-//        //[subtitle appendString:itemSummary];
-//        cell.detailTextLabel.text = subtitle;
-//    }
-//    return cell;
-//}
+-(NSMutableArray *)createStringDateRange :(NSArray *)dateRange {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM d"];
+    
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
+    
+    NSMutableArray *dateRangeToParseStrings = [[NSMutableArray alloc] init];
+    for (int i = 0; i< dateRangeToParse.count; i++) {
+        NSString *dateString = [dateFormatter stringFromDate:dateRangeToParse[i]];
+        [dateRangeToParseStrings addObject:dateString];
+    }
+    
+    return dateRangeToParseStrings;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -233,36 +206,20 @@
     }
     
     // Configure the cell.
-    MWFeedItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
+    //MWFeedItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
+    MWFeedItem *item = [[dateArrays objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
-//    NSMutableArray *dates = [self determineDateRange:item.content];
-//
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"MM/d/yyyy"];
-//    
-//    [dateFormatter setLocale:[NSLocale currentLocale]];
-//    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
-//    NSDate *date1 = [dateFormatter dateFromString:dates[0]];
-//    NSDate *date2 = [dateFormatter dateFromString:dates[1]];
-//    
-//    NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
-    //NSMutableArray *datesArray = [self createDateRange:item.content];
-
-    //NSLog(@"%@", dateArrays);
-    //NSLog(@"%@", eventsDictionary);
-    
+    //NSLog(@"%ld", indexPath.section);
     
     if (item) {
         
         // Process
         
-        //NSString *itemTitle = item.title ? [item.title stringByConvertingHTMLToPlainText] : @"[No Title]";
         NSString *itemTitle = item.title ? [self removeDateTitle:item.title] : @"[No Title]";
         NSString *itemSummary = item.summary ? [item.summary stringByConvertingHTMLToPlainText] : @"[No Summary]";
         
         cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
         cell.textLabel.text = itemTitle;
-        //cell.textLabel.text = testString;
         NSMutableString *subtitle = [NSMutableString string];
         
         if (item.date) {
@@ -299,15 +256,9 @@
     
     //Show detail
     DetailTableViewController *detail = [[DetailTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    detail.item = (MWFeedItem *)[itemsToDisplay objectAtIndex:indexPath.row];
-    
-    
-    //NSLog(@"%@", dates);
+    detail.item = (MWFeedItem *)[[dateArrays objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
    
-    //[self determineDateRange:detail.item.content];
     [self.navigationController pushViewController:detail animated:YES];
-    
-    //NSLog(@"row pressed");
     
     // Deselect
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -356,8 +307,6 @@
 
 - (NSMutableArray *)dateRangeFromStrings :(NSString *)dateString1 :(NSString *)dateString2 {
     
-    //NSMutableArray *dates = [self determineDateRange:content];
-    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MMMM/yy"];
     
@@ -367,8 +316,6 @@
     
     NSDate *date1 = [dateFormatter dateFromString:dateString1];
     NSDate *date2 = [dateFormatter dateFromString:dateString2];
-    //NSLog(@"%@, %@", dates[0], dates[1]);
-    //NSLog(@"%@, %@", date1, date2);
     
     NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
     //NSLog(@"%@", datesArray);
@@ -451,8 +398,6 @@
     
     return emptyDateArray;
 }
-
-
 
 @end
 
