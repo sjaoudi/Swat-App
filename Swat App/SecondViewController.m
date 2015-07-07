@@ -41,7 +41,7 @@
     
     // Refresh button (?)
     
-    NSURL *feedURL = [NSURL URLWithString:@"http://calendar.swarthmore.edu/calendar/RSSSyndicator.aspx?category=&location=&type=N&starting=5/1/2015&ending=5/15/2015&binary=Y&keywords=&ics=Y"];
+    NSURL *feedURL = [NSURL URLWithString:@"http://calendar.swarthmore.edu/calendar/RSSSyndicator.aspx?category=&location=&type=N&starting=7/6/2015&ending=7/20/2015&binary=Y&keywords=&ics=Y"];
     feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
     feedParser.delegate = self;
     feedParser.feedParseType = ParseTypeFull; // Parse all items
@@ -50,8 +50,8 @@
     //NSLog(@"%@", eventsDictionary);
     
     
-    NSString *dateString1 = @"01-May-15";
-    NSString *dateString2 = @"15-May-15";
+    NSString *dateString1 = @"06-July-15";
+    NSString *dateString2 = @"20-July-15";
     
     dateRangeToParse = [self dateRangeFromStrings:dateString1 :dateString2];
     
@@ -90,8 +90,8 @@
         [parsedItems addObject:item];
         NSMutableArray *itemDatesArray = [self createDateRange:item.content];
         
-        NSString *dateString1 = @"01-May-15";
-        NSString *dateString2 = @"15-May-15";
+        NSString *dateString1 = @"06-July-15";
+        NSString *dateString2 = @"20-July-15";
         
         for (int i=0; i< itemDatesArray.count; i++) {
             BOOL isInRange = [self determineIfInRange:dateString1 :dateString2 :itemDatesArray[i]];

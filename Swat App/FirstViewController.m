@@ -10,25 +10,21 @@
 #import "RSSEntry.h"
 
 @interface FirstViewController ()
+//@property (strong, nonatomic) UITableView *tableView;
 
 @end
 
 @implementation FirstViewController
 
-@synthesize allEntries = _allEntries;
-
-
-- (IBAction)clickTheButton:(id)sender {
-    NSLog(@"Git test.");
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    self.title = @"Feeds";
-    self.allEntries = [NSMutableArray array];
-    [self addRows];
+    
+    self.tableView.scrollEnabled = NO;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,32 +32,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)addRows {
-    
-    RSSEntry *entry1 = [[RSSEntry alloc]  initWithBlogTitle: @"1"
-                                                articleTitle: @"1"
-                                                  articleUrl: @"1"
-                                                 articleDate: [NSDate date]];
-                         
-    RSSEntry *entry2 = [[RSSEntry alloc]  initWithBlogTitle: @"2"
-                                                articleTitle: @"2"
-                                                  articleUrl: @"2"
-                                                articleDate: [NSDate date]];
-    
-    RSSEntry *entry3 = [[RSSEntry alloc]  initWithBlogTitle: @"3"
-                                                articleTitle: @"3"
-                                                  articleUrl: @"3"
-                                                articleDate: [NSDate date]];
-    
-    
-    [_allEntries insertObject:entry1 atIndex:0];
-    [_allEntries insertObject:entry2 atIndex:0];
-    [_allEntries insertObject:entry3 atIndex:0];
-    
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_allEntries count];
+    return 4;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -71,15 +48,9 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    RSSEntry *entry = [_allEntries objectAtIndex:indexPath.row];
-    
-    NSDateFormatter * dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    NSString *articleDateString = [dateFormatter stringFromDate:entry.articleDate];
-    cell.textLabel.text = entry.articleTitle;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ - %@", articleDateString, entry.blogTitle];
-    
+//    UILabel *label = (UILabel *)[cell.contentView viewWithTag:10];
+//    [label setText:[NSString stringWithFormat:@"Row %lu in Section %lu", [indexPath row], [indexPath section]]];
+//    
     return cell;
     
 }

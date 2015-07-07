@@ -8,12 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
-
--(IBAction)clickTheButton:(id)sender;
-
-@property NSMutableArray *allEntries;
+@interface FirstViewController : UITableViewController <UITableViewDelegate>
 
 @end
-
-NSMutableArray *_allEntries;
