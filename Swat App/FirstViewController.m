@@ -41,18 +41,18 @@
     return 1;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-//    UILabel *label = (UILabel *)[cell.contentView viewWithTag:10];
-//    [label setText:[NSString stringWithFormat:@"Row %lu in Section %lu", [indexPath row], [indexPath section]]];
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+//    }
 //    
-    return cell;
-    
-}
+////    UILabel *label = (UILabel *)[cell.contentView viewWithTag:10];
+////    [label setText:[NSString stringWithFormat:@"Row %lu in Section %lu", [indexPath row], [indexPath section]]];
+////    
+//    return cell;
+//    
+//}
 
 @end
