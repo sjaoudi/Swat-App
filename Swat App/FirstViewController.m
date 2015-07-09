@@ -7,52 +7,94 @@
 //
 
 #import "FirstViewController.h"
-#import "RSSEntry.h"
-
-@interface FirstViewController ()
-//@property (strong, nonatomic) UITableView *tableView;
+#import "HoursViewController.h"
+@interface FirstViewController () {
+    NSDictionary *menuItem;
+    NSArray *menuTitles;
+}
 
 @end
 
 @implementation FirstViewController
 
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
     
+    menuItem = @{@"Menu" : @[@"Hours", @"Menus", @"Transportation", @"Emergency Info"]};
+    
+    menuTitles = [[menuItem allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    self.tableView.delegate=self;
+    self.tableView.dataSource=self;
     
     self.tableView.scrollEnabled = NO;
     
-    
 }
 
-- (void)didReceiveMemoryWarning {
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
-}
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
 
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-//    }
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 4;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    NSString *sectionTitle = [menuTitles objectAtIndex:indexPath.section];
+    NSArray *sectionAnimals = [menuItem objectForKey:sectionTitle];
+    NSString *animal = [sectionAnimals objectAtIndex:indexPath.row];
+    cell.textLabel.text = animal;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    //NSLog(@"%ld", indexPath.section);
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //CGSize mySize = [tableView contentSize];
+    NSLog(@"My view's frame is: %@", NSStringFromCGRect(tableView.frame));
+    //CGFloat height = self.view.frame.size.height/4;
+    return 112;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    //Show detail
+//    DetailTableViewController *detail = [[DetailTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    //HoursViewController *hoursView = [[HoursViewController alloc] initWithStyle:UITableViewStyleGrouped];
+//    detail.item = (MWFeedItem *)[[dateArrays objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 //    
-////    UILabel *label = (UILabel *)[cell.contentView viewWithTag:10];
-////    [label setText:[NSString stringWithFormat:@"Row %lu in Section %lu", [indexPath row], [indexPath section]]];
-////    
-//    return cell;
-//    
-//}
+//    [self.navigationController pushViewController:detail animated:YES];
+    
+    // Deselect
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 
 @end
