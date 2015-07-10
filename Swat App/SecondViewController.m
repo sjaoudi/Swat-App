@@ -87,6 +87,7 @@
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
     //NSLog(@"Parsed Feed Item: “%@”", item.title);
     if (item) {
+        //NSLog(@"%@", parsedItems);
         [parsedItems addObject:item];
         NSMutableArray *itemDatesArray = [self createDateRange:item.content];
         
@@ -163,6 +164,7 @@
     //return itemsToDisplay.count;
     //NSLog(@"%l", sectionEvents.count);
     return [sectionEvents count];
+    //return 3;
 }
 
 //- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
@@ -174,6 +176,7 @@
 {
     
     return [[self createStringDateRange:dateRangeToParse] objectAtIndex:section];
+    //return @"hi";
 }
 
 -(NSMutableArray *)createStringDateRange :(NSArray *)dateRange {
@@ -206,10 +209,10 @@
     }
     
     // Configure the cell.
-    //MWFeedItem *item = [itemsToDisplay objectAtIndex:indexPath.row];
+    //MWFeedItem *item = [dateArrays objectAtIndex:indexPath.row];
+    //NSLog(@"%u", [[dateArrays objectAtIndex:indexPath.section] count]);
+    //NSLog(@"%ld, %ld", indexPath.section, indexPath.row);
     MWFeedItem *item = [[dateArrays objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-    
-    //NSLog(@"%ld", indexPath.section);
     
     if (item) {
         
@@ -389,11 +392,11 @@
 
 - (NSMutableArray *)createEmptyDateArrays {
     NSMutableArray *emptyDateArray = [[NSMutableArray alloc] init];
-    for (int i; i<dateRangeToParse.count; i++) {
+    for (int i=0; i<dateRangeToParse.count; i++) {
         NSMutableArray *dateArray = [[NSMutableArray alloc] init];
         [emptyDateArray addObject:dateArray];
     }
-    
+    //NSLog(@"%ul", emptyDateArray.count);
     return emptyDateArray;
 }
 

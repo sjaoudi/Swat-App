@@ -77,7 +77,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     //CGSize mySize = [tableView contentSize];
-    NSLog(@"My view's frame is: %@", NSStringFromCGRect(tableView.frame));
+    //NSLog(@"My view's frame is: %@", NSStringFromCGRect(tableView.frame));
     //CGFloat height = self.view.frame.size.height/4;
     return 112;
     
