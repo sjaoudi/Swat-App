@@ -41,19 +41,35 @@
     
     // Refresh button (?)
     
-    NSURL *feedURL = [NSURL URLWithString:@"http://calendar.swarthmore.edu/calendar/RSSSyndicator.aspx?category=&location=&type=N&starting=7/6/2015&ending=7/20/2015&binary=Y&keywords=&ics=Y"];
+    NSDate *today = [NSDate date];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"M/dd/yyyy"];
+    todayString = [dateFormat stringFromDate:today];
+    NSDate *twoWeek = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:14 toDate:today options:0];
+    twoWeekString = [dateFormat stringFromDate:twoWeek];
+    //NSLog(@"%@, %@", todayString, twoWeekString);
+    
+    //NSString *dateString1 = @"06-July-15";
+    //NSString *dateString2 = @"20-July-15";
+    
+    NSString *feedURLNSString = @"http://calendar.swarthmore.edu/calendar/RSSSyndicator.aspx?category=&location=&type=N&starting=&ending=&binary=Y&keywords=&ics=Y";
+    NSMutableString *feedURLString = [NSMutableString stringWithString:feedURLNSString];
+    [feedURLString insertString:todayString atIndex:95];
+    [feedURLString insertString:twoWeekString atIndex:112];
+    //NSLog(@"%@", feedURLString);
+    
+    
+    
+    NSURL *feedURL = [NSURL URLWithString:feedURLString];
     feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
     feedParser.delegate = self;
     feedParser.feedParseType = ParseTypeFull; // Parse all items
     feedParser.connectionType = ConnectionTypeAsynchronously;
     [feedParser parse];
+    
     //NSLog(@"%@", eventsDictionary);
     
-    
-    NSString *dateString1 = @"06-July-15";
-    NSString *dateString2 = @"20-July-15";
-    
-    dateRangeToParse = [self dateRangeFromStrings:dateString1 :dateString2];
+    dateRangeToParse = [self dateRangeFromStrings:todayString :twoWeekString];
     
     //create array of empty arrays, each corresponding to a date
     dateArrays = [self createEmptyDateArrays];
@@ -88,20 +104,23 @@
     //NSLog(@"Parsed Feed Item: “%@”", item.title);
     if (item) {
         //NSLog(@"%@", parsedItems);
-        [parsedItems addObject:item];
+        //[parsedItems addObject:item];
         NSMutableArray *itemDatesArray = [self createDateRange:item.content];
         
-        NSString *dateString1 = @"06-July-15";
-        NSString *dateString2 = @"20-July-15";
+        //NSString *dateString1 = @"06-July-15";
+        //NSString *dateString2 = @"20-July-15";
         
         for (int i=0; i< itemDatesArray.count; i++) {
-            BOOL isInRange = [self determineIfInRange:dateString1 :dateString2 :itemDatesArray[i]];
+            BOOL isInRange = [self determineIfInRange:todayString :twoWeekString :itemDatesArray[i]];
+            //item.date = itemDatesArray[i];
             if (isInRange) {
-                //NSLog(@"%@", item.date);
+                
                 for (int j=0; j< dateRangeToParse.count; j++) {
                     if ([dateRangeToParse[j] isEqualToDate:itemDatesArray[i]]) {
                         //append to corresponding date array
                         //item.date = itemDatesArray[i];
+                        //NSLog(@"%@", item.date);
+                        //item.date = dateRangeToParse[j];
                         
                         //somehow fix the date of each object
                         [dateArrays[j] addObject:item];
@@ -235,8 +254,8 @@
             if (!allDay) {
                 NSString *timeRange = [c determineTimeRange:timeFormatter :item.content :item.date];
                 if (!timeRange) {
-                    NSString *singleTime = [c determineTimeRange:timeFormatter :item.content :item.date];
-                    [subtitle appendFormat:singleTime, [timeFormatter stringFromDate:item.date]];
+                    //NSString *singleTime = [c determineTimeRange:timeFormatter :item.content :item.date];
+                    [subtitle appendFormat:timeRange, [timeFormatter stringFromDate:item.date]];
                 }
                 else {
                     [subtitle appendFormat:timeRange, [timeFormatter stringFromDate:item.date]];
@@ -309,7 +328,7 @@
 - (NSMutableArray *)dateRangeFromStrings :(NSString *)dateString1 :(NSString *)dateString2 {
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MMMM/yy"];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
     
     [dateFormatter setLocale:[NSLocale currentLocale]];
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
@@ -374,7 +393,8 @@
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US"]];
-    [dateFormatter setDateFormat:@"dd-MMMM-yy"];
+    //[dateFormatter setDateFormat:@"dd-MMMM-yy"];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
     
     NSDate *date1 = [dateFormatter dateFromString:dateString1];
     NSDate *date2 = [dateFormatter dateFromString:dateString2];

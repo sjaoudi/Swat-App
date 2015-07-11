@@ -111,7 +111,6 @@
 				AA29712D1B2E78EC00D4FDF9 /* FirstViewController.m */,
 				AA3C1CE81B4E182C00AE0320 /* HoursViewController.h */,
 				AA3C1CE61B4E182000AE0320 /* HoursViewController.m */,
-				AA3C1CE51B4E157F00AE0320 /* View Controllers */,
 				AA29712F1B2E78EC00D4FDF9 /* SecondViewController.h */,
 				AA2971301B2E78EC00D4FDF9 /* SecondViewController.m */,
 				AA06F89F1B38F202000FECF5 /* DetailTableViewController.h */,
@@ -148,13 +147,6 @@
 				AA2971431B2E78EC00D4FDF9 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		AA3C1CE51B4E157F00AE0320 /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		E058DD5A1300240B38C43E90 /* Pods */ = {

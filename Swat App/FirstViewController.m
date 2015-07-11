@@ -62,6 +62,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
     
     NSString *sectionTitle = [menuTitles objectAtIndex:indexPath.section];
     NSArray *sectionAnimals = [menuItem objectForKey:sectionTitle];
@@ -91,6 +94,28 @@
 //    detail.item = (MWFeedItem *)[[dateArrays objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 //    
 //    [self.navigationController pushViewController:detail animated:YES];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *viewController = nil;
+    switch (indexPath.row) {
+        case 0:
+            viewController = [storyboard instantiateViewControllerWithIdentifier:@"Hours"];
+            break;
+        case 1:
+            viewController = [storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+            break;
+        case 2:
+            viewController = [storyboard instantiateViewControllerWithIdentifier:@"Transportation"];
+            break;
+        case 3:
+            viewController = [storyboard instantiateViewControllerWithIdentifier:@"Emergency Info"];
+            break;
+        default:
+            viewController = [storyboard instantiateViewControllerWithIdentifier:@"Hours"];
+            break;
+    }
+    [[self navigationController] pushViewController:viewController animated:YES];
+
+    
     
     // Deselect
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

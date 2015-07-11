@@ -50,7 +50,7 @@ typedef enum { SectionDetailSummary } DetailRows;
     
     // Date
     if (item.date) {
-        //NSLog(@"%@", item.content);
+        //NSLog(@"%@", item.date);
         //NSDateFormatter *format = [[NSDateFormatter alloc] init];
         //[format setDateFormat:@"MMMM dd, yyyy"];
         

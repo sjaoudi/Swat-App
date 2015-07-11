@@ -23,6 +23,9 @@
     NSArray *itemsToDisplay;
     NSDateFormatter *formatter;
     
+    NSString  *todayString;
+    NSString *twoWeekString;
+    
 }
 
 @property (nonatomic, strong) NSArray *itemsToDisplay;

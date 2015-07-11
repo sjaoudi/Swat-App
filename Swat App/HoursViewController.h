@@ -11,6 +11,6 @@
 
 #endif
 
-@interface HoursViewController : UITableViewController
+@interface HoursViewController : UIViewController
 
 @end
