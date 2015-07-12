@@ -11,6 +11,10 @@
 
 #endif
 
-@interface HoursViewController : UIViewController
+#import <UIKit/UIKit.h>
+
+@interface HoursViewController : UIViewController {
+    
+}
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HoursViewController.h"
 
 @interface FirstViewController: UITableViewController
 

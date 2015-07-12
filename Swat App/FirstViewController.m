@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "HoursViewController.h"
+
 @interface FirstViewController () {
     NSDictionary *menuItem;
     NSArray *menuTitles;
@@ -88,17 +89,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    //Show detail
-//    DetailTableViewController *detail = [[DetailTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    //HoursViewController *hoursView = [[HoursViewController alloc] initWithStyle:UITableViewStyleGrouped];
-//    detail.item = (MWFeedItem *)[[dateArrays objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-//    
-//    [self.navigationController pushViewController:detail animated:YES];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *viewController = nil;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    HoursViewController *hoursView = [storyboard  instantiateViewControllerWithIdentifier:@"Hours"];
+    //HoursViewController *hoursView = [[HoursViewController alloc] init];
+    
     switch (indexPath.row) {
         case 0:
-            viewController = [storyboard instantiateViewControllerWithIdentifier:@"Hours"];
+            [self.navigationController pushViewController:hoursView animated:YES];
             break;
         case 1:
             viewController = [storyboard instantiateViewControllerWithIdentifier:@"Menu"];
@@ -113,7 +111,7 @@
             viewController = [storyboard instantiateViewControllerWithIdentifier:@"Hours"];
             break;
     }
-    [[self navigationController] pushViewController:viewController animated:YES];
+    //[[self navigationController] pushViewController:viewController animated:YES];
 
     
     

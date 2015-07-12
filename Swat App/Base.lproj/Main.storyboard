@@ -33,25 +33,17 @@
             </objects>
             <point key="canvasLocation" x="1627" y="-320"/>
         </scene>
-        <!--View Controller-->
+        <!--Hours View Controller-->
         <scene sceneID="WKV-cY-4Ju">
             <objects>
-                <viewController storyboardIdentifier="Hours" useStoryboardIdentifierAsRestorationIdentifier="YES" id="V7e-eL-30L" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Hours" useStoryboardIdentifierAsRestorationIdentifier="YES" id="V7e-eL-30L" customClass="HoursViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3cK-eA-SC5"/>
-                        <viewControllerLayoutGuide type="bottom" id="tjj-vs-ZxH"/>
+                        <viewControllerLayoutGuide type="top" id="XN6-mz-Vz3"/>
+                        <viewControllerLayoutGuide type="bottom" id="XCK-vf-1D4"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="wsB-ty-xyr">
+                    <view key="view" contentMode="scaleToFill" id="x6D-cP-RlZ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hours" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Unh-G0-oRr">
-                                <rect key="frame" x="144" y="231" width="46" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>

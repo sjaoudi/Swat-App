@@ -7,4 +7,20 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "HoursViewController.h"
 
+//@interface HoursViewController () {
+//    
+//}
+//
+//@end
+
+@implementation HoursViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    NSLog(@"HoursViewController Loaded");
+}
+
+@end
