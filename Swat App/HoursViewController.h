@@ -18,3 +18,13 @@
 }
 
 @end
+
+@interface Place : NSObject {
+    
+}
+
+@property NSString *placeName;
+@property NSString *placeHours;
+@property NSString *placeLink;
+
+@end

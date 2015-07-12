@@ -9,18 +9,80 @@
 #import <Foundation/Foundation.h>
 #import "HoursViewController.h"
 
-//@interface HoursViewController () {
-//    
-//}
-//
-//@end
+@implementation Place
+@end
+
+@interface HoursViewController () {
+    
+}
+
+@end
 
 @implementation HoursViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+        
+    //NSLog(@"HoursViewController Loaded");
     
-    NSLog(@"HoursViewController Loaded");
+    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
+    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
+    NSArray *hoursArray = [self getHours:dashString];
+    
 }
+
+- (NSMutableArray *)getHours :(NSString *)dashString {
+    
+    NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
+    NSMutableArray *hoursArray = [[NSMutableArray alloc] init];
+    
+    for (int i=0; i<places.count; i++) {
+
+        NSMutableString *placeRegexMutableString = [[NSMutableString alloc] init];
+        if ([places[i] isEqualToString:@"Paces Cafe"]) {
+            [placeRegexMutableString appendString:@"<li><strong>:(.+)<\\/li>"];
+            [placeRegexMutableString insertString:places[i] atIndex:12];
+        }
+        else {
+            [placeRegexMutableString appendString:@"<li><strong>:(.+)<\\/a><\\/li>"];
+            [placeRegexMutableString insertString:places[i] atIndex:12];
+        }
+        
+        NSString *placeRegexString = [NSString stringWithString:placeRegexMutableString];
+        NSString *placeToParse = [self findRegex:placeRegexString :dashString];
+        
+        NSString *linkRegexString = @"<a href=\"(.+)\">";
+        NSString *placeLink = [self findRegex:linkRegexString :placeToParse];
+        
+        NSString *hoursRegexString = @"<\\/strong>\\s?(.+)\\s?<a";
+        NSString *placeHours = [self findRegex:hoursRegexString :placeToParse];
+        Place *placeObj = [[Place alloc] init];
+        
+        placeObj.placeName = places[i];
+        placeObj.placeHours = placeHours;
+        placeObj.placeLink = placeLink;
+        
+        [hoursArray addObject:placeObj];
+    }
+    return hoursArray;
+}
+
+- (NSString *)findRegex :(NSString *)regexString :(NSString *)content{
+    NSError *error = NULL;
+    NSRegularExpression *regex =
+    [NSRegularExpression regularExpressionWithPattern:regexString
+                                              options:0
+                                                error:&error];
+    
+    NSTextCheckingResult *textCheckingResult = [regex firstMatchInString:content options:0 range:NSMakeRange(0, content.length)];
+    
+    NSRange matchRange = [textCheckingResult rangeAtIndex:1];
+    NSString *result = [content substringWithRange:matchRange];
+    
+    return result;
+}
+
 
 @end

@@ -92,8 +92,7 @@
     UIViewController *viewController = nil;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     HoursViewController *hoursView = [storyboard  instantiateViewControllerWithIdentifier:@"Hours"];
-    //HoursViewController *hoursView = [[HoursViewController alloc] init];
-    
+
     switch (indexPath.row) {
         case 0:
             [self.navigationController pushViewController:hoursView animated:YES];
@@ -110,10 +109,7 @@
         default:
             viewController = [storyboard instantiateViewControllerWithIdentifier:@"Hours"];
             break;
-    }
-    //[[self navigationController] pushViewController:viewController animated:YES];
-
-    
+    }       
     
     // Deselect
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
