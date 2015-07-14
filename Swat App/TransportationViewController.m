@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //NSLog(@"HoursViewController Loaded");
+    NSLog(@"TransporationViewController Loaded");
     
     NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
     NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
@@ -30,7 +30,11 @@
     
     NSString *transportationInfo = [self getTransporationInfo:dashString];
     
+    NSLog(@"transportation info: %@", transportationInfo);
+    
     NSString *trainTimes = [self getTrains:transportationInfo];
+    
+    NSLog(@"trains: %@", trainTimes);
     
 }
 
@@ -45,7 +49,7 @@
 
 - (NSString *)getTransporationInfo :(NSString *)content {
     
-    NSString *transporationInfoRegexString = @"train-times\">\\n?(.+)\\s<\\/div>";
+    NSString *transporationInfoRegexString = @"transportation_mod\">((.|\n)*)Parking<\\/a>";
     NSString *transporationInfo = [self findRegex:transporationInfoRegexString :content];
     
     return transporationInfo;
