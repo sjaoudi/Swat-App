@@ -20,3 +20,11 @@
 
 @end
 
+@interface TransporationInfo : NSObject {
+    
+}
+
+@property NSString *name;
+@property NSString *info;
+
+@end
