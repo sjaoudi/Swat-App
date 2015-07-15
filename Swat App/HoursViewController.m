@@ -20,7 +20,24 @@
 
 @implementation HoursViewController
 
-@synthesize textView;
+@synthesize sharplesHoursBox;
+@synthesize essiesHoursBox;
+@synthesize kohlbergHoursBox;
+@synthesize scHoursBox;
+@synthesize pacesHoursBox;
+
+@synthesize mccabeHoursBox;
+@synthesize underhillHoursBox;
+@synthesize cornellHoursBox;
+
+@synthesize helpdeskHoursBox;
+@synthesize mediacenterHoursBox;
+
+@synthesize wrcHoursBox;
+@synthesize postofficeHoursBox;
+@synthesize bookstoreHoursBox;
+@synthesize creditunionHoursBox;
+@synthesize athleticHoursbox;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,25 +48,36 @@
     NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
     NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
     //NSArray *hoursArray = [self getHours:dashString];
-    NSDictionary *hoursInfo = [self getHours:dashString];
+    NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
     
-    //NSLog(@"%@", [hoursInfo valueForKey:@"Sharples"]);
+    NSDictionary *hoursInfo = [self getHours:dashString :places];
     
-    //textView.text = [hoursInfo valueForKey:@"Sharples"];
+    NSArray *textBoxes = [[NSArray alloc] initWithObjects:sharplesHoursBox, essiesHoursBox, kohlbergHoursBox, scHoursBox, pacesHoursBox, mccabeHoursBox, underhillHoursBox, cornellHoursBox, helpdeskHoursBox, mediacenterHoursBox, wrcHoursBox,
+        postofficeHoursBox, bookstoreHoursBox, creditunionHoursBox, athleticHoursbox, nil];
     
-    textView.numberOfLines = 0;
-    textView.text = @"hi \n hi";
-    CGSize labelSize = [textView.text sizeWithAttributes:@{NSFontAttributeName:textView.font}];
-    
-    textView.frame = CGRectMake(
-                             textView.frame.origin.x, textView.frame.origin.y,
-                             textView.frame.size.width, labelSize.height);
+    [self initTextBoxes:textBoxes :hoursInfo];
     
 }
 
-- (NSDictionary *)getHours :(NSString *)dashString {
+- (void)initTextBoxes :(NSArray *)textBoxes :(NSArray *)places{
     
-    NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
+    for (int i=0; i < textBoxes.count; i++) {
+        UILabel *textBox = [[UILabel alloc] init];
+        textBox = textBoxes[i];
+        textBox.numberOfLines = 0;
+        textBox.text = [places objectAtIndex:i];
+        
+        CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
+        
+        textBox.frame = CGRectMake(
+                                    textBox.frame.origin.x, textBox.frame.origin.y,
+                                    textBox.frame.size.width, labelSize.height);
+    }
+}
+
+
+- (NSDictionary *)getHours :(NSString *)dashString :(NSArray *)places{
+    
     NSMutableArray *hoursArray = [[NSMutableArray alloc] init];
     NSMutableArray *linksArray = [[NSMutableArray alloc] init];
     
