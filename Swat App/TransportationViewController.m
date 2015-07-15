@@ -26,16 +26,16 @@
     
     NSLog(@"TransporationViewController Loaded");
     
-    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
     NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
     NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
     
     NSString *transportationInfo = [self getTransporationInfo:dashString];
 
-    NSString *septaScheduleLink = @"http://www.septa.org/schedules/rail/pdf/elw.pdf";
-    NSString *phillyShuttleLink = @"http://www.swarthmore.edu/x10940.xml";
-    NSString *moreShuttlesLink = @"http://www.swarthmore.edu/gettingaround.xml";
-    NSString *parkingLink = @"http://www.swarthmore.edu/x16144.xml";
+    //NSString *septaScheduleLink = @"http://www.septa.org/schedules/rail/pdf/elw.pdf";
+    //NSString *phillyShuttleLink = @"http://www.swarthmore.edu/x10940.xml";
+    //NSString *moreShuttlesLink = @"http://www.swarthmore.edu/gettingaround.xml";
+    //NSString *parkingLink = @"http://www.swarthmore.edu/x16144.xml";
     
     NSMutableArray *info = [self getInfoStrings:transportationInfo];
     NSLog(@"transportation info: %@", info);

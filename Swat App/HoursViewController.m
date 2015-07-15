@@ -20,6 +20,7 @@
 
 @implementation HoursViewController
 
+@synthesize textView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,14 +30,28 @@
     NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
     NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
     NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
-    NSArray *hoursArray = [self getHours:dashString];
+    //NSArray *hoursArray = [self getHours:dashString];
+    NSDictionary *hoursInfo = [self getHours:dashString];
+    
+    //NSLog(@"%@", [hoursInfo valueForKey:@"Sharples"]);
+    
+    //textView.text = [hoursInfo valueForKey:@"Sharples"];
+    
+    textView.numberOfLines = 0;
+    textView.text = @"hi \n hi";
+    CGSize labelSize = [textView.text sizeWithAttributes:@{NSFontAttributeName:textView.font}];
+    
+    textView.frame = CGRectMake(
+                             textView.frame.origin.x, textView.frame.origin.y,
+                             textView.frame.size.width, labelSize.height);
     
 }
 
-- (NSMutableArray *)getHours :(NSString *)dashString {
+- (NSDictionary *)getHours :(NSString *)dashString {
     
     NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
     NSMutableArray *hoursArray = [[NSMutableArray alloc] init];
+    NSMutableArray *linksArray = [[NSMutableArray alloc] init];
     
     for (int i=0; i<places.count; i++) {
 
@@ -58,15 +73,18 @@
         
         NSString *hoursRegexString = @"<\\/strong>\\s?(.+)\\s?<a";
         NSString *placeHours = [self findRegex:hoursRegexString :placeToParse];
-        Place *placeObj = [[Place alloc] init];
+        //Place *placeObj = [[Place alloc] init];
         
-        placeObj.placeName = places[i];
-        placeObj.placeHours = placeHours;
-        placeObj.placeLink = placeLink;
+        //placeObj.placeName = places[i];
+        //placeObj.placeHours = placeHours;
+        //placeObj.placeLink = placeLink;
         
-        [hoursArray addObject:placeObj];
+        [hoursArray addObject:placeHours];
+        [linksArray addObject:placeLink];
     }
-    return hoursArray;
+    //return hoursArray;
+    NSDictionary *hoursInfo = [[NSDictionary alloc] initWithObjects:hoursArray forKeys:places];
+    return hoursInfo;
 }
 
 - (NSString *)findRegex :(NSString *)regexString :(NSString *)content{

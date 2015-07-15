@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--First View Controller-->
@@ -39,14 +38,14 @@
             <objects>
                 <viewController storyboardIdentifier="Hours" useStoryboardIdentifierAsRestorationIdentifier="YES" id="V7e-eL-30L" customClass="HoursViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="XN6-mz-Vz3"/>
-                        <viewControllerLayoutGuide type="bottom" id="XCK-vf-1D4"/>
+                        <viewControllerLayoutGuide type="top" id="Ya9-xb-UMI"/>
+                        <viewControllerLayoutGuide type="bottom" id="f4Q-gq-5Ye"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="x6D-cP-RlZ">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s11-xb-H4q">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s11-xb-H4q">
                                 <rect key="frame" x="-4" y="18" width="604" height="563"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tpu-Dg-Uxh">
@@ -58,25 +57,25 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sharples" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J50-cL-Aiv">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sharples:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J50-cL-Aiv">
                                                 <rect key="frame" x="30" y="67" width="68" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kohlberg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siJ-k1-RbH">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kohlberg:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="siJ-k1-RbH">
                                                 <rect key="frame" x="30" y="97" width="70" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Science Center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihk-O9-6tH">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Science Center:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ihk-O9-6tH">
                                                 <rect key="frame" x="30" y="125" width="118" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Paces Cafe" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-PI-HZB">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Paces Cafe:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJN-PI-HZB">
                                                 <rect key="frame" x="30" y="155" width="88" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -88,19 +87,19 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sharples" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlQ-eR-CQq">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="McCabe:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlQ-eR-CQq">
                                                 <rect key="frame" x="30" y="219" width="68" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kohlberg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUa-Kr-b8K">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cornell:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUa-Kr-b8K">
                                                 <rect key="frame" x="30" y="249" width="70" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Science Center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8x-To-wLB">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Underhill:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8x-To-wLB">
                                                 <rect key="frame" x="30" y="277" width="118" height="22"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -160,6 +159,12 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdG-UY-vBq">
+                                                <rect key="frame" x="156" y="65" width="225" height="109"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -167,36 +172,12 @@
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="s11-xb-H4q" firstAttribute="leading" secondItem="x6D-cP-RlZ" secondAttribute="leading" id="0AW-0u-aTy"/>
-                            <constraint firstItem="XCK-vf-1D4" firstAttribute="top" secondItem="s11-xb-H4q" secondAttribute="bottom" id="HaU-ka-0vI"/>
-                            <constraint firstItem="s11-xb-H4q" firstAttribute="top" secondItem="x6D-cP-RlZ" secondAttribute="topMargin" id="PwN-ad-HB9"/>
-                            <constraint firstItem="s11-xb-H4q" firstAttribute="leading" secondItem="x6D-cP-RlZ" secondAttribute="leadingMargin" id="Yn4-0f-8PH"/>
-                            <constraint firstItem="s11-xb-H4q" firstAttribute="leading" secondItem="x6D-cP-RlZ" secondAttribute="leading" id="Ynp-Cy-6d6"/>
-                            <constraint firstItem="s11-xb-H4q" firstAttribute="leading" secondItem="x6D-cP-RlZ" secondAttribute="leadingMargin" id="abn-FT-EU1"/>
-                            <constraint firstItem="s11-xb-H4q" firstAttribute="leading" secondItem="x6D-cP-RlZ" secondAttribute="leadingMargin" id="esV-nt-NFR"/>
-                            <constraint firstAttribute="trailing" secondItem="s11-xb-H4q" secondAttribute="trailing" id="gyU-xc-Rqe"/>
-                            <constraint firstItem="XCK-vf-1D4" firstAttribute="top" secondItem="s11-xb-H4q" secondAttribute="bottom" id="qOq-sS-b0f"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="s11-xb-H4q" secondAttribute="trailing" id="t9n-Lh-xRc"/>
-                            <constraint firstItem="s11-xb-H4q" firstAttribute="leading" secondItem="x6D-cP-RlZ" secondAttribute="leadingMargin" id="xXV-b1-n8K"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="0AW-0u-aTy"/>
-                                <exclude reference="Yn4-0f-8PH"/>
-                                <exclude reference="Ynp-Cy-6d6"/>
-                                <exclude reference="abn-FT-EU1"/>
-                                <exclude reference="esV-nt-NFR"/>
-                                <exclude reference="gyU-xc-Rqe"/>
-                                <exclude reference="t9n-Lh-xRc"/>
-                                <exclude reference="xXV-b1-n8K"/>
-                            </mask>
-                        </variation>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="HoursSegue" id="zZl-3y-dLW"/>
+                        <outlet property="textView" destination="bdG-UY-vBq" id="bdQ-r7-mDZ"/>
+                        <segue destination="9pv-A4-QxB" kind="presentation" identifier="HoursSegue" id="zZl-3y-dLW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPg-Ea-jHj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -208,8 +189,8 @@
             <objects>
                 <viewController storyboardIdentifier="Menu" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CtX-8j-YvX" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="3JQ-EA-SCe"/>
-                        <viewControllerLayoutGuide type="bottom" id="Edt-w9-g8Q"/>
+                        <viewControllerLayoutGuide type="top" id="OWo-gW-F5p"/>
+                        <viewControllerLayoutGuide type="bottom" id="zgI-bH-PgL"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="Menu" id="Xxd-xN-dac">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -225,12 +206,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="MenuSegue" id="8Mw-bP-KPu"/>
+                        <segue destination="9pv-A4-QxB" kind="presentation" identifier="MenuSegue" id="8Mw-bP-KPu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tHG-ev-y66" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1178" y="-1479"/>
+            <point key="canvasLocation" x="1178" y="-1478.9999999999995"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
@@ -269,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1627" y="498"/>
+            <point key="canvasLocation" x="1627" y="497.99999999999989"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -307,7 +288,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NFP-Mb-aUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="498.99999999999989"/>
+            <point key="canvasLocation" x="750" y="498.99999999999977"/>
         </scene>
         <!--Hours-->
         <scene sceneID="mZC-SY-ZZG">
@@ -333,8 +314,8 @@
             <objects>
                 <viewController id="Iot-4d-Js9" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nv4-Ys-1YD"/>
-                        <viewControllerLayoutGuide type="bottom" id="Qyg-Z7-bgr"/>
+                        <viewControllerLayoutGuide type="top" id="Top-tv-y33"/>
+                        <viewControllerLayoutGuide type="bottom" id="pDS-i3-rvc"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Hvc-P0-D89">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -351,8 +332,8 @@
             <objects>
                 <viewController storyboardIdentifier="Transportation" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mnB-eU-MFT" customClass="TransporationViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zeN-MF-6tU"/>
-                        <viewControllerLayoutGuide type="bottom" id="A5G-Ss-60v"/>
+                        <viewControllerLayoutGuide type="top" id="ypC-ak-pOx"/>
+                        <viewControllerLayoutGuide type="bottom" id="bjl-qH-WGE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="Menu" id="oAe-Jc-N28">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -360,20 +341,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="TransportationSegue" id="Azx-9S-6a8"/>
+                        <segue destination="9pv-A4-QxB" kind="presentation" identifier="TransportationSegue" id="Azx-9S-6a8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egX-G5-Z0t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2050" y="-1479"/>
+            <point key="canvasLocation" x="2050" y="-1478.9999999999995"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="aU6-vk-52h">
             <objects>
                 <viewController storyboardIdentifier="EmergencyInfo" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xD7-lh-qO3" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="VvY-eV-lDO"/>
-                        <viewControllerLayoutGuide type="bottom" id="ens-rm-ezN"/>
+                        <viewControllerLayoutGuide type="top" id="s0G-PU-up2"/>
+                        <viewControllerLayoutGuide type="bottom" id="g06-IL-tvE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="Menu" id="zfb-FO-2Rm">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
@@ -389,12 +370,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="show" identifier="EmergencyInfoSegue" id="XcE-rK-g8p"/>
+                        <segue destination="9pv-A4-QxB" kind="presentation" identifier="EmergencyInfoSegue" id="XcE-rK-g8p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mFo-2C-2bf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2750" y="-1479"/>
+            <point key="canvasLocation" x="2750" y="-1478.9999999999995"/>
         </scene>
     </scenes>
     <resources>
@@ -402,7 +383,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Azx-9S-6a8"/>
+        <segue reference="zZl-3y-dLW"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.53643860479797978" green="0.062784072854785863" blue="0.17054992814519676" alpha="1" colorSpace="calibratedRGB"/>
 </document>

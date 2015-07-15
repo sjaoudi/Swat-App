@@ -14,8 +14,10 @@
 #import <UIKit/UIKit.h>
 
 @interface HoursViewController : UIViewController {
-    
+    IBOutlet UILabel *textView;
 }
+
+@property (retain, nonatomic) IBOutlet UILabel *textView;
 
 @end
 
