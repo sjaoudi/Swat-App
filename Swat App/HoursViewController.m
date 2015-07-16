@@ -50,7 +50,7 @@
     //NSArray *hoursArray = [self getHours:dashString];
     NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
     
-    NSDictionary *hoursInfo = [self getHours:dashString :places];
+    NSArray *hoursInfo = [self getHours:dashString :places];
     
     NSArray *textBoxes = [[NSArray alloc] initWithObjects:sharplesHoursBox, essiesHoursBox, kohlbergHoursBox, scHoursBox, pacesHoursBox, mccabeHoursBox, underhillHoursBox, cornellHoursBox, helpdeskHoursBox, mediacenterHoursBox, wrcHoursBox,
         postofficeHoursBox, bookstoreHoursBox, creditunionHoursBox, athleticHoursbox, nil];
@@ -76,7 +76,7 @@
 }
 
 
-- (NSDictionary *)getHours :(NSString *)dashString :(NSArray *)places{
+- (NSArray *)getHours :(NSString *)dashString :(NSArray *)places{
     
     NSMutableArray *hoursArray = [[NSMutableArray alloc] init];
     NSMutableArray *linksArray = [[NSMutableArray alloc] init];
@@ -111,8 +111,10 @@
         [linksArray addObject:placeLink];
     }
     //return hoursArray;
-    NSDictionary *hoursInfo = [[NSDictionary alloc] initWithObjects:hoursArray forKeys:places];
-    return hoursInfo;
+    
+    //NSDictionary *hoursInfo = [[NSDictionary alloc] initWithObjects:hoursArray forKeys:places];
+    //return hoursInfo;
+    return hoursArray;
 }
 
 - (NSString *)findRegex :(NSString *)regexString :(NSString *)content{

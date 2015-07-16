@@ -38,8 +38,9 @@
     menuTitles = [[menuItem allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
-    
     self.tableView.scrollEnabled = NO;
+    
+    //[self.navigationController setNavigationBarHidden:YES animated:YES];
     
 }
 
