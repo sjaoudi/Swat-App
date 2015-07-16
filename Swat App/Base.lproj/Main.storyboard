@@ -429,9 +429,36 @@
                     <view key="view" contentMode="scaleToFill" restorationIdentifier="Menu" id="oAe-Jc-N28">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Next Trains to Philly" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qV7-Bi-vwf">
+                                <rect key="frame" x="20" y="19" width="181" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <color key="textColor" red="0.72449100379999998" green="0.088215492409999999" blue="0.2352978563" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sharples:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahk-AN-Hu5">
+                                <rect key="frame" x="26" y="50" width="68" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <size key="shadowOffset" width="13" height="6"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l06-LM-NuQ">
+                                <rect key="frame" x="20" y="54" width="150" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="ahk-AN-Hu5"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
+                        <outlet property="phillyTrainsBox" destination="l06-LM-NuQ" id="gTB-sl-Nmr"/>
                         <segue destination="9pv-A4-QxB" kind="presentation" identifier="TransportationSegue" id="Azx-9S-6a8"/>
                     </connections>
                 </viewController>
@@ -474,7 +501,7 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="R8L-q6-ACN"/>
+        <segue reference="Azx-9S-6a8"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.72449100379999998" green="0.088215492409999999" blue="0.2352978563" alpha="1" colorSpace="calibratedRGB"/>
 </document>

@@ -15,8 +15,19 @@
 #import <UIKit/UIKit.h>
 
 @interface TransporationViewController : UIViewController {
+    IBOutlet UILabel *phillyTrainsBox;
+    IBOutlet UILabel *trainScheduleBox;
+    IBOutlet UILabel *tripPlannerBox;
+    IBOutlet UILabel *tricoVansBox;
+    IBOutlet UILabel *vanScheduleBox;
     
 }
+
+@property (retain, nonatomic) IBOutlet UILabel *phillyTrainsBox;
+@property (retain, nonatomic) IBOutlet UILabel *trainScheduleBox;
+@property (retain, nonatomic) IBOutlet UILabel *tripPlannerBox;
+@property (retain, nonatomic) IBOutlet UILabel *tricoVansBox;
+@property (retain, nonatomic) IBOutlet UILabel *vanScheduleBox;
 
 @end
 

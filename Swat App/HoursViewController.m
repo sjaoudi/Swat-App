@@ -59,13 +59,13 @@
     
 }
 
-- (void)initTextBoxes :(NSArray *)textBoxes :(NSArray *)places{
+- (void)initTextBoxes :(NSArray *)textBoxes :(NSArray *)hoursInfo{
     
     for (int i=0; i < textBoxes.count; i++) {
         UILabel *textBox = [[UILabel alloc] init];
         textBox = textBoxes[i];
         textBox.numberOfLines = 0;
-        textBox.text = [places objectAtIndex:i];
+        textBox.text = [hoursInfo objectAtIndex:i];
         
         CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
         
