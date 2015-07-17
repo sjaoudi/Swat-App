@@ -57,8 +57,11 @@
     
     [self initTextBoxes:textBoxes :hoursInfo];
     
-    //UIScrollView *tempScrollView=(UIScrollView *)self.view;
-    //tempScrollView.contentSize=CGSizeMake(800,800);
+    UIScrollView *tempScrollView=(UIScrollView *)self.view;
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    tempScrollView.contentSize=CGSizeMake(width,500);
     
 }
 
