@@ -14,6 +14,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HoursViewController : UIViewController {
+    
     IBOutlet UILabel *sharplesHoursBox;
     IBOutlet UILabel *essiesHoursBox;
     IBOutlet UILabel *kohlbergHoursBox;

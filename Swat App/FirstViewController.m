@@ -41,6 +41,7 @@
     self.tableView.scrollEnabled = NO;
     
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
 }
 
