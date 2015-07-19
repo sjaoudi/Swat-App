@@ -23,7 +23,7 @@
 @synthesize phillyTrainsBox;
 @synthesize trainScheduleBox;
 @synthesize tripPlannerBox;
-@synthesize tricoVansBox;
+@synthesize tricoVanScheduleBox;
 @synthesize vanScheduleBox;
 
 
@@ -32,35 +32,49 @@
     
     NSLog(@"TransporationViewController Loaded");
     
-    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
+    //NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
+    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+    
     NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
     NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
     
     NSString *transportationBlock = [self getTransporationInfo:dashString];
 
-    //NSString *septaScheduleLink = @"http://www.septa.org/schedules/rail/pdf/elw.pdf";
+    NSString *septaScheduleLink = @"http://www.septa.org/schedules/rail/pdf/elw.pdf";
     //NSString *phillyShuttleLink = @"http://www.swarthmore.edu/x10940.xml";
     //NSString *moreShuttlesLink = @"http://www.swarthmore.edu/gettingaround.xml";
     //NSString *parkingLink = @"http://www.swarthmore.edu/x16144.xml";
     
-    NSArray *infoToGet = @[@"trains", @"shuttle", @"tripPlanner", @"vanSchedule"];
-    NSMutableArray *infoToGetMutable = [NSMutableArray arrayWithArray:infoToGet];
+    NSMutableArray *transportationLinksInitial = [[NSMutableArray alloc] initWithObjects:septaScheduleLink, nil];
     
-    NSMutableArray *transportationInfo = [self getInfoStrings:transportationBlock :infoToGet];
+    NSMutableArray *transportationTimes = [self getInfoStrings:transportationBlock];
+    [self replaceCommas:transportationTimes];
+   
+    NSMutableArray *transporationLinks = [self getLinks:transportationBlock];
+    [transporationLinks addObjectsFromArray:transportationLinksInitial];
     
-    NSArray *textBoxes = [[NSArray alloc] initWithObjects:phillyTrainsBox, trainScheduleBox, tripPlannerBox, tricoVansBox, vanScheduleBox, nil];
+    NSLog(@"%@", transporationLinks);
+    
+    NSArray *linkLabels = @[@"Septa Trip Planner", @"Trico Van Schedule", @"Septa Schedule"];
 
-    [self initTextBoxes:textBoxes :transportationInfo];
-    NSDictionary *transportationDict = [[NSDictionary alloc] initWithObjects:transportationInfo forKeys:infoToGetMutable];
-    NSMutableDictionary *transportationDictMutable = [NSMutableDictionary dictionaryWithDictionary:transportationDict];
+    NSMutableArray *textBoxes = [[NSMutableArray alloc] initWithObjects:phillyTrainsBox, vanScheduleBox, nil];
+    NSMutableArray *linkBoxes = [[NSMutableArray alloc] initWithObjects:trainScheduleBox, tripPlannerBox, tricoVanScheduleBox, nil];
     
-    NSString *trainTimesList = [[transportationDict objectForKey:@"trains"] stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
+    NSLog(@"%@", textBoxes);
+
+    [self initTextBoxes:textBoxes :transportationTimes];
+    [self initLinks:transporationLinks :linkBoxes :linkLabels];
     
-    [[transportationDictMutable objectForKey:@"trains"] setObject:trainTimesList forKey:@"trains"];
+    NSLog(@"%@", transportationTimes);
     
-    //NSLog(@"%@", transportationDictMutable);
-    NSLog(@"%@", [transportationDict objectForKey:@"trains"]);
-    
+}
+
+- (void)replaceCommas :(NSMutableArray *)transportationTimes {
+    for (int i=0; i<transportationTimes.count; i++) {
+        NSString *transportationTime = transportationTimes[i];
+        transportationTime = [transportationTime stringByReplacingOccurrencesOfString:@", " withString:@"\n"];
+        transportationTimes[i] = transportationTime;
+    }
 }
 
 - (void)initTextBoxes :(NSArray *)textBoxes :(NSArray *)places{
@@ -68,10 +82,14 @@
     for (int i=0; i < textBoxes.count; i++) {
         UILabel *textBox = [[UILabel alloc] init];
         textBox = textBoxes[i];
-        textBox.numberOfLines = 0;
+        
+        //textBox.numberOfLines = 0;
         textBox.text = [places objectAtIndex:i];
+        //textBox.text = @"hi \n hi";
+        textBox.numberOfLines = 0;
         
         CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
+        
         
         textBox.frame = CGRectMake(
                                    textBox.frame.origin.x, textBox.frame.origin.y,
@@ -79,23 +97,37 @@
     }
 }
 
-- (NSMutableArray *)getInfoStrings :(NSString *)transportationInfo :(NSArray *)infoToGet{
+- (void)initLinks :(NSArray *)links :(NSMutableArray *)linkBoxes :(NSArray *)linkLabels{
+    for (int i=0; i<linkBoxes.count; i++) {
+        NSURL* URL = [NSURL URLWithString:[links[i] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
+        NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:linkLabels[i]];
+        [str addAttribute: NSLinkAttributeName value:URL range: NSMakeRange(0, str.length)];
+        UITextView *box = linkBoxes[i];
+        box.attributedText = str;
+    }
+}
+
+- (NSMutableArray *)getInfoStrings :(NSString *)transportationInfo{
     
-    NSArray *regexesForInfo = @[@"train-times\">\\n?(.+)\\s<\\/div>", @"shuttle-times\">\\n?(.+)\\s<\\/div>", @"\\s<a href=\"((.|\n)*)\"\\s?\\S+Sep", @"<p><a href=\"(.+)\"[a-z]\\S+T"];
-    
-    //transportationDict = [NSDictionary dictionaryWithObjects:infoToGet forKeys:regexesForInfo];
+    NSArray *regexesForInfo = @[@"train-times\">\\n?(.+)\\s<\\/div>", @"shuttle-times\">\\n?(.+)\\s<\\/div>"];
     NSMutableArray *transporationInfoArray = [[NSMutableArray alloc] init];
     
-    for (int i=0; i<infoToGet.count; i++) {
-        //TransporationInfo *transportationObj = [[TransporationInfo alloc] init];
-        //transportationObj.name = infoToGet[i];
-        //transportationObj.info = [self findRegex:regexesForInfo[i] :transportationInfo];
-        //[transporationInfoArray addObject:transportationObj];
+    for (int i=0; i<regexesForInfo.count; i++) {
         [transporationInfoArray addObject: [self findRegex:regexesForInfo[i] :transportationInfo]];
         
     }
     return transporationInfoArray;
     
+}
+
+- (NSMutableArray *)getLinks :(NSString *)transportationInfo {
+    NSArray *regexesForLinks = @[@"\\s<a href=\"((.|\n)*)\"\\s?\\S+Sep", @"<p><a href=\"(.+)\"[a-z]\\S+T"];
+    NSMutableArray *linkArray = [[NSMutableArray alloc] init];
+    
+    for (int i=0; i<regexesForLinks.count; i++) {
+        [linkArray addObject: [self findRegex:regexesForLinks[i] :transportationInfo]];
+    }
+    return linkArray;
 }
 
 - (NSString *)getTransporationInfo :(NSString *)content {
@@ -117,6 +149,8 @@
     
     NSRange matchRange = [textCheckingResult rangeAtIndex:1];
     NSString *result = [content substringWithRange:matchRange];
+    
+    //result = [result stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
     
     return result;
 }

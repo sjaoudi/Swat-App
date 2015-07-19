@@ -44,7 +44,8 @@
         
     //NSLog(@"HoursViewController Loaded");
     
-    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
     NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
     NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
     //NSArray *hoursArray = [self getHours:dashString];
@@ -71,7 +72,9 @@
         UILabel *textBox = [[UILabel alloc] init];
         textBox = textBoxes[i];
         textBox.numberOfLines = 0;
-        textBox.text = [hoursInfo objectAtIndex:i];
+        NSString *textBoxString = [hoursInfo objectAtIndex:i];
+        //textBoxString = [textBoxString stringByReplacingOccurrencesOfString:@"midnight" withString:@"12:00am"];
+        textBox.text = textBoxString;
         
         CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
         
@@ -85,7 +88,7 @@
 - (NSArray *)getHours :(NSString *)dashString :(NSArray *)places{
     
     NSMutableArray *hoursArray = [[NSMutableArray alloc] init];
-    NSMutableArray *linksArray = [[NSMutableArray alloc] init];
+    //NSMutableArray *linksArray = [[NSMutableArray alloc] init];
     
     for (int i=0; i<places.count; i++) {
 
@@ -102,8 +105,8 @@
         NSString *placeRegexString = [NSString stringWithString:placeRegexMutableString];
         NSString *placeToParse = [self findRegex:placeRegexString :dashString];
         
-        NSString *linkRegexString = @"<a href=\"(.+)\">";
-        NSString *placeLink = [self findRegex:linkRegexString :placeToParse];
+        //NSString *linkRegexString = @"<a href=\"(.+)\">";
+        //NSString *placeLink = [self findRegex:linkRegexString :placeToParse];
         
         NSString *hoursRegexString = @"<\\/strong>\\s?(.+)\\s?<a";
         NSString *placeHours = [self findRegex:hoursRegexString :placeToParse];
@@ -114,7 +117,7 @@
         //placeObj.placeLink = placeLink;
         
         [hoursArray addObject:placeHours];
-        [linksArray addObject:placeLink];
+        //[linksArray addObject:placeLink];
     }
     //return hoursArray;
     
