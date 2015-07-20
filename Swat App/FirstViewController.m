@@ -10,6 +10,7 @@
 
 #import "HoursViewController.h"
 #import "TransportationViewController.h"
+#import "MenuViewController.h"
 
 @interface FirstViewController () {
     NSDictionary *menuItem;
@@ -97,13 +98,14 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     HoursViewController *hoursView = [storyboard  instantiateViewControllerWithIdentifier:@"Hours"];
     TransporationViewController *transportationView = [storyboard  instantiateViewControllerWithIdentifier:@"Transportation"];
+    MenuViewController *menuView = [storyboard instantiateViewControllerWithIdentifier:@"Menu"];
 
     switch (indexPath.row) {
         case 0:
             [self.navigationController pushViewController:hoursView animated:YES];
             break;
         case 1:
-            viewController = [storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+            [self.navigationController pushViewController:menuView animated:YES];
             break;
         case 2:
             [self.navigationController pushViewController:transportationView animated:YES];

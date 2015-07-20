@@ -18,6 +18,7 @@
 		AA2971451B2E78EC00D4FDF9 /* Swat_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2971441B2E78EC00D4FDF9 /* Swat_AppTests.m */; };
 		AA3C1CE71B4E182000AE0320 /* HoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3C1CE61B4E182000AE0320 /* HoursViewController.m */; };
 		AA5C9F821B535D2000928501 /* TransportationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5C9F811B535D2000928501 /* TransportationViewController.m */; };
+		AA6545A31B5C2467004FC7AD /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6545A21B5C2467004FC7AD /* MenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		AA3C1CE81B4E182C00AE0320 /* HoursViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HoursViewController.h; sourceTree = "<group>"; };
 		AA5C9F811B535D2000928501 /* TransportationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportationViewController.m; sourceTree = "<group>"; };
 		AA5C9F831B535D3100928501 /* TransportationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransportationViewController.h; sourceTree = "<group>"; };
+		AA6545A11B5C244D004FC7AD /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		AA6545A21B5C2467004FC7AD /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 				AA3C1CE61B4E182000AE0320 /* HoursViewController.m */,
 				AA5C9F831B535D3100928501 /* TransportationViewController.h */,
 				AA5C9F811B535D2000928501 /* TransportationViewController.m */,
+				AA6545A11B5C244D004FC7AD /* MenuViewController.h */,
+				AA6545A21B5C2467004FC7AD /* MenuViewController.m */,
 				AA29712F1B2E78EC00D4FDF9 /* SecondViewController.h */,
 				AA2971301B2E78EC00D4FDF9 /* SecondViewController.m */,
 				AA06F89F1B38F202000FECF5 /* DetailTableViewController.h */,
@@ -297,6 +302,7 @@
 				AA06F89E1B38F1F2000FECF5 /* DetailTableViewController.m in Sources */,
 				AA2971311B2E78EC00D4FDF9 /* SecondViewController.m in Sources */,
 				AA29712B1B2E78EB00D4FDF9 /* AppDelegate.m in Sources */,
+				AA6545A31B5C2467004FC7AD /* MenuViewController.m in Sources */,
 				AA29712E1B2E78EC00D4FDF9 /* FirstViewController.m in Sources */,
 				AA5C9F821B535D2000928501 /* TransportationViewController.m in Sources */,
 				AA3C1CE71B4E182000AE0320 /* HoursViewController.m in Sources */,
