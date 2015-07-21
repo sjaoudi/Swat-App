@@ -111,7 +111,7 @@
             [self.navigationController pushViewController:transportationView animated:YES];
             break;
         case 3:
-            viewController = [storyboard instantiateViewControllerWithIdentifier:@"Emergency Info"];
+            viewController = [storyboard instantiateViewControllerWithIdentifier:@"EmergencyInfo"];
             break;
         default:
             viewController = [storyboard instantiateViewControllerWithIdentifier:@"Hours"];

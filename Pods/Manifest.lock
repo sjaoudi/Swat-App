@@ -20,6 +20,7 @@ PODS:
   - AFNetworking/UIKit (2.5.4):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - MBXMapKit (0.7.0)
   - MWFeedParser (1.0.1):
     - MWFeedParser/FeedParser (= 1.0.1)
     - MWFeedParser/NSDate+InternetDateTime (= 1.0.1)
@@ -32,10 +33,12 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5)
+  - MBXMapKit
   - MWFeedParser
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  MBXMapKit: 1fd570fd955fb4475b7303360b3b96afb1ff9634
   MWFeedParser: 2cf646014c1baf6ad1b08c480b40a08180079247
 
 COCOAPODS: 0.37.1

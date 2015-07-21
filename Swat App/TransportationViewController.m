@@ -53,19 +53,25 @@
     NSMutableArray *transporationLinks = [self getLinks:transportationBlock];
     [transporationLinks addObjectsFromArray:transportationLinksInitial];
     
-    NSLog(@"%@", transporationLinks);
+    //NSLog(@"%@", transporationLinks);
     
     NSArray *linkLabels = @[@"Septa Trip Planner", @"Trico Van Schedule", @"Septa Schedule"];
 
     NSMutableArray *textBoxes = [[NSMutableArray alloc] initWithObjects:phillyTrainsBox, vanScheduleBox, nil];
     NSMutableArray *linkBoxes = [[NSMutableArray alloc] initWithObjects:trainScheduleBox, tripPlannerBox, tricoVanScheduleBox, nil];
     
-    NSLog(@"%@", textBoxes);
+    //NSLog(@"%@", textBoxes);
 
     [self initTextBoxes:textBoxes :transportationTimes];
     [self initLinks:transporationLinks :linkBoxes :linkLabels];
     
-    NSLog(@"%@", transportationTimes);
+    //NSLog(@"%@", transportationTimes);
+    
+    UIScrollView *tempScrollView=(UIScrollView *)self.view;
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    //CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    tempScrollView.contentSize=CGSizeMake(width,450);
     
 }
 

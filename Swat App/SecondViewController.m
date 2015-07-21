@@ -45,7 +45,7 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"M/dd/yyyy"];
     todayString = [dateFormat stringFromDate:today];
-    NSDate *twoWeek = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:14 toDate:today options:0];
+    NSDate *twoWeek = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:32 toDate:today options:0];
     twoWeekString = [dateFormat stringFromDate:twoWeek];
     //NSLog(@"%@, %@", todayString, twoWeekString);
     
@@ -75,7 +75,7 @@
     dateArrays = [self createEmptyDateArrays];
     
     
-    //[self.tableView reloadData];
+    [self.tableView reloadData];
     //self.tableView.dataSource = self;
     //self.tableView.delegate = self;
     

@@ -68,7 +68,7 @@
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     //CGFloat height = [UIScreen mainScreen].bounds.size.height;
     
-    tempScrollView.contentSize=CGSizeMake(width,500);
+    tempScrollView.contentSize=CGSizeMake(width,550);
     
 }
 
