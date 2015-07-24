@@ -9,12 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-MBXMapKit.xcscheme</key>
+		<key>Pods-MWFeedParser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-MWFeedParser.xcscheme</key>
+		<key>Pods-MapboxGL-MapboxGL.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-MapboxGL.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>55A8A16BA5C354D9C38A0F34</key>
+		<key>0A83AA85BC277638763EF404</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7F38AE3CAE38D8FFB9B81CF6</key>
+		<key>4F9068E034DA8BF87ED8CDA5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B8A8B1F4322C1D92E7DE6D6D</key>
+		<key>832BF9E8C4F867114DD2AFFA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EAAFA8631F6B41AB3A7F0642</key>
+		<key>9AD1FDF9B74197F51B976391</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AB923F1FC9DC4B466A972406</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -13,7 +13,8 @@
 #endif
 
 #import <UIKit/UIKit.h>
-#import <MBXMapKit/MBXMapKit.h>
+#import <MapboxGL/MapboxGL.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface MapViewController : UIViewController {
     

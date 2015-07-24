@@ -4,4 +4,4 @@ pod 'MWFeedParser'
 
 pod "AFNetworking", "~> 2.5"
 
-pod "MBXMapKit"
+pod "MapboxGL"
