@@ -12,9 +12,11 @@
 
 #endif
 
+#import "Mapbox.h"
 #import <UIKit/UIKit.h>
-#import <MapboxGL/MapboxGL.h>
+//#import <MapboxGL/MapboxGL.h>
 #import <CoreLocation/CoreLocation.h>
+
 
 @interface MapViewController : UIViewController {
     

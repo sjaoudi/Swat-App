@@ -45,7 +45,7 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"M/dd/yyyy"];
     todayString = [dateFormat stringFromDate:today];
-    NSDate *twoWeek = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:32 toDate:today options:0];
+    NSDate *twoWeek = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:14 toDate:today options:0];
     twoWeekString = [dateFormat stringFromDate:twoWeek];
     //NSLog(@"%@, %@", todayString, twoWeekString);
     
@@ -414,6 +414,7 @@
     NSMutableArray *emptyDateArray = [[NSMutableArray alloc] init];
     for (int i=0; i<dateRangeToParse.count; i++) {
         NSMutableArray *dateArray = [[NSMutableArray alloc] init];
+        
         [emptyDateArray addObject:dateArray];
     }
     //NSLog(@"%ul", emptyDateArray.count);

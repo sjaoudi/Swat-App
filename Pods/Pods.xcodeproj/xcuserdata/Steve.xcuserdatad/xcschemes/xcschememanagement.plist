@@ -4,22 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AFNetworking.xcscheme</key>
+		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-MWFeedParser.xcscheme</key>
+		<key>GRMustache.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-MapboxGL-MapboxGL.xcscheme</key>
+		<key>JRSwizzle.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-MapboxGL.xcscheme</key>
+		<key>MWFeedParser.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Mapbox-iOS-SDK-Mapbox.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Mapbox-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -29,30 +39,50 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SMCalloutView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0A83AA85BC277638763EF404</key>
+		<key>2450301675847B586DB0625E489B6662</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4F9068E034DA8BF87ED8CDA5</key>
+		<key>2D6B55CF913777E958CF501FEBA7FC6E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>832BF9E8C4F867114DD2AFFA</key>
+		<key>4117CC6D4D870883C7DC58536A8ED9D9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9AD1FDF9B74197F51B976391</key>
+		<key>69F45F4660344620A0463CC612DB199F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AB923F1FC9DC4B466A972406</key>
+		<key>85C7F884E048F78F1311116E5D229FF5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>87043E5CBFD40FFE0A063AC3D2615D37</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D9E8CECE3252C566525B8FF61F92CF74</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DFA3120812CB7B61471082FC4C3B61C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

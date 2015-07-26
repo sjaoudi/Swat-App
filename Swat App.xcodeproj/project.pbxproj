@@ -20,6 +20,7 @@
 		AA4149961B5DFB1000866FFA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4149951B5DFB1000866FFA /* MapViewController.m */; };
 		AA5C9F821B535D2000928501 /* TransportationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5C9F811B535D2000928501 /* TransportationViewController.m */; };
 		AA6545A31B5C2467004FC7AD /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6545A21B5C2467004FC7AD /* MenuViewController.m */; };
+		AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACFD2341B646E8000DDED74 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		AA5C9F831B535D3100928501 /* TransportationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransportationViewController.h; sourceTree = "<group>"; };
 		AA6545A11B5C244D004FC7AD /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		AA6545A21B5C2467004FC7AD /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		AACFD2341B646E8000DDED74 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 		AA2971191B2E78EA00D4FDF9 = {
 			isa = PBXGroup;
 			children = (
+				AACFD2341B646E8000DDED74 /* Default-568h@2x.png */,
 				AA2971241B2E78EB00D4FDF9 /* Swat App */,
 				AA2971411B2E78EC00D4FDF9 /* Swat AppTests */,
 				AA2971231B2E78EB00D4FDF9 /* Products */,
@@ -259,6 +262,7 @@
 			files = (
 				AA2971341B2E78EC00D4FDF9 /* Main.storyboard in Resources */,
 				AA2971361B2E78EC00D4FDF9 /* Images.xcassets in Resources */,
+				AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,13 +440,7 @@
 			baseConfigurationReference = 257BDEDF80226F973B799FA2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/Public/MWFeedParser\"",
-				);
-				INFOPLIST_FILE = "Swat App/Info.plist";
+				INFOPLIST_FILE = "/Users/Steve/Desktop/Swat-App/Swat App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -453,13 +451,7 @@
 			baseConfigurationReference = 70F3B3E436FF15CF785521E7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
-					"\"${PODS_ROOT}/Headers/Public/MWFeedParser\"",
-				);
-				INFOPLIST_FILE = "Swat App/Info.plist";
+				INFOPLIST_FILE = "/Users/Steve/Desktop/Swat-App/Swat App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
