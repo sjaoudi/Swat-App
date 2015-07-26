@@ -1,0 +1,9 @@
+{
+    "type":
+    "FeatureCollection",
+    "features" : [
+            {"type":"Feature",
+                  "properties":{"id":"marker-icjwp23t0","title":"McCabe Library","description":"","marker-size":"large","marker-color":"#1087bf","marker-symbol":"library"},
+            "geometry" : {
+                  "coordinates":[-75.35273,39.905415],"type":"Point"},
+                  "id":"8041de0a231239395e593481b7a61e75"}],"id":"sjaoudi.n0fh2c9n"}

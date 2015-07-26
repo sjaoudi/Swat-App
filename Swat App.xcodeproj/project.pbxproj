@@ -18,6 +18,8 @@
 		AA2971451B2E78EC00D4FDF9 /* Swat_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2971441B2E78EC00D4FDF9 /* Swat_AppTests.m */; };
 		AA3C1CE71B4E182000AE0320 /* HoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3C1CE61B4E182000AE0320 /* HoursViewController.m */; };
 		AA4149961B5DFB1000866FFA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4149951B5DFB1000866FFA /* MapViewController.m */; };
+		AA4F25061B64990400C4134C /* tags.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AA4F25051B64990400C4134C /* tags.geojson */; };
+		AA4F25081B649A0300C4134C /* boat.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AA4F25071B649A0300C4134C /* boat.geojson */; };
 		AA5C9F821B535D2000928501 /* TransportationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5C9F811B535D2000928501 /* TransportationViewController.m */; };
 		AA6545A31B5C2467004FC7AD /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6545A21B5C2467004FC7AD /* MenuViewController.m */; };
 		AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACFD2341B646E8000DDED74 /* Default-568h@2x.png */; };
@@ -57,6 +59,8 @@
 		AA3C1CE81B4E182C00AE0320 /* HoursViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HoursViewController.h; sourceTree = "<group>"; };
 		AA4149951B5DFB1000866FFA /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		AA4149971B5DFB2100866FFA /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		AA4F25051B64990400C4134C /* tags.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tags.geojson; sourceTree = "<group>"; };
+		AA4F25071B649A0300C4134C /* boat.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boat.geojson; sourceTree = "<group>"; };
 		AA5C9F811B535D2000928501 /* TransportationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportationViewController.m; sourceTree = "<group>"; };
 		AA5C9F831B535D3100928501 /* TransportationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransportationViewController.h; sourceTree = "<group>"; };
 		AA6545A11B5C244D004FC7AD /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -132,6 +136,8 @@
 				AA4149971B5DFB2100866FFA /* MapViewController.h */,
 				AA4149951B5DFB1000866FFA /* MapViewController.m */,
 				AA2971321B2E78EC00D4FDF9 /* Main.storyboard */,
+				AA4F25051B64990400C4134C /* tags.geojson */,
+				AA4F25071B649A0300C4134C /* boat.geojson */,
 				AA2971351B2E78EC00D4FDF9 /* Images.xcassets */,
 				AA2971251B2E78EB00D4FDF9 /* Supporting Files */,
 			);
@@ -260,7 +266,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA4F25061B64990400C4134C /* tags.geojson in Resources */,
 				AA2971341B2E78EC00D4FDF9 /* Main.storyboard in Resources */,
+				AA4F25081B649A0300C4134C /* boat.geojson in Resources */,
 				AA2971361B2E78EC00D4FDF9 /* Images.xcassets in Resources */,
 				AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */,
 			);

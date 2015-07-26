@@ -19,6 +19,9 @@
 
 
 @interface MapViewController : UIViewController {
-    
+
 }
+
+@property (nonatomic, assign) BOOL hideAttribution;
+
 @end

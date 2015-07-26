@@ -12,43 +12,62 @@
 //#import <CoreLocation/CoreLocation.h>
 #import "Mapbox.h"
 
+@interface MapViewController ()
+@property (nonatomic, strong) NSMutableArray *shapes;
+@end
+
 @implementation MapViewController
 
+@synthesize hideAttribution;
 
 - (void)viewDidLoad {
-    //[super viewDidLoad];
-    
-    //MGLMapView *mapView = [[MGLMapView alloc] initWithFrame:self.view.bounds];
-    
-    //mapView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    // set the map's center coordinates and zoom level
-    //[mapView setCenterCoordinate:CLLocationCoordinate2DMake(40.7326808, -73.9843407)
-    //                   zoomLevel:12
-    //                    animated:NO];
-    
-    //[self.view addSubview:mapView];
+
     [super viewDidLoad];
+    hideAttribution = YES;
     
     NSLog(@"map loaded");
     
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1Ijoic2phb3VkaSIsImEiOiIzMWNjNjdjMTRmOTQ2MjUwYzA0OTdjYmM2MTIzZTRhYyJ9.VHYjLmLq9AeTgjQE_X16lg"];
     
-    RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.n0d2kjg4"];
+    //RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.n0d2kjg4"];
+    RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.ef0b6517"];
     
     RMMapView *mapView = [[RMMapView alloc] initWithFrame:self.view.bounds
                                             andTilesource:tileSource];
-    // set zoom
-    mapView.zoom = 17;
-    
-    // set coordinates
+    mapView.zoom = 16;
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(39.9055000,-75.3538000);
-    
-    // center the map to the coordinates
     mapView.centerCoordinate = center;
     
+    self.navigationItem.rightBarButtonItem = [[RMUserTrackingBarButtonItem alloc] initWithMapView:mapView];
+    mapView.userTrackingMode = RMUserTrackingModeFollow;
+    
     [self.view addSubview:mapView];
-    [self.navigationController setNavigationBarHidden:YES animated:NO];
+    //[self.navigationController setNavigationBarHidden:YES animated:NO];
+    
+    // convert `boat.geojson` to an NSDIctionary
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"tags" ofType:@"geojson"];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[[NSData alloc]
+                                                                  initWithContentsOfFile:jsonPath]
+                                                         options:0
+                                                           error:nil];
+    
+    NSArray *features = json[@"features"];
+    
+    
+    // set the current shape
+    for (NSUInteger i = 0; i < [features count]; i++) {
+        NSDictionary *currentNode = (NSDictionary *)features[i];
+        NSArray *coordinates = currentNode[@"geometry"][@"coordinates"];
+        
+        CLLocationDegrees latitude = [[coordinates lastObject] doubleValue];
+        CLLocationDegrees longitude = [[coordinates firstObject] doubleValue];
+        CLLocationCoordinate2D loc2d = CLLocationCoordinate2DMake(latitude, longitude);
+        
+        RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:mapView
+                                                              coordinate:loc2d
+                                                                andTitle:@"My Path"];
+        
+        [mapView addAnnotation:annotation];
+    }
 }
-
 @end
