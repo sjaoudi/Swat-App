@@ -18,7 +18,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-@interface MapViewController : UIViewController {
+@interface MapViewController : UIViewController <RMMapViewDelegate> {
 
 }
 

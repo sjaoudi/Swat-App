@@ -75,6 +75,10 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)replaceCommas :(NSMutableArray *)transportationTimes {
     for (int i=0; i<transportationTimes.count; i++) {
         NSString *transportationTime = transportationTimes[i];

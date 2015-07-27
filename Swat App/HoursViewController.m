@@ -66,6 +66,10 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (void)initTextBoxes :(NSArray *)textBoxes :(NSArray *)hoursInfo{
     
     for (int i=0; i < textBoxes.count; i++) {

@@ -72,6 +72,10 @@
     
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
 - (NSString *)getMenuInfo :(NSString *)content {
     
     NSString *menuInfoRegexString = @"id=\"dining\">((.|\n)*)id=\"entertainment";

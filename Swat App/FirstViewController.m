@@ -15,6 +15,7 @@
 @interface FirstViewController () {
     NSDictionary *menuItem;
     NSArray *menuTitles;
+    NSArray *menuImages;
 }
 
 @end
@@ -35,17 +36,20 @@
     [super viewDidLoad];
     
     menuItem = @{@"Menu" : @[@"Hours", @"Menus", @"Transportation", @"Emergency Info"]};
+    menuImages = @[@"Clock-50.png", @"Restaurant-50.png", @"Train-50.png", @"High-Importance-50.png"];
     
     menuTitles = [[menuItem allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.scrollEnabled = NO;
-    
-    //[self.navigationController setNavigationBarHidden:YES animated:YES];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
-    
+    //self.title = @"Swat Info";
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -73,11 +77,20 @@
     }
     
     NSString *sectionTitle = [menuTitles objectAtIndex:indexPath.section];
-    NSArray *sectionAnimals = [menuItem objectForKey:sectionTitle];
-    NSString *animal = [sectionAnimals objectAtIndex:indexPath.row];
-    cell.textLabel.text = animal;
+    NSArray *sectionTitles = [menuItem objectForKey:sectionTitle];
+    NSString *sectionText = [sectionTitles objectAtIndex:indexPath.row];
+    cell.textLabel.text = sectionText;
     cell.textLabel.textAlignment = NSTextAlignmentCenter;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:20];
+    cell.textLabel.textColor = [UIColor colorWithRed:(51/255.f) green:(51/255.f) blue:(51/255.f) alpha:1.0f];
+    //NSMutableString *imagePath = [[NSMutableString alloc] initWithString:@"/icons/"];
+    //[imagePath appendString:[menuImages objectAtIndex:indexPath.row]];
+    NSString *imagePath = [menuImages objectAtIndex:indexPath.row];
+    
+    NSLog(@"%@", imagePath);
+    cell.imageView.image = [UIImage imageNamed:imagePath];
     
     //NSLog(@"%ld", indexPath.section);
     
@@ -87,8 +100,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     //CGSize mySize = [tableView contentSize];
     //NSLog(@"My view's frame is: %@", NSStringFromCGRect(tableView.frame));
-    //CGFloat height = self.view.frame.size.height/4;
-    return 112;
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenHeight = screenRect.size.height - 65 - 49;
+    //CGFloat height = self.view.frame.size.height;
+    //NSLog(@"%f", screenHeight);
+    return screenHeight/4;
     
 }
 

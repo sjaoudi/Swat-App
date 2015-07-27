@@ -34,6 +34,9 @@
     
     RMMapView *mapView = [[RMMapView alloc] initWithFrame:self.view.bounds
                                             andTilesource:tileSource];
+    
+    mapView.delegate = self;
+    
     mapView.zoom = 16;
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(39.9055000,-75.3538000);
     mapView.centerCoordinate = center;
@@ -63,11 +66,26 @@
         CLLocationDegrees longitude = [[coordinates firstObject] doubleValue];
         CLLocationCoordinate2D loc2d = CLLocationCoordinate2DMake(latitude, longitude);
         
-        RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:mapView
+        RMPointAnnotation *annotation = [[RMPointAnnotation alloc] initWithMapView:mapView
                                                               coordinate:loc2d
-                                                                andTitle:@"My Path"];
+                                                                          andTitle:currentNode[@"properties"][@"title"]];
         
         [mapView addAnnotation:annotation];
     }
 }
+
+- (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
+{
+    if (annotation.isUserLocationAnnotation)
+        return nil;
+    
+    // add Maki icon and color the marker
+    RMMarker *marker = [[RMMarker alloc] initWithMapboxMarkerImage:@"rocket" tintColor:
+                        [UIColor colorWithRed:0.224 green:0.671 blue:0.780 alpha:1.000]];
+    
+    marker.canShowCallout = YES;
+    
+    return marker;
+}
+
 @end

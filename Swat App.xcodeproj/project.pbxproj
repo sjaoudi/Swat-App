@@ -22,6 +22,11 @@
 		AA4F25081B649A0300C4134C /* boat.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AA4F25071B649A0300C4134C /* boat.geojson */; };
 		AA5C9F821B535D2000928501 /* TransportationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5C9F811B535D2000928501 /* TransportationViewController.m */; };
 		AA6545A31B5C2467004FC7AD /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6545A21B5C2467004FC7AD /* MenuViewController.m */; };
+		AA90F1041B65DBE000F521F1 /* Train-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1031B65DBE000F521F1 /* Train-50.png */; };
+		AA90F1061B65E0A300F521F1 /* Calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1051B65E0A300F521F1 /* Calendar-50.png */; };
+		AA90F1081B65E0AA00F521F1 /* High-Importance-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1071B65E0AA00F521F1 /* High-Importance-50.png */; };
+		AA90F10A1B65E0AF00F521F1 /* Clock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1091B65E0AF00F521F1 /* Clock-50.png */; };
+		AA90F10C1B65E0B500F521F1 /* Restaurant-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */; };
 		AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACFD2341B646E8000DDED74 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +70,11 @@
 		AA5C9F831B535D3100928501 /* TransportationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransportationViewController.h; sourceTree = "<group>"; };
 		AA6545A11B5C244D004FC7AD /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		AA6545A21B5C2467004FC7AD /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		AA90F1031B65DBE000F521F1 /* Train-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Train-50.png"; sourceTree = "<group>"; };
+		AA90F1051B65E0A300F521F1 /* Calendar-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-50.png"; sourceTree = "<group>"; };
+		AA90F1071B65E0AA00F521F1 /* High-Importance-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High-Importance-50.png"; sourceTree = "<group>"; };
+		AA90F1091B65E0AF00F521F1 /* Clock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clock-50.png"; sourceTree = "<group>"; };
+		AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Restaurant-50.png"; sourceTree = "<group>"; };
 		AACFD2341B646E8000DDED74 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,6 +129,12 @@
 		AA2971241B2E78EB00D4FDF9 /* Swat App */ = {
 			isa = PBXGroup;
 			children = (
+				AA90F1031B65DBE000F521F1 /* Train-50.png */,
+				AA90F1071B65E0AA00F521F1 /* High-Importance-50.png */,
+				AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */,
+				AA90F1091B65E0AF00F521F1 /* Clock-50.png */,
+				AA90F1051B65E0A300F521F1 /* Calendar-50.png */,
+				AA90F0F61B65D5AA00F521F1 /* icons */,
 				AA2971291B2E78EB00D4FDF9 /* AppDelegate.h */,
 				AA29712A1B2E78EB00D4FDF9 /* AppDelegate.m */,
 				AA29712C1B2E78EB00D4FDF9 /* FirstViewController.h */,
@@ -168,6 +184,13 @@
 				AA2971431B2E78EC00D4FDF9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AA90F0F61B65D5AA00F521F1 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = icons;
 			sourceTree = "<group>";
 		};
 		E058DD5A1300240B38C43E90 /* Pods */ = {
@@ -266,9 +289,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA90F1041B65DBE000F521F1 /* Train-50.png in Resources */,
+				AA90F1061B65E0A300F521F1 /* Calendar-50.png in Resources */,
+				AA90F10A1B65E0AF00F521F1 /* Clock-50.png in Resources */,
 				AA4F25061B64990400C4134C /* tags.geojson in Resources */,
 				AA2971341B2E78EC00D4FDF9 /* Main.storyboard in Resources */,
 				AA4F25081B649A0300C4134C /* boat.geojson in Resources */,
+				AA90F1081B65E0AA00F521F1 /* High-Importance-50.png in Resources */,
+				AA90F10C1B65E0B500F521F1 /* Restaurant-50.png in Resources */,
 				AA2971361B2E78EC00D4FDF9 /* Images.xcassets in Resources */,
 				AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */,
 			);
