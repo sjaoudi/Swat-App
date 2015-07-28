@@ -26,6 +26,9 @@
     [window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
     
+    [[UITabBar appearance] setTintColor:[UIColor colorWithRed:(185/255.f) green:(22/255.f) blue:(60/255.f) alpha:1.0f]];
+    //[[UITabBar appearance] setTintColor:[UIColor redColor]];
+    
     return YES;
 }
 

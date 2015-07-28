@@ -74,7 +74,7 @@
     //create array of empty arrays, each corresponding to a date
     dateArrays = [self createEmptyDateArrays];
     
-    
+
     [self.tableView reloadData];
     //self.tableView.dataSource = self;
     //self.tableView.delegate = self;

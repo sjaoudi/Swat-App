@@ -45,6 +45,7 @@
     //self.title = @"Swat Info";
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UITabBar appearance] setTintColor:[UIColor redColor]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
