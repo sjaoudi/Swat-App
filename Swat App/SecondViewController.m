@@ -76,6 +76,7 @@
     
 
     [self.tableView reloadData];
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     //self.tableView.dataSource = self;
     //self.tableView.delegate = self;
     
@@ -96,8 +97,8 @@
 
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info {
     //NSLog(@"Parsed Feed Info: “%@”", info.title);
-    self.title = info.title;
-    //self.title = @"Events Feed";
+    //self.title = info.title;
+    self.title = @"Events";
 }
 
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
@@ -198,6 +199,20 @@
     //return @"hi";
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UILabel *headerLabel = [[UILabel alloc] init];
+    headerLabel.frame = CGRectMake(0, 8, 320, 20);
+    [headerLabel setFont:[UIFont fontWithName:@"Avenir" size:18]];
+    [headerLabel setBackgroundColor:[UIColor colorWithRed:(239/255.f) green:(239/255.f) blue:(241/255.f) alpha:1.0f]];
+    headerLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+    
+    UIView *headerView = [[UIView alloc] init];
+    [headerView addSubview:headerLabel];
+    
+    return headerView;
+}
+
 -(NSMutableArray *)createStringDateRange :(NSArray *)dateRange {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d"];
@@ -240,8 +255,11 @@
         NSString *itemTitle = item.title ? [self removeDateTitle:item.title] : @"[No Title]";
         NSString *itemSummary = item.summary ? [item.summary stringByConvertingHTMLToPlainText] : @"[No Summary]";
         
-        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+        //cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
         cell.textLabel.text = itemTitle;
+        
         NSMutableString *subtitle = [NSMutableString string];
         
         if (item.date) {

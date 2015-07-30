@@ -106,8 +106,11 @@ typedef enum { SectionDetailSummary } DetailRows;
     }
     
     // Display
-    cell.textLabel.textColor = [UIColor blackColor];
-    cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.textLabel.textColor = [UIColor colorWithRed:(51/255.f) green:(51/255.f) blue:(51/255.f) alpha:1.0f];
+    [cell.textLabel setFont:[UIFont fontWithName:@"Avenir" size:18]];
+    //cell.textLabel.font = [UIFont systemFontOfSize:15];
+    cell.textLabel.numberOfLines = 0;
+    
     if (item) {
         
         // Item Info
@@ -119,7 +122,8 @@ typedef enum { SectionDetailSummary } DetailRows;
                 // Header
                 switch (indexPath.row) {
                     case SectionHeaderTitle:
-                        cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+                        //cell.textLabel.font = [UIFont boldSystemFontOfSize:15];
+                        //cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
                         cell.textLabel.text = itemTitle;
                         break;
                     case SectionHeaderDate:
