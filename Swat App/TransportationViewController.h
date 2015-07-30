@@ -29,6 +29,10 @@
 @property (retain, nonatomic) IBOutlet UITextView *tricoVanScheduleBox;
 @property (retain, nonatomic) IBOutlet UILabel *vanScheduleBox;
 
+@property (retain, nonatomic) NSArray *loadedTransportationInfo;
+
+- (NSArray *)transportationViewLoad :(NSString *)dashString;
+
 @end
 
 @interface TransporationInfo : NSObject {

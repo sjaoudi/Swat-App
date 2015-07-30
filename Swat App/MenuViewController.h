@@ -34,5 +34,9 @@
 @property (retain, nonatomic) IBOutlet UILabel *lunchLabel;
 @property (retain, nonatomic) IBOutlet UILabel *dinnerLabel;
 
+@property (retain, nonatomic) NSArray *loadedTitlesAndMenus;
+
+- (NSArray *)menuViewLoad :(NSString *)dashString;
+
 
 @end

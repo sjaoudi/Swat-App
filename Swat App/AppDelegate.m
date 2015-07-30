@@ -9,6 +9,10 @@
 #import "AppDelegate.h"
 #import "MWFeedParser.h"
 
+#import "HoursViewController.h"
+#import "MenuViewController.h"
+#import "TransportationViewController.h"
+
 //@interface AppDelegate ()
 
 //@end
@@ -18,16 +22,37 @@
 @synthesize window;
 @synthesize navigationController;
 
+@synthesize hours;
+@synthesize menu;
+@synthesize transportation;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
     NSLog(@"App has launched.");
+    
+    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
+    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
+    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
+    
     [window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
     
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:(185/255.f) green:(22/255.f) blue:(60/255.f) alpha:1.0f]];
-    //[[UITabBar appearance] setTintColor:[UIColor redColor]];
+    HoursViewController *hoursLoad = [[HoursViewController alloc] initWithNibName:@"HoursViewController" bundle:nil];
+    hours = [hoursLoad HoursViewLoad :dashString];
+    hoursLoad.loadedHoursInfo = hours;
+    
+    MenuViewController *menuLoad = [[MenuViewController alloc] initWithNibName:@"MenuViewController" bundle:nil];
+    menu = [menuLoad menuViewLoad :dashString];
+    menuLoad.loadedTitlesAndMenus = menu;
+    
+    TransporationViewController *transportationLoad = [[TransporationViewController alloc] initWithNibName:@"TransportationViewController" bundle:nil];
+    transportation = [transportationLoad transportationViewLoad :dashString];
+    transportationLoad.loadedTransportationInfo = transportation;
+    
+    NSLog(@"App has parsed data.");
     
     return YES;
 }

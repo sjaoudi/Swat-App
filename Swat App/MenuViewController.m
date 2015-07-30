@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "MenuViewController.h"
+#import "AppDelegate.h"
 
 @interface MenuViewController () {
     
@@ -27,21 +28,66 @@
 @synthesize lunchLabel;
 @synthesize dinnerLabel;
 
+@synthesize loadedTitlesAndMenus;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     NSLog(@"MenuViewController Loaded");
     
-    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
-    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
-    
-    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
-    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
-    NSString *menuBlock = [self getMenuInfo:dashString];
+//    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
+//    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+//    
+//    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
+//    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
+//    NSString *menuBlock = [self getMenuInfo:dashString];
+//    
+//    NSMutableArray *textBoxes = [[NSMutableArray alloc] initWithObjects:breakfastBox, lunchBox, dinnerBox, nil];
+//    NSMutableArray *labelBoxes = [[NSMutableArray alloc] initWithObjects:breakfastLabel, lunchLabel, dinnerLabel, nil];
+//    
+//    
+//    NSMutableArray *regexFinds = [self findMultipleRegex:@"((strong>Breakfast|strong>Continental Breakfast|strong>Brunch|strong>Lunch|strong>Dinner)(.|\n)*?\\/div)" :menuBlock];
+//    NSMutableArray *mealTitles = [[NSMutableArray alloc] init];
+//    NSMutableArray *mealMenus = [[NSMutableArray alloc] init];
+//    
+//    for (int i=0; i<regexFinds.count; i++) {
+//        NSString *regexFind = regexFinds[i];
+//        NSString *mealTitle = [self findRegex:@"strong>(.+)<\\/strong>" :regexFind];
+//        [mealTitles addObject:mealTitle];
+//        
+//        NSString *mealMenu = [self findRegex:@"dining-menu\">((.|\n)*?)<\\/div" :regexFind];
+//        mealMenu = [mealMenu stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
+//        mealMenu = [mealMenu stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
+//        [mealMenus addObject:mealMenu];
+//    }
     
     NSMutableArray *textBoxes = [[NSMutableArray alloc] initWithObjects:breakfastBox, lunchBox, dinnerBox, nil];
     NSMutableArray *labelBoxes = [[NSMutableArray alloc] initWithObjects:breakfastLabel, lunchLabel, dinnerLabel, nil];
     
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    loadedTitlesAndMenus = appDelegate.menu;
+//    
+//    NSLog(@"%@", mealTitles);
+//    NSLog(@"%@", mealMenus);
+    
+    [self initTextBoxes:textBoxes :loadedTitlesAndMenus[1]];
+    [self initTextBoxes:labelBoxes :loadedTitlesAndMenus[0]];
+    
+    UIScrollView *tempScrollView=(UIScrollView *)self.view;
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    //CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    tempScrollView.contentSize=CGSizeMake(width,550);
+    
+}
+
+- (NSArray *)menuViewLoad :(NSString *)dashString{
+//    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
+//    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+//    
+//    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
+//    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
+    NSString *menuBlock = [self getMenuInfo:dashString];
     
     NSMutableArray *regexFinds = [self findMultipleRegex:@"((strong>Breakfast|strong>Continental Breakfast|strong>Brunch|strong>Lunch|strong>Dinner)(.|\n)*?\\/div)" :menuBlock];
     NSMutableArray *mealTitles = [[NSMutableArray alloc] init];
@@ -58,22 +104,9 @@
         [mealMenus addObject:mealMenu];
     }
     
-    NSLog(@"%@", mealTitles);
-    NSLog(@"%@", mealMenus);
+    NSArray *titlesAndMenus = [[NSArray alloc] initWithObjects:mealTitles, mealMenus, nil];
     
-    [self initTextBoxes:textBoxes :mealMenus];
-    [self initTextBoxes:labelBoxes :mealTitles];
-    
-    UIScrollView *tempScrollView=(UIScrollView *)self.view;
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    //CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    
-    tempScrollView.contentSize=CGSizeMake(width,550);
-    
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    return titlesAndMenus;
 }
 
 - (NSString *)getMenuInfo :(NSString *)content {

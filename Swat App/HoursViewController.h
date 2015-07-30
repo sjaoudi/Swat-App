@@ -54,6 +54,10 @@
 @property (retain, nonatomic) IBOutlet UILabel *creditunionHoursBox;
 @property (retain, nonatomic) IBOutlet UILabel *athleticHoursbox;
 
+@property (nonatomic, copy) NSArray *loadedHoursInfo;
+
+- (NSArray *)HoursViewLoad :(NSString *)dashString;
+
 @end
 
 @interface Place : NSObject {

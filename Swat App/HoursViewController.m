@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "HoursViewController.h"
 
+#import "AppDelegate.h"
+
 @implementation Place
 @end
 
@@ -39,24 +41,19 @@
 @synthesize creditunionHoursBox;
 @synthesize athleticHoursbox;
 
+@synthesize loadedHoursInfo;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
         
-    //NSLog(@"HoursViewController Loaded");
+    NSLog(@"HoursViewController Loaded");
     
-    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
-    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
-    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
-    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
-    //NSArray *hoursArray = [self getHours:dashString];
-    NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    loadedHoursInfo = appDelegate.hours;
     
-    NSArray *hoursInfo = [self getHours:dashString :places];
+    NSArray *textBoxes = [[NSArray alloc] initWithObjects:sharplesHoursBox, essiesHoursBox, kohlbergHoursBox, scHoursBox, pacesHoursBox, mccabeHoursBox, underhillHoursBox, cornellHoursBox, helpdeskHoursBox, mediacenterHoursBox, wrcHoursBox, postofficeHoursBox, bookstoreHoursBox, creditunionHoursBox, athleticHoursbox, nil];
     
-    NSArray *textBoxes = [[NSArray alloc] initWithObjects:sharplesHoursBox, essiesHoursBox, kohlbergHoursBox, scHoursBox, pacesHoursBox, mccabeHoursBox, underhillHoursBox, cornellHoursBox, helpdeskHoursBox, mediacenterHoursBox, wrcHoursBox,
-        postofficeHoursBox, bookstoreHoursBox, creditunionHoursBox, athleticHoursbox, nil];
-    
-    [self initTextBoxes:textBoxes :hoursInfo];
+    [self initTextBoxes:textBoxes :loadedHoursInfo];
     
     UIScrollView *tempScrollView=(UIScrollView *)self.view;
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
@@ -64,6 +61,23 @@
     
     tempScrollView.contentSize=CGSizeMake(width,550);
     
+}
+
+- (NSArray *)HoursViewLoad :(NSString *)dashString{
+    
+    //[super viewDidLoad];
+    //NSLog(@"HoursViewController Loaded");
+    
+//    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+//    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
+//    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
+//    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
+
+    NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
+    
+    NSArray *hoursInfo = [self getHours:dashString :places];
+
+    return hoursInfo;
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "TransportationViewController.h"
+#import "AppDelegate.h"
 
 @implementation TransporationInfo
 @end
@@ -26,32 +27,33 @@
 @synthesize tricoVanScheduleBox;
 @synthesize vanScheduleBox;
 
+@synthesize loadedTransportationInfo;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     NSLog(@"TransporationViewController Loaded");
     
-    //NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
-    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
-    
-    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
-    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
-    
-    NSString *transportationBlock = [self getTransporationInfo:dashString];
-
-    NSString *septaScheduleLink = @"http://www.septa.org/schedules/rail/pdf/elw.pdf";
-    //NSString *phillyShuttleLink = @"http://www.swarthmore.edu/x10940.xml";
-    //NSString *moreShuttlesLink = @"http://www.swarthmore.edu/gettingaround.xml";
-    //NSString *parkingLink = @"http://www.swarthmore.edu/x16144.xml";
-    
-    NSMutableArray *transportationLinksInitial = [[NSMutableArray alloc] initWithObjects:septaScheduleLink, nil];
-    
-    NSMutableArray *transportationTimes = [self getInfoStrings:transportationBlock];
-    [self replaceCommas:transportationTimes];
-   
-    NSMutableArray *transporationLinks = [self getLinks:transportationBlock];
-    [transporationLinks addObjectsFromArray:transportationLinksInitial];
+//    //NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
+//    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+//    
+//    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
+//    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
+//    
+//    NSString *transportationBlock = [self getTransporationInfo:dashString];
+//
+//    NSString *septaScheduleLink = @"http://www.septa.org/schedules/rail/pdf/elw.pdf";
+//    //NSString *phillyShuttleLink = @"http://www.swarthmore.edu/x10940.xml";
+//    //NSString *moreShuttlesLink = @"http://www.swarthmore.edu/gettingaround.xml";
+//    //NSString *parkingLink = @"http://www.swarthmore.edu/x16144.xml";
+//    
+//    NSMutableArray *transportationLinksInitial = [[NSMutableArray alloc] initWithObjects:septaScheduleLink, nil];
+//    
+//    NSMutableArray *transportationTimes = [self getInfoStrings:transportationBlock];
+//    [self replaceCommas:transportationTimes];
+//   
+//    NSMutableArray *transporationLinks = [self getLinks:transportationBlock];
+//    [transporationLinks addObjectsFromArray:transportationLinksInitial];
     
     //NSLog(@"%@", transporationLinks);
     
@@ -60,10 +62,11 @@
     NSMutableArray *textBoxes = [[NSMutableArray alloc] initWithObjects:phillyTrainsBox, vanScheduleBox, nil];
     NSMutableArray *linkBoxes = [[NSMutableArray alloc] initWithObjects:trainScheduleBox, tripPlannerBox, tricoVanScheduleBox, nil];
     
-    //NSLog(@"%@", textBoxes);
-
-    [self initTextBoxes:textBoxes :transportationTimes];
-    [self initLinks:transporationLinks :linkBoxes :linkLabels];
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    loadedTransportationInfo = appDelegate.transportation;
+    
+    [self initTextBoxes:textBoxes :loadedTransportationInfo[0]];
+    [self initLinks:loadedTransportationInfo[1] :linkBoxes :linkLabels];
     
     //NSLog(@"%@", transportationTimes);
     
@@ -75,8 +78,31 @@
     
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+- (NSArray *)transportationViewLoad :(NSString *)dashString{
+//    //NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
+//    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+//    
+//    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
+//    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
+    
+    NSString *transportationBlock = [self getTransporationInfo:dashString];
+    
+    NSString *septaScheduleLink = @"http://www.septa.org/schedules/rail/pdf/elw.pdf";
+    //NSString *phillyShuttleLink = @"http://www.swarthmore.edu/x10940.xml";
+    //NSString *moreShuttlesLink = @"http://www.swarthmore.edu/gettingaround.xml";
+    //NSString *parkingLink = @"http://www.swarthmore.edu/x16144.xml";
+    
+    NSMutableArray *transportationLinksInitial = [[NSMutableArray alloc] initWithObjects:septaScheduleLink, nil];
+    
+    NSMutableArray *transportationTimes = [self getInfoStrings:transportationBlock];
+    [self replaceCommas:transportationTimes];
+    
+    NSMutableArray *transportationLinks = [self getLinks:transportationBlock];
+    [transportationLinks addObjectsFromArray:transportationLinksInitial];
+    
+    NSArray *transportationInfo = [[NSArray alloc] initWithObjects:transportationTimes, transportationLinks, nil];
+    
+    return transportationInfo;
 }
 
 - (void)replaceCommas :(NSMutableArray *)transportationTimes {
