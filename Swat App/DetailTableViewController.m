@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+#import "SecondViewController.h"
 #import "DetailTableViewController.h"
 #import "NSString+HTML.h"
 
@@ -114,7 +115,9 @@ typedef enum { SectionDetailSummary } DetailRows;
     if (item) {
         
         // Item Info
-        NSString *itemTitle = item.title ? [item.title stringByConvertingHTMLToPlainText] : @"[No Title]";
+        //NSString *itemTitle = item.title ? [item.title stringByConvertingHTMLToPlainText] : @"[No Title]";
+        SecondViewController *secondView = [[SecondViewController alloc] init];
+        NSString *itemTitle = item.title ? [secondView removeDateTitle:item.title] : @"[No Title]";
         
         // Display
         switch (indexPath.section) {
@@ -159,6 +162,7 @@ typedef enum { SectionDetailSummary } DetailRows;
                 //cell.textLabel.text = summaryString;
                 //cell.textLabel.text = item.summary;
                 cell.textLabel.text = fixedSummary;
+                NSLog(@"%@", fixedSummary);
                 cell.textLabel.numberOfLines = 0; // Multiline
                 break;
             }
@@ -170,6 +174,9 @@ typedef enum { SectionDetailSummary } DetailRows;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == SectionHeader) {
+        if (!indexPath.row) {
+            return 64;
+        }
         
         // Regular
         return 34;
@@ -179,9 +186,11 @@ typedef enum { SectionDetailSummary } DetailRows;
         NSString *summary = @"[No Summary]";
         //if (summaryString summary = summaryString;
         summary = item.summary;
-        CGSize s = [summary sizeWithFont:[UIFont systemFontOfSize:15]
+        CGSize s = [summary sizeWithFont:[UIFont fontWithName:@"Avenir" size:18]
                        constrainedToSize:CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT)  // - 40 For cell padding
-                           lineBreakMode:UILineBreakModeWordWrap];
+                           lineBreakMode:NSLineBreakByWordWrapping];
+        
+        //CGSize s = [summary sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:18]}];
         return s.height + 16; // Add padding
         
     }

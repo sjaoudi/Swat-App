@@ -192,25 +192,39 @@
 //    return [self createStringDateRange:dateRangeToParse];
 //}
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    
-    return [[self createStringDateRange:dateRangeToParse] objectAtIndex:section];
-    //return @"hi";
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+//{
+//    
+//    return [[self createStringDateRange:dateRangeToParse] objectAtIndex:section];
+//    //return @"hi";
+//}
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-    UILabel *headerLabel = [[UILabel alloc] init];
-    headerLabel.frame = CGRectMake(0, 8, 320, 20);
-    [headerLabel setFont:[UIFont fontWithName:@"Avenir" size:18]];
-    [headerLabel setBackgroundColor:[UIColor colorWithRed:(239/255.f) green:(239/255.f) blue:(241/255.f) alpha:1.0f]];
-    headerLabel.text = [self tableView:tableView titleForHeaderInSection:section];
-    
-    UIView *headerView = [[UIView alloc] init];
-    [headerView addSubview:headerLabel];
-    
-    return headerView;
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    
+//    UILabel *headerLabel = [[UILabel alloc] init];
+//    headerLabel.frame = CGRectMake(8, 8, 320, 20);
+//    [headerLabel setFont:[UIFont fontWithName:@"Avenir" size:18]];
+//    [headerLabel setBackgroundColor:[UIColor colorWithRed:(239/255.f) green:(239/255.f) blue:(241/255.f) alpha:1.0f]];
+//    headerLabel.text = [self tableView:tableView titleForHeaderInSection:section];
+//    
+//    UIView *headerView = [[UIView alloc] init];
+//    [headerView addSubview:headerLabel];
+//    
+//    return headerView;
+//}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    /* Create custom view to display section header... */
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont fontWithName:@"Avenir" size:15]];
+    NSString *string = [[self createStringDateRange:dateRangeToParse] objectAtIndex:section];
+    /* Section header is in 0th index... */
+    [label setText:string];
+    [view addSubview:label];
+    [view setBackgroundColor:[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1.0]]; //your background color...
+    return view;
 }
 
 -(NSMutableArray *)createStringDateRange :(NSArray *)dateRange {
