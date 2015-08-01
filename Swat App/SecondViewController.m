@@ -86,6 +86,7 @@
     self.itemsToDisplay = [parsedItems sortedArrayUsingDescriptors:
                            [NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES]]];
     //self.itemsToDisplay = parsedItems;
+    
     self.tableView.userInteractionEnabled = YES;
     self.tableView.alpha = 1;
     [self.tableView reloadData];
@@ -137,11 +138,13 @@
     
     // Populate eventsDictionary with events
     for (int i = 0; i < dateRangeToParse.count; i++) {
-        [eventsDictionary setObject:dateArrays[i] forKey:dateRangeToParse[i]];
-        //[self updateTableWithParsedItems:dateArrays[i]];
+        NSArray *dateArray = dateArrays[i];
+        NSLog(@"%d", dateArray.count);
+        if (dateArray.count) {
+            [eventsDictionary setObject:dateArrays[i] forKey:dateRangeToParse[i]];
+            //[self updateTableWithParsedItems:dateArrays[i]];
+        }
     }
-    
-    //NSLog(@"%@", eventsDictionary);
     
     //eventSectionTitles = [[eventsDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)];
     eventSectionTitles = [eventsDictionary allKeys];
@@ -149,7 +152,9 @@
     
     //NSLog(@"%@", eventsDictionary);
     [self.tableView reloadData];
-    [self updateTableWithParsedItems:parsedItems];
+    //[self updateTableWithParsedItems:parsedItems];
+    
+    
 }
 
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error {
