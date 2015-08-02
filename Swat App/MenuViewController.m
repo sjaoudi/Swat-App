@@ -38,7 +38,7 @@
     NSLog(@"MenuViewController Loaded");
     
     FirstViewController *firstView = [[FirstViewController alloc] init];
-    self.navigationItem.titleView = [firstView createNavbarTitle:@"Menus"];
+    self.navigationItem.titleView = [firstView createNavbarTitle:@"Menus" :NO];
     
     NSMutableArray *textBoxes = [[NSMutableArray alloc] initWithObjects:breakfastBox, lunchBox, dinnerBox, nil];
     NSMutableArray *labelBoxes = [[NSMutableArray alloc] initWithObjects:breakfastLabel, lunchLabel, dinnerLabel, nil];

@@ -25,7 +25,7 @@
     NSLog(@"EmergencyViewController Loaded");
     
     FirstViewController *firstView = [[FirstViewController alloc] init];
-    self.navigationItem.titleView = [firstView createNavbarTitle:@"Emergency Info"];
+    self.navigationItem.titleView = [firstView createNavbarTitle:@"Emergency Info" :NO];
     
     UIScrollView *tempScrollView=(UIScrollView *)self.view;
     CGFloat width = [UIScreen mainScreen].bounds.size.width;

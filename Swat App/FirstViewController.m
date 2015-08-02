@@ -44,7 +44,7 @@
     self.tableView.dataSource=self;
     self.tableView.scrollEnabled = NO;
     
-    self.navigationItem.titleView = [self createNavbarTitle:@"Swattie Info"];
+    self.navigationItem.titleView = [self createNavbarTitle:@"Swattie Info" :YES];
     
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -144,9 +144,15 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (UIView *)createNavbarTitle :(NSString *)title{
-    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0,0,200,50)];
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0,0,200,50)];
+- (UIView *)createNavbarTitle :(NSString *)title :(BOOL)mainPage {
+    
+    NSInteger offset = 0;
+    if (!mainPage) {
+        offset = 12;
+    }
+
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0-offset,0,200,50)];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0-offset,0,200,50)];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.text = title;
     titleLabel.font = [UIFont fontWithName:@"Avenir" size:22];

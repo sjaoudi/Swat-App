@@ -37,7 +37,7 @@
     NSLog(@"TransporationViewController Loaded");
     
     FirstViewController *firstView = [[FirstViewController alloc] init];
-    self.navigationItem.titleView = [firstView createNavbarTitle:@"Transportation"];
+    self.navigationItem.titleView = [firstView createNavbarTitle:@"Transportation" :NO];
     
 //    //NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
 //    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
