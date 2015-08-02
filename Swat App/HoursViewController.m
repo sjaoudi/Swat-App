@@ -91,7 +91,7 @@
         textBox = textBoxes[i];
         textBox.numberOfLines = 0;
         NSString *textBoxString = [hoursInfo objectAtIndex:i];
-        //textBoxString = [textBoxString stringByReplacingOccurrencesOfString:@"midnight" withString:@"12:00am"];
+        textBoxString = [textBoxString stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
         textBox.text = textBoxString;
         
         CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
@@ -112,14 +112,16 @@
 
         NSMutableString *placeRegexMutableString = [[NSMutableString alloc] init];
         if ([places[i] isEqualToString:@"Paces Cafe"]) {
-            [placeRegexMutableString appendString:@"<li><strong>:(.+)<\\/li>"];
-            [placeRegexMutableString insertString:places[i] atIndex:12];
+            [placeRegexMutableString appendString:@"<strong>:\\W?<\\/strong><ul><li>(.+)<\\/li>"];
+            [placeRegexMutableString insertString:places[i] atIndex:8];
+            
         }
         else {
             [placeRegexMutableString appendString:@"<li><strong>:(.+)<\\/a><\\/li>"];
             [placeRegexMutableString insertString:places[i] atIndex:12];
         }
         
+        // Entire dash string??
         NSString *placeRegexString = [NSString stringWithString:placeRegexMutableString];
         NSString *placeToParse = [self findRegex:placeRegexString :dashString];
         

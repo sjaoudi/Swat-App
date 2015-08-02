@@ -130,9 +130,11 @@ typedef enum { SectionDetailSummary } DetailRows;
                         cell.textLabel.text = itemTitle;
                         break;
                     case SectionHeaderDate:
+                        cell.textLabel.font = [cell.textLabel.font fontWithSize:14];
                         cell.textLabel.text = dateString ? dateString: @"[No Date]";
                         break;
                     case SectionHeaderURL:
+                        cell.textLabel.font = [cell.textLabel.font fontWithSize:14];
                         cell.textLabel.text = item.link ? item.link : @"[No Link]";
                         cell.textLabel.textColor = [UIColor blueColor];
                         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
@@ -161,6 +163,7 @@ typedef enum { SectionDetailSummary } DetailRows;
                 
                 //cell.textLabel.text = summaryString;
                 //cell.textLabel.text = item.summary;
+                cell.textLabel.font = [cell.textLabel.font fontWithSize:14];
                 cell.textLabel.text = fixedSummary;
                 NSLog(@"%@", fixedSummary);
                 cell.textLabel.numberOfLines = 0; // Multiline
@@ -175,7 +178,7 @@ typedef enum { SectionDetailSummary } DetailRows;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == SectionHeader) {
         if (!indexPath.row) {
-            return 64;
+            return 60;
         }
         
         // Regular
@@ -186,7 +189,7 @@ typedef enum { SectionDetailSummary } DetailRows;
         NSString *summary = @"[No Summary]";
         //if (summaryString summary = summaryString;
         summary = item.summary;
-        CGSize s = [summary sizeWithFont:[UIFont fontWithName:@"Avenir" size:18]
+        CGSize s = [summary sizeWithFont:[UIFont fontWithName:@"Avenir" size:14]
                        constrainedToSize:CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT)  // - 40 For cell padding
                            lineBreakMode:NSLineBreakByWordWrapping];
         

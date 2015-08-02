@@ -137,9 +137,23 @@
     for (int i=0; i<linkBoxes.count; i++) {
         NSURL* URL = [NSURL URLWithString:[links[i] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
         NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:linkLabels[i]];
+//        UIFont *font = [UIFont fontWithName:@"Avenir" size:18];
+//        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font
+//                                                                    forKey:NSFontAttributeName];
+//        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:linkLabels[i] attributes:attrsDictionary];
         [str addAttribute: NSLinkAttributeName value:URL range: NSMakeRange(0, str.length)];
+        [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Avenir" size:18] range:NSMakeRange(0, str.length)];
+        
         UITextView *box = linkBoxes[i];
         box.attributedText = str;
+        box.tintColor = [UIColor blueColor];
+        
+        
+        
+        
+        
+
+        NSLog(@"%@", str);
     }
 }
 

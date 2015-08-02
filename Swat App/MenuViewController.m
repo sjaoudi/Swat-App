@@ -64,14 +64,19 @@
     NSMutableArray *textBoxes = [[NSMutableArray alloc] initWithObjects:breakfastBox, lunchBox, dinnerBox, nil];
     NSMutableArray *labelBoxes = [[NSMutableArray alloc] initWithObjects:breakfastLabel, lunchLabel, dinnerLabel, nil];
     
+    NSArray *meals = @[@"Breakfast", @"Lunch", @"Dinner"];
+    
+    NSMutableDictionary *mealsAndBoxes = [[NSMutableDictionary alloc] initWithObjects:textBoxes forKeys:meals];
+    NSMutableDictionary *labelsAndBoxes = [[NSMutableDictionary alloc] initWithObjects:labelBoxes forKeys:meals];
+    
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     loadedTitlesAndMenus = appDelegate.menu;
 //    
 //    NSLog(@"%@", mealTitles);
 //    NSLog(@"%@", mealMenus);
     
-    [self initTextBoxes:textBoxes :loadedTitlesAndMenus[1]];
-    [self initTextBoxes:labelBoxes :loadedTitlesAndMenus[0]];
+    [self initTextBoxes:loadedTitlesAndMenus :mealsAndBoxes :@"meal"];
+    [self initTextBoxes:loadedTitlesAndMenus :labelsAndBoxes :@"label"];
     
     UIScrollView *tempScrollView=(UIScrollView *)self.view;
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
@@ -90,6 +95,7 @@
     NSString *menuBlock = [self getMenuInfo:dashString];
     
     NSMutableArray *regexFinds = [self findMultipleRegex:@"((strong>Breakfast|strong>Continental Breakfast|strong>Brunch|strong>Lunch|strong>Dinner)(.|\n)*?\\/div)" :menuBlock];
+    
     NSMutableArray *mealTitles = [[NSMutableArray alloc] init];
     NSMutableArray *mealMenus = [[NSMutableArray alloc] init];
     
@@ -103,6 +109,7 @@
         mealMenu = [mealMenu stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
         [mealMenus addObject:mealMenu];
     }
+
     
     NSArray *titlesAndMenus = [[NSArray alloc] initWithObjects:mealTitles, mealMenus, nil];
     
@@ -117,15 +124,36 @@
     return menuInfo;
 }
 
-- (void)initTextBoxes :(NSArray *)textBoxes :(NSArray *)mealMenus{
+- (void)initTextBoxes :(NSArray *)titlesAndMenus :(NSMutableDictionary *)dict :(NSString *)labelOrMeal{
     
-    for (int i=0; i < textBoxes.count; i++) {
+    NSArray *mealTitles = titlesAndMenus[0];
+    NSArray *mealMenus = titlesAndMenus[1];
+    
+    //for (int i=0; i < textBoxes.count; i++) {
+    for (int i=0; i < mealMenus.count; i++) {
         UILabel *textBox = [[UILabel alloc] init];
-        textBox = textBoxes[i];
+        //textBox = textBoxes[i];
+        textBox = [dict objectForKey:mealTitles[i]];
+        
         
         //textBox.numberOfLines = 0;
-        textBox.text = [mealMenus objectAtIndex:i];
-        //textBox.text = @"hi \n hi";
+        if ([labelOrMeal isEqualToString:@"meal"]) {
+            NSString *mealText = [mealMenus objectAtIndex:i];
+            textBox.text = mealText;
+        }
+        
+        if ([labelOrMeal isEqualToString:@"label"]) {
+            NSString *labelText = [mealTitles objectAtIndex:i];
+            textBox.text = labelText;
+        }
+        
+        
+        
+//        if ([textBox.text isEqualToString:@""])
+//            textBox.text = mealText;
+//        else {
+//            textBox.text = @" ";
+//        }
         textBox.numberOfLines = 0;
         
         CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
