@@ -11,6 +11,7 @@
 #import "HoursViewController.h"
 #import "TransportationViewController.h"
 #import "MenuViewController.h"
+#import "EmergencyViewController.h"
 
 @interface FirstViewController () {
     NSDictionary *menuItem;
@@ -42,7 +43,9 @@
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.scrollEnabled = NO;
-    //self.title = @"Swat Info";
+    
+    self.navigationItem.titleView = [self createNavbarTitle:@"Swattie Info"];
+    
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UITabBar appearance] setTintColor:[UIColor redColor]];
@@ -111,11 +114,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UIViewController *viewController = nil;
+    //UIViewController *viewController = nil;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     HoursViewController *hoursView = [storyboard  instantiateViewControllerWithIdentifier:@"Hours"];
     TransporationViewController *transportationView = [storyboard  instantiateViewControllerWithIdentifier:@"Transportation"];
     MenuViewController *menuView = [storyboard instantiateViewControllerWithIdentifier:@"Menu"];
+    EmergencyViewController *emergencyView = [storyboard instantiateViewControllerWithIdentifier:@"Emergency"];
+    
 
     switch (indexPath.row) {
         case 0:
@@ -128,15 +133,26 @@
             [self.navigationController pushViewController:transportationView animated:YES];
             break;
         case 3:
-            viewController = [storyboard instantiateViewControllerWithIdentifier:@"EmergencyInfo"];
+            [self.navigationController pushViewController:emergencyView animated:YES];
             break;
         default:
-            viewController = [storyboard instantiateViewControllerWithIdentifier:@"Hours"];
+            [self.navigationController pushViewController:emergencyView animated:YES];
             break;
     }       
     
     // Deselect
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (UIView *)createNavbarTitle :(NSString *)title{
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0,0,200,50)];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0,0,200,50)];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+    titleLabel.text = title;
+    titleLabel.font = [UIFont fontWithName:@"Avenir" size:22];
+    titleLabel.textColor=[UIColor whiteColor];
+    [titleView addSubview:titleLabel];
+    return titleView;
 }
 
 

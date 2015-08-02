@@ -13,4 +13,6 @@
 
 @interface FirstViewController: UITableViewController
 
+- (UIView *)createNavbarTitle :(NSString *)title;
+
 @end

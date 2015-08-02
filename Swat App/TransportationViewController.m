@@ -10,6 +10,8 @@
 #import "TransportationViewController.h"
 #import "AppDelegate.h"
 
+#import "FirstViewController.h"
+
 @implementation TransporationInfo
 @end
 
@@ -33,6 +35,9 @@
     [super viewDidLoad];
     
     NSLog(@"TransporationViewController Loaded");
+    
+    FirstViewController *firstView = [[FirstViewController alloc] init];
+    self.navigationItem.titleView = [firstView createNavbarTitle:@"Transportation"];
     
 //    //NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
 //    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
@@ -68,7 +73,6 @@
     [self initTextBoxes:textBoxes :loadedTransportationInfo[0]];
     [self initLinks:loadedTransportationInfo[1] :linkBoxes :linkLabels];
     
-    //NSLog(@"%@", transportationTimes);
     
     UIScrollView *tempScrollView=(UIScrollView *)self.view;
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
@@ -79,11 +83,6 @@
 }
 
 - (NSArray *)transportationViewLoad :(NSString *)dashString{
-//    //NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
-//    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
-//    
-//    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
-//    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
     
     NSString *transportationBlock = [self getTransporationInfo:dashString];
     
@@ -146,14 +145,8 @@
         
         UITextView *box = linkBoxes[i];
         box.attributedText = str;
-        box.tintColor = [UIColor blueColor];
+        box.tintColor = [UIColor colorWithRed:(0/255.f) green:(122/255.f) blue:(255/255.f) alpha:1.0f];
         
-        
-        
-        
-        
-
-        NSLog(@"%@", str);
     }
 }
 

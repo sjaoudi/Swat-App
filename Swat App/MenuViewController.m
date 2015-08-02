@@ -10,6 +10,8 @@
 #import "MenuViewController.h"
 #import "AppDelegate.h"
 
+#import "FirstViewController.h"
+
 @interface MenuViewController () {
     
 }
@@ -35,31 +37,8 @@
     
     NSLog(@"MenuViewController Loaded");
     
-//    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
-//    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
-//    
-//    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
-//    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
-//    NSString *menuBlock = [self getMenuInfo:dashString];
-//    
-//    NSMutableArray *textBoxes = [[NSMutableArray alloc] initWithObjects:breakfastBox, lunchBox, dinnerBox, nil];
-//    NSMutableArray *labelBoxes = [[NSMutableArray alloc] initWithObjects:breakfastLabel, lunchLabel, dinnerLabel, nil];
-//    
-//    
-//    NSMutableArray *regexFinds = [self findMultipleRegex:@"((strong>Breakfast|strong>Continental Breakfast|strong>Brunch|strong>Lunch|strong>Dinner)(.|\n)*?\\/div)" :menuBlock];
-//    NSMutableArray *mealTitles = [[NSMutableArray alloc] init];
-//    NSMutableArray *mealMenus = [[NSMutableArray alloc] init];
-//    
-//    for (int i=0; i<regexFinds.count; i++) {
-//        NSString *regexFind = regexFinds[i];
-//        NSString *mealTitle = [self findRegex:@"strong>(.+)<\\/strong>" :regexFind];
-//        [mealTitles addObject:mealTitle];
-//        
-//        NSString *mealMenu = [self findRegex:@"dining-menu\">((.|\n)*?)<\\/div" :regexFind];
-//        mealMenu = [mealMenu stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
-//        mealMenu = [mealMenu stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
-//        [mealMenus addObject:mealMenu];
-//    }
+    FirstViewController *firstView = [[FirstViewController alloc] init];
+    self.navigationItem.titleView = [firstView createNavbarTitle:@"Menus"];
     
     NSMutableArray *textBoxes = [[NSMutableArray alloc] initWithObjects:breakfastBox, lunchBox, dinnerBox, nil];
     NSMutableArray *labelBoxes = [[NSMutableArray alloc] initWithObjects:breakfastLabel, lunchLabel, dinnerLabel, nil];
@@ -71,27 +50,19 @@
     
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     loadedTitlesAndMenus = appDelegate.menu;
-//    
-//    NSLog(@"%@", mealTitles);
-//    NSLog(@"%@", mealMenus);
     
     [self initTextBoxes:loadedTitlesAndMenus :mealsAndBoxes :@"meal"];
     [self initTextBoxes:loadedTitlesAndMenus :labelsAndBoxes :@"label"];
     
     UIScrollView *tempScrollView=(UIScrollView *)self.view;
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    //CGFloat height = [UIScreen mainScreen].bounds.size.height;
     
     tempScrollView.contentSize=CGSizeMake(width,550);
     
 }
 
 - (NSArray *)menuViewLoad :(NSString *)dashString{
-//    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
-//    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
-//    
-//    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
-//    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
+
     NSString *menuBlock = [self getMenuInfo:dashString];
     
     NSMutableArray *regexFinds = [self findMultipleRegex:@"((strong>Breakfast|strong>Continental Breakfast|strong>Brunch|strong>Lunch|strong>Dinner)(.|\n)*?\\/div)" :menuBlock];
@@ -109,7 +80,6 @@
         mealMenu = [mealMenu stringByReplacingOccurrencesOfString:@"<br>" withString:@""];
         [mealMenus addObject:mealMenu];
     }
-
     
     NSArray *titlesAndMenus = [[NSArray alloc] initWithObjects:mealTitles, mealMenus, nil];
     
@@ -135,8 +105,6 @@
         //textBox = textBoxes[i];
         textBox = [dict objectForKey:mealTitles[i]];
         
-        
-        //textBox.numberOfLines = 0;
         if ([labelOrMeal isEqualToString:@"meal"]) {
             NSString *mealText = [mealMenus objectAtIndex:i];
             textBox.text = mealText;
@@ -147,17 +115,10 @@
             textBox.text = labelText;
         }
         
-        
-        
-//        if ([textBox.text isEqualToString:@""])
-//            textBox.text = mealText;
-//        else {
-//            textBox.text = @" ";
-//        }
+
         textBox.numberOfLines = 0;
-        
         CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
-        
+
         textBox.frame = CGRectMake(
                                    textBox.frame.origin.x, textBox.frame.origin.y,
                                    textBox.frame.size.width, labelSize.height);
@@ -174,7 +135,6 @@
     NSTextCheckingResult *textCheckingResult = [regex firstMatchInString:content options:0 range:NSMakeRange(0, content.length)];
     
     NSRange matchRange = [textCheckingResult rangeAtIndex:1];
-    
     
     NSString *result = [content substringWithRange:matchRange];
     
@@ -196,13 +156,8 @@
     NSMutableArray *regexFinds = [[NSMutableArray alloc] init];
     
     for (NSTextCheckingResult* match in matches) {
-        //NSString* matchText = [content substringWithRange:[match range]];
-        //NSLog(@"match: %@", matchText);
         NSRange find = [match rangeAtIndex:1];
-        //NSRange group2 = [match rangeAtIndex:2];
-        //NSLog(@"group1: %@", [content substringWithRange:find]);
         [regexFinds addObject:[content substringWithRange:find]];
-        //NSLog(@"group2: %@", [searchedString substringWithRange:group2]);
     }
     return regexFinds;
 }

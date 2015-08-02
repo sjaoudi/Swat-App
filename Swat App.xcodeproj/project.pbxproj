@@ -28,6 +28,7 @@
 		AA90F10A1B65E0AF00F521F1 /* Clock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1091B65E0AF00F521F1 /* Clock-50.png */; };
 		AA90F10C1B65E0B500F521F1 /* Restaurant-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */; };
 		AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACFD2341B646E8000DDED74 /* Default-568h@2x.png */; };
+		AAD43E611B6E8E30004670B2 /* EmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD43E601B6E8E30004670B2 /* EmergencyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		AA90F1091B65E0AF00F521F1 /* Clock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clock-50.png"; sourceTree = "<group>"; };
 		AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Restaurant-50.png"; sourceTree = "<group>"; };
 		AACFD2341B646E8000DDED74 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		AAD43E5F1B6E8E21004670B2 /* EmergencyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmergencyViewController.h; sourceTree = "<group>"; };
+		AAD43E601B6E8E30004670B2 /* EmergencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 				AA29712A1B2E78EB00D4FDF9 /* AppDelegate.m */,
 				AA29712C1B2E78EB00D4FDF9 /* FirstViewController.h */,
 				AA29712D1B2E78EC00D4FDF9 /* FirstViewController.m */,
+				AAD43E5F1B6E8E21004670B2 /* EmergencyViewController.h */,
+				AAD43E601B6E8E30004670B2 /* EmergencyViewController.m */,
 				AA3C1CE81B4E182C00AE0320 /* HoursViewController.h */,
 				AA3C1CE61B4E182000AE0320 /* HoursViewController.m */,
 				AA5C9F831B535D3100928501 /* TransportationViewController.h */,
@@ -353,6 +358,7 @@
 				AA2971311B2E78EC00D4FDF9 /* SecondViewController.m in Sources */,
 				AA29712B1B2E78EB00D4FDF9 /* AppDelegate.m in Sources */,
 				AA4149961B5DFB1000866FFA /* MapViewController.m in Sources */,
+				AAD43E611B6E8E30004670B2 /* EmergencyViewController.m in Sources */,
 				AA6545A31B5C2467004FC7AD /* MenuViewController.m in Sources */,
 				AA29712E1B2E78EC00D4FDF9 /* FirstViewController.m in Sources */,
 				AA5C9F821B535D2000928501 /* TransportationViewController.m in Sources */,

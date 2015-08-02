@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "HoursViewController.h"
 
+#import "FirstViewController.h"
+
 #import "AppDelegate.h"
 
 @implementation Place
@@ -48,6 +50,10 @@
         
     NSLog(@"HoursViewController Loaded");
     
+    FirstViewController *firstView = [[FirstViewController alloc] init];
+    self.navigationItem.titleView = [firstView createNavbarTitle:@"Hours"];
+    
+    
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     loadedHoursInfo = appDelegate.hours;
     
@@ -64,20 +70,14 @@
 }
 
 - (NSArray *)HoursViewLoad :(NSString *)dashString{
-    
-    //[super viewDidLoad];
-    //NSLog(@"HoursViewController Loaded");
-    
-//    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
-//    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
-//    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
-//    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
 
     NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
     
-    NSArray *hoursInfo = [self getHours:dashString :places];
+    NSString *hoursInfo = [self getHoursInfo:dashString];
+    
+    NSArray *hoursInfoArray = [self getHours:hoursInfo :places];
 
-    return hoursInfo;
+    return hoursInfoArray;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -102,8 +102,16 @@
     }
 }
 
+- (NSString *)getHoursInfo :(NSString *)content {
+    
+    NSString *hoursInfoRegexString = @">Hours<\\/h2>((.|\n)*)transportation_mod";
+    NSString *hoursInfo = [self findRegex:hoursInfoRegexString :content];
+    
+    return hoursInfo;
+}
 
-- (NSArray *)getHours :(NSString *)dashString :(NSArray *)places{
+
+- (NSArray *)getHours :(NSString *)hoursInfo :(NSArray *)places{
     
     NSMutableArray *hoursArray = [[NSMutableArray alloc] init];
     //NSMutableArray *linksArray = [[NSMutableArray alloc] init];
@@ -123,7 +131,7 @@
         
         // Entire dash string??
         NSString *placeRegexString = [NSString stringWithString:placeRegexMutableString];
-        NSString *placeToParse = [self findRegex:placeRegexString :dashString];
+        NSString *placeToParse = [self findRegex:placeRegexString :hoursInfo];
         
         //NSString *linkRegexString = @"<a href=\"(.+)\">";
         //NSString *placeLink = [self findRegex:linkRegexString :placeToParse];
