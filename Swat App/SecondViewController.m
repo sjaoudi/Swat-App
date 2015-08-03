@@ -139,7 +139,7 @@
     // Populate eventsDictionary with events
     for (int i = 0; i < dateRangeToParse.count; i++) {
         NSArray *dateArray = dateArrays[i];
-        NSLog(@"%d", dateArray.count);
+        //NSLog(@"%d", dateArray.count);
         if (dateArray.count) {
             [eventsDictionary setObject:dateArrays[i] forKey:dateRangeToParse[i]];
             //[self updateTableWithParsedItems:dateArrays[i]];
@@ -284,12 +284,13 @@
         if (item.date) {
             
             NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-            [timeFormatter setDateFormat:@"hh:mm a"];
+            [timeFormatter setDateFormat:@"h:mm a"];
             
             DetailTableViewController *c = [[DetailTableViewController alloc] init];
             NSString *allDay = [c findAllDay:item.date :item.content :timeFormatter];
             if (!allDay) {
                 NSString *timeRange = [c determineTimeRange:timeFormatter :item.content :item.date];
+                
                 if (!timeRange) {
                     //NSString *singleTime = [c determineTimeRange:timeFormatter :item.content :item.date];
                     [subtitle appendFormat:timeRange, [timeFormatter stringFromDate:item.date]];
@@ -297,6 +298,7 @@
                 else {
                     [subtitle appendFormat:timeRange, [timeFormatter stringFromDate:item.date]];
                 }
+                
             }
             else {
                 [subtitle appendString:@"All Day"];

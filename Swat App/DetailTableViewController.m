@@ -46,7 +46,7 @@ typedef enum { SectionDetailSummary } DetailRows;
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"hh:mm a"];
+    [timeFormatter setDateFormat:@"h:mm a"];
     
     
     // Date
@@ -60,6 +60,7 @@ typedef enum { SectionDetailSummary } DetailRows;
         self.dateString = allDayString;
         if (!allDayString) {
             NSString *endTime = [self determineTimeRange :timeFormatter :item.content :item.date];
+            
             NSString *eventDate = [dateFormatter stringFromDate:item.date];
             
             eventDate = [eventDate stringByAppendingString:@", "];
@@ -236,13 +237,14 @@ typedef enum { SectionDetailSummary } DetailRows;
 
 - (NSString *) determineTimeRange:(NSDateFormatter *)timeFormatter :(NSString *)content :(NSDate *)date{
     NSError *error = NULL;
-    NSString *endTimeRegexString = @"<b>End Time:<\\/b>&nbsp;<\\/td><td>(.+)<\\/td><\\/tr><\\/table><br \\/>";
+    NSString *endTimeRegexString = @"End Time:\\S+>([0-9]*:[0-9]*\\s?\\w{2})";
     NSRegularExpression *endTimeRegex =
     [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
                                               options:0
                                                 error:&error];
     
     NSTextCheckingResult *textCheckingResult = [endTimeRegex firstMatchInString:content options:0 range:NSMakeRange(0, content.length)];
+    
     if (!textCheckingResult) {
         NSString *withoutEndTime =[timeFormatter stringFromDate:date];
         return withoutEndTime;
