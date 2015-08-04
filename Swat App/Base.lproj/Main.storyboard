@@ -467,11 +467,7 @@
         <scene sceneID="mZC-SY-ZZG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YMh-Z5-3lc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Essentials" image="Home-32" id="acW-dT-cKf">
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="Calendar-32.png"/>
-                        </userDefinedRuntimeAttributes>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="Essentials" image="Home-32" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Hbc-5g-j4q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -664,7 +660,6 @@
     </scenes>
     <resources>
         <image name="Calendar-32" width="32" height="32"/>
-        <image name="Calendar-32.png" width="32" height="32"/>
         <image name="Home-32" width="32" height="32"/>
         <image name="Map Marker-32" width="32" height="32"/>
     </resources>

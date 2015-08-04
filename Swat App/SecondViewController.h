@@ -17,8 +17,9 @@
     NSMutableArray *allDates;
     NSMutableDictionary *eventsDictionary;
     NSArray *eventSectionTitles;
+    NSArray *eventSectionTitlesStrings;
     NSArray *dateRangeToParse;
-    NSArray *dateArrays;
+    NSMutableArray *dateArrays;
     
     NSArray *itemsToDisplay;
     NSDateFormatter *formatter;
@@ -26,10 +27,15 @@
     NSString  *todayString;
     NSString *twoWeekString;
     
+    NSString *eventDate;
+    
+    NSArray *eventSections;
 }
 
 @property (nonatomic, strong) NSArray *itemsToDisplay;
+@property (nonatomic, retain) NSArray *eventSections;
 //@property(nonatomic, strong) IBOutlet UITableView *tableView;
 - (NSString *)removeDateTitle :(NSString *)title;
+- (NSArray *)getDateStringArray;
 
 @end

@@ -14,14 +14,17 @@
 
 #import <UIKit/UIKit.h>
 #import "MWFeedItem.h"
+#import "SecondViewController.h"
 
 @interface DetailTableViewController : UITableViewController {
     MWFeedItem *item;
     NSString *dateString, *summaryString;
+    NSArray *eventSections;
 }
 
 @property (nonatomic, strong) MWFeedItem *item;
 @property (nonatomic, strong) NSString *dateString, *summaryString;
+@property (nonatomic, retain) NSArray *eventSections;
 
 - (NSString *) determineTimeRange:(NSDateFormatter *)timeFormatter :(NSString *)content :(NSDate *)date;
 - (NSString *) findAllDay:(NSDate *)givenDate :(NSString *)content :(NSDateFormatter *)format;

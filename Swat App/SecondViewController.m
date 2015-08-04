@@ -17,16 +17,19 @@
 
 //@end
 
+
 @implementation SecondViewController
 
 @synthesize itemsToDisplay;
+@synthesize eventSections;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
     // Setup
-    self.title = @"Loading...";
+    //self.title = @"Loading...";
+    [self.navigationItem setTitle:@"Loading..."];
     formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterShortStyle];
     [formatter setTimeStyle:NSDateFormatterShortStyle];
@@ -36,8 +39,11 @@
     allDates = [[NSMutableArray alloc] init];
     eventsDictionary = [[NSMutableDictionary alloc] init];
     eventSectionTitles = [[NSArray alloc] init];
+    eventSectionTitlesStrings = [[NSArray alloc] init];
     dateRangeToParse = [[NSArray alloc] init];
-    dateArrays = [[NSArray alloc] init];
+    dateArrays = [[NSMutableArray alloc] init];
+    
+    eventSections = [[NSArray alloc] init];
     
     // Refresh button (?)
     
@@ -47,18 +53,11 @@
     todayString = [dateFormat stringFromDate:today];
     NSDate *twoWeek = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:14 toDate:today options:0];
     twoWeekString = [dateFormat stringFromDate:twoWeek];
-    //NSLog(@"%@, %@", todayString, twoWeekString);
-    
-    //NSString *dateString1 = @"06-July-15";
-    //NSString *dateString2 = @"20-July-15";
     
     NSString *feedURLNSString = @"http://calendar.swarthmore.edu/calendar/RSSSyndicator.aspx?category=&location=&type=N&starting=&ending=&binary=Y&keywords=&ics=Y";
     NSMutableString *feedURLString = [NSMutableString stringWithString:feedURLNSString];
     [feedURLString insertString:todayString atIndex:95];
     [feedURLString insertString:twoWeekString atIndex:112];
-    //NSLog(@"%@", feedURLString);
-    
-    
     
     NSURL *feedURL = [NSURL URLWithString:feedURLString];
     feedParser = [[MWFeedParser alloc] initWithFeedURL:feedURL];
@@ -121,7 +120,7 @@
                     if ([dateRangeToParse[j] isEqualToDate:itemDatesArray[i]]) {
                         //append to corresponding date array
                         //item.date = itemDatesArray[i];
-                        //NSLog(@"%@", item.date);
+                        NSLog(@"%@", item);
                         //item.date = dateRangeToParse[j];
                         
                         //somehow fix the date of each object
@@ -141,21 +140,38 @@
         NSArray *dateArray = dateArrays[i];
         //NSLog(@"%d", dateArray.count);
         if (dateArray.count) {
+            NSLog(@"%lu", dateArray.count);
             [eventsDictionary setObject:dateArrays[i] forKey:dateRangeToParse[i]];
             //[self updateTableWithParsedItems:dateArrays[i]];
         }
     }
     
+    NSMutableArray *emptyDates = [NSMutableArray array];
+    
+    [dateArrays removeObject: @""];
+    for (int i = 0; i <dateArrays.count; i++) {
+        NSArray *dateArray = dateArrays[i];
+        if (!dateArray.count) {
+            [emptyDates addObject:dateArrays[i]];
+        }
+    }
+    
+    [dateArrays removeObjectsInArray:emptyDates];
+    
     //eventSectionTitles = [[eventsDictionary allKeys] sortedArrayUsingSelector:@selector(compare:)];
     eventSectionTitles = [eventsDictionary allKeys];
+    NSSortDescriptor *descriptor=[[NSSortDescriptor alloc] initWithKey:@"self" ascending:YES];
+    NSArray *descriptors=[NSArray arrayWithObject: descriptor];
+    NSArray *reverseOrder=[eventSectionTitles sortedArrayUsingDescriptors:descriptors];
+    eventSectionTitles = reverseOrder;
     
-    
+    eventSectionTitlesStrings = [self createStringDateRange:eventSectionTitles];
+            
     //NSLog(@"%@", eventsDictionary);
     [self.tableView reloadData];
     //[self updateTableWithParsedItems:parsedItems];
-    
-    
 }
+
 
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error {
     NSLog(@"Finished Parsing With Error: %@", error);
@@ -184,7 +200,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //NSLog(@"%d", section);
     
-    NSString *sectionTitle = [dateRangeToParse objectAtIndex:section];
+    NSString *sectionTitle = [eventSectionTitles objectAtIndex:section];
+
     NSArray *sectionEvents = [eventsDictionary objectForKey:sectionTitle];
     //return itemsToDisplay.count;
     //NSLog(@"%l", sectionEvents.count);
@@ -224,8 +241,10 @@
     /* Create custom view to display section header... */
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 3, tableView.frame.size.width, 18)];
     [label setFont:[UIFont fontWithName:@"Avenir" size:15]];
-    NSString *string = [[self createStringDateRange:dateRangeToParse] objectAtIndex:section];
+    NSArray *dateRange = [self createStringDateRange:eventSectionTitles];
+    NSString *string = [dateRange objectAtIndex:section];
     /* Section header is in 0th index... */
+    
     [label setText:string];
     [view addSubview:label];
     [view setBackgroundColor:[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1.0]]; //your background color...
@@ -240,8 +259,8 @@
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     
     NSMutableArray *dateRangeToParseStrings = [[NSMutableArray alloc] init];
-    for (int i = 0; i< dateRangeToParse.count; i++) {
-        NSString *dateString = [dateFormatter stringFromDate:dateRangeToParse[i]];
+    for (int i = 0; i< dateRange.count; i++) {
+        NSString *dateString = [dateFormatter stringFromDate:dateRange[i]];
         [dateRangeToParseStrings addObject:dateString];
     }
     
@@ -306,6 +325,11 @@
         }
         [subtitle appendString:itemSummary];
         cell.detailTextLabel.text = subtitle;
+        NSArray *dateRange = [self createStringDateRange:eventSectionTitles];
+        NSString *string = [dateRange objectAtIndex:indexPath.section];
+//        NSLog(@"%@", string);
+//        eventDate = string;
+        
     }
     return cell;
 }
@@ -315,6 +339,7 @@
     
     //Show detail
     DetailTableViewController *detail = [[DetailTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
     detail.item = (MWFeedItem *)[[dateArrays objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
    
     [self.navigationController pushViewController:detail animated:YES];
@@ -461,5 +486,4 @@
 }
 
 @end
-
 

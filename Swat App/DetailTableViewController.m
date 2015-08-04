@@ -18,7 +18,7 @@ typedef enum { SectionDetailSummary } DetailRows;
 
 @implementation DetailTableViewController
 
-@synthesize item, dateString, summaryString;
+@synthesize item, dateString, summaryString, eventSections;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     if ((self = [super initWithStyle:style])) {
@@ -41,6 +41,12 @@ typedef enum { SectionDetailSummary } DetailRows;
 //    [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
 //                                              options:0
 //                                                error:&error];
+
+    SecondViewController *secondView = [[SecondViewController alloc] init];
+    //SecondViewController *secondView = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
+//    eventSections = [[NSArray alloc] init];
+    eventSections = [secondView getDateStringArray];
+    NSLog(@"%@", eventSections);
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
@@ -54,6 +60,7 @@ typedef enum { SectionDetailSummary } DetailRows;
         //NSLog(@"%@", item.date);
         //NSDateFormatter *format = [[NSDateFormatter alloc] init];
         //[format setDateFormat:@"MMMM dd, yyyy"];
+//        SecondViewController *secondView = [[SecondViewController alloc] init];
         
         NSString *allDayString = [self findAllDay:item.date :item.content :dateFormatter];
         //NSLog(@"all day");
@@ -61,10 +68,14 @@ typedef enum { SectionDetailSummary } DetailRows;
         if (!allDayString) {
             NSString *endTime = [self determineTimeRange :timeFormatter :item.content :item.date];
             
-            NSString *eventDate = [dateFormatter stringFromDate:item.date];
+//            NSString *eventDate = [dateFormatter stringFromDate:item.date];
+//            NSString *eventDate = secondView.eventDate;
             
-            eventDate = [eventDate stringByAppendingString:@", "];
-            self.dateString = [eventDate stringByAppendingString:endTime];
+//            eventDate = [eventDate stringByAppendingString:@", "];
+            
+//            self.dateString = [eventDate stringByAppendingString:endTime];
+//            self.dateString = secondView.eventDate;
+//            self.dateString = eventSectionTitlesStrings
         }
     }
     else {
@@ -132,7 +143,12 @@ typedef enum { SectionDetailSummary } DetailRows;
                         break;
                     case SectionHeaderDate:
                         cell.textLabel.font = [cell.textLabel.font fontWithSize:14];
+                        dateString = [eventSections objectAtIndex:indexPath.section];
                         cell.textLabel.text = dateString ? dateString: @"[No Date]";
+                        
+//                        cell.textLabel.text = secondView.eventDate ? secondView.eventDate: @"[No Date]";
+                        NSLog(@"%@", dateString);
+                        
                         break;
                     case SectionHeaderURL:
                         cell.textLabel.font = [cell.textLabel.font fontWithSize:14];
@@ -166,7 +182,7 @@ typedef enum { SectionDetailSummary } DetailRows;
                 //cell.textLabel.text = item.summary;
                 cell.textLabel.font = [cell.textLabel.font fontWithSize:14];
                 cell.textLabel.text = fixedSummary;
-                NSLog(@"%@", fixedSummary);
+//                NSLog(@"%@", fixedSummary);
                 cell.textLabel.numberOfLines = 0; // Multiline
                 break;
             }
