@@ -29,13 +29,13 @@
     
     NSString *eventDate;
     
-    NSArray *eventSections;
+    NSArray *eventSectionsTest;
 }
 
 @property (nonatomic, strong) NSArray *itemsToDisplay;
-@property (nonatomic, retain) NSArray *eventSections;
+@property (nonatomic, retain) NSArray *eventSectionsTest;
 //@property(nonatomic, strong) IBOutlet UITableView *tableView;
 - (NSString *)removeDateTitle :(NSString *)title;
-- (NSArray *)getDateStringArray;
+//- (NSArray *)getDateStringArray;
 
 @end

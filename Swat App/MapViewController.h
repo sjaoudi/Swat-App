@@ -22,6 +22,6 @@
 
 }
 
-@property (nonatomic, assign) BOOL hideAttribution;
+//@property (nonatomic, assign) BOOL hideAttribution;
 
 @end

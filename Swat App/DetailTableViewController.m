@@ -28,26 +28,7 @@ typedef enum { SectionDetailSummary } DetailRows;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Regex for checking
-//    NSError *error = NULL;
-//    NSString *allDayRegexString = @"&nbsp;<b>All Day</b>";
-//    NSRegularExpression *allDayRegex =
-//    [NSRegularExpression regularExpressionWithPattern:allDayRegexString
-//                                              options:0
-//                                                error:&error];
-//    NSString *endTimeRegexString = @"<b>End Time:<\\/b>&nbsp;<\\/td><td>(.+)<\\/td><\\/tr><\\/table><br \\/>";
-//    NSRegularExpression *endTimeRegex =
-//    [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
-//                                              options:0
-//                                                error:&error];
 
-    SecondViewController *secondView = [[SecondViewController alloc] init];
-    //SecondViewController *secondView = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
-//    eventSections = [[NSArray alloc] init];
-    eventSections = [secondView getDateStringArray];
-    NSLog(@"%@", eventSections);
-    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MMMM d, yyyy"];
     
@@ -68,12 +49,12 @@ typedef enum { SectionDetailSummary } DetailRows;
         if (!allDayString) {
             NSString *endTime = [self determineTimeRange :timeFormatter :item.content :item.date];
             
-//            NSString *eventDate = [dateFormatter stringFromDate:item.date];
+            NSString *eventDate = [dateFormatter stringFromDate:item.date];
 //            NSString *eventDate = secondView.eventDate;
             
-//            eventDate = [eventDate stringByAppendingString:@", "];
+            eventDate = [eventDate stringByAppendingString:@", "];
             
-//            self.dateString = [eventDate stringByAppendingString:endTime];
+            self.dateString = [eventDate stringByAppendingString:endTime];
 //            self.dateString = secondView.eventDate;
 //            self.dateString = eventSectionTitlesStrings
         }
@@ -143,12 +124,7 @@ typedef enum { SectionDetailSummary } DetailRows;
                         break;
                     case SectionHeaderDate:
                         cell.textLabel.font = [cell.textLabel.font fontWithSize:14];
-                        dateString = [eventSections objectAtIndex:indexPath.section];
                         cell.textLabel.text = dateString ? dateString: @"[No Date]";
-                        
-//                        cell.textLabel.text = secondView.eventDate ? secondView.eventDate: @"[No Date]";
-                        NSLog(@"%@", dateString);
-                        
                         break;
                     case SectionHeaderURL:
                         cell.textLabel.font = [cell.textLabel.font fontWithSize:14];

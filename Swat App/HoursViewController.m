@@ -61,11 +61,18 @@
     
     [self initTextBoxes:textBoxes :loadedHoursInfo];
     
-    UIScrollView *tempScrollView=(UIScrollView *)self.view;
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    //UIScrollView *scrollView=(UIScrollView *)self.view;
+    //CGFloat width = [UIScreen mainScreen].bounds.size.width;
     //CGFloat height = [UIScreen mainScreen].bounds.size.height;
     
-    tempScrollView.contentSize=CGSizeMake(width,550);
+    //UIScrollView *scrollView = [[UIScrollView alloc] init];
+    //[scrollView invalidateIntrinsicContentSize];
+    //scrollView.scrollEnabled = YES;
+    //[scrollView setContentSize:CGSizeMake(width, height)];
+    //scrollView.contentSize=CGSizeMake(width,550);
+    //scrollView.contentSize = self.view.frame.size;
+    
+    
     
 }
 
@@ -74,15 +81,26 @@
     NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
     
     NSString *hoursInfo = [self getHoursInfo:dashString];
-    
     NSArray *hoursInfoArray = [self getHours:hoursInfo :places];
 
     return hoursInfoArray;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+
 }
+
+- (void)viewDidLayoutSubviews {
+    UIScrollView *scrollView = (UIScrollView*)self.view;
+    scrollView.scrollEnabled = YES;
+    scrollView.bounces = YES;
+    //scrollView.contentSize = self.view.frame.size;
+    scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 600);
+    
+}
+
 
 - (void)initTextBoxes :(NSArray *)textBoxes :(NSArray *)hoursInfo{
     
@@ -93,12 +111,13 @@
         NSString *textBoxString = [hoursInfo objectAtIndex:i];
         textBoxString = [textBoxString stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
         textBox.text = textBoxString;
+        NSLog(@"%@", textBoxString);
         
-        CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
+        //CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
         
-        textBox.frame = CGRectMake(
-                                    textBox.frame.origin.x, textBox.frame.origin.y,
-                                    textBox.frame.size.width, labelSize.height);
+        //textBox.frame = CGRectMake(
+        //                            textBox.frame.origin.x, textBox.frame.origin.y,
+        //                            textBox.frame.size.width, labelSize.height);
     }
 }
 

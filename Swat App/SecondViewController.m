@@ -21,7 +21,7 @@
 @implementation SecondViewController
 
 @synthesize itemsToDisplay;
-@synthesize eventSections;
+@synthesize eventSectionsTest;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,7 +43,7 @@
     dateRangeToParse = [[NSArray alloc] init];
     dateArrays = [[NSMutableArray alloc] init];
     
-    eventSections = [[NSArray alloc] init];
+    eventSectionsTest = [[NSArray alloc] init];
     
     // Refresh button (?)
     
@@ -166,7 +166,7 @@
     eventSectionTitles = reverseOrder;
     
     eventSectionTitlesStrings = [self createStringDateRange:eventSectionTitles];
-            
+    
     //NSLog(@"%@", eventsDictionary);
     [self.tableView reloadData];
     //[self updateTableWithParsedItems:parsedItems];

@@ -64,8 +64,9 @@
 - (NSArray *)menuViewLoad :(NSString *)dashString{
 
     NSString *menuBlock = [self getMenuInfo:dashString];
+    NSLog(@"%@", menuBlock);
     
-    NSMutableArray *regexFinds = [self findMultipleRegex:@"((strong>Breakfast|strong>Continental Breakfast|strong>Brunch|strong>Lunch|strong>Dinner)(.|\n)*?\\/div)" :menuBlock];
+    NSMutableArray *regexFinds = [self findMultipleRegex:@"((strong>Breakfast<|strong>Continental Breakfast<|strong>Brunch<|strong>Lunch<|strong>Dinner<)(.|\n)*?\\/div)" :menuBlock];
     
     NSMutableArray *mealTitles = [[NSMutableArray alloc] init];
     NSMutableArray *mealMenus = [[NSMutableArray alloc] init];
