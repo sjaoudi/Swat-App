@@ -111,7 +111,7 @@
         NSString *textBoxString = [hoursInfo objectAtIndex:i];
         textBoxString = [textBoxString stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
         textBox.text = textBoxString;
-        NSLog(@"%@", textBoxString);
+        //NSLog(@"%@", textBoxString);
         
         //CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
         

@@ -211,6 +211,16 @@ typedef enum { SectionDetailSummary } DetailRows;
     [NSRegularExpression regularExpressionWithPattern:allDayRegexString
                                               options:0
                                                 error:&error];
+    NSString *endTimeRegexString = @"&nbsp;<b>End Time:</b>";
+    NSRegularExpression *endTimeRegex =
+    [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
+                                              options:0
+                                                error:&error];
+    NSString *startTimeRegexString = @"&nbsp;<b>Start Time:</b>";
+//    NSRegularExpression *startTimeRegex =
+//    [NSRegularExpression regularExpressionWithPattern:startTimeRegexString
+//                                              options:0
+//                                                error:&error];
     
     NSDate *eventDate = givenDate;
     
@@ -218,9 +228,13 @@ typedef enum { SectionDetailSummary } DetailRows;
                                                         options:0
                                                           range:NSMakeRange(0, [content length])];
     
+    NSUInteger endTimeMatches = [allDayRegex numberOfMatchesInString:content
+                                                              options:0
+                                                                range:NSMakeRange(0, [content length])];
+    
     NSString *finalDateString = [format stringFromDate:eventDate];
     
-    if (numberOfMatches > 0) {
+    if ((numberOfMatches > 0) || (!endTimeMatches)) {
         NSString *allDayString = [finalDateString stringByAppendingString:@", All Day"];
         return allDayString;
     }

@@ -49,7 +49,7 @@
 - (NSDictionary *)menuViewLoad :(NSString *)dashString{
 
     NSString *menuBlock = [self getMenuInfo:dashString];
-    NSLog(@"%@", menuBlock);
+    //NSLog(@"%@", menuBlock);
     
     NSMutableArray *regexFinds = [self findMultipleRegex:@"((strong>Breakfast<|strong>Continental Breakfast<|strong>Brunch<|strong>Lunch<|strong>Dinner<)(.|\n)*?\\/div)" :menuBlock];
     
@@ -122,7 +122,7 @@
                    constrainedToSize:CGSizeMake(self.view.bounds.size.width + 20, MAXFLOAT)  // - 40 For cell padding
                        lineBreakMode:NSLineBreakByWordWrapping];
     
-    NSLog(@"%f", menuSize.height);
+    //NSLog(@"%f", menuSize.height);
     return menuSize.height;
     //return 130;
 }
@@ -132,7 +132,7 @@
                                                       constrainedToSize:CGSizeMake(self.view.bounds.size.width + 20, MAXFLOAT)  // - 40 For cell padding
                                                           lineBreakMode:NSLineBreakByWordWrapping];
     
-    NSLog(@"%f", menuSize.height);
+    //NSLog(@"%f", menuSize.height);
     //return menuSize.height;
 }
 

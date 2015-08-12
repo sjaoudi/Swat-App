@@ -120,7 +120,7 @@
                     if ([dateRangeToParse[j] isEqualToDate:itemDatesArray[i]]) {
                         //append to corresponding date array
                         //item.date = itemDatesArray[i];
-                        NSLog(@"%@", item);
+                        //NSLog(@"%@", item);
                         //item.date = dateRangeToParse[j];
                         
                         //somehow fix the date of each object
@@ -140,7 +140,7 @@
         NSArray *dateArray = dateArrays[i];
         //NSLog(@"%d", dateArray.count);
         if (dateArray.count) {
-            NSLog(@"%lu", dateArray.count);
+            //NSLog(@"%lu", dateArray.count);
             [eventsDictionary setObject:dateArrays[i] forKey:dateRangeToParse[i]];
             //[self updateTableWithParsedItems:dateArrays[i]];
         }
@@ -382,7 +382,9 @@
         if ( [date compare: endDate] == NSOrderedDescending )
             break;
         // Add date to the array
+
         [dateRangeArray addObject:date];
+
     }
     
     
@@ -418,7 +420,9 @@
                                               options:0
                                                 error:&error];
     NSTextCheckingResult *textCheckingResultStart = [startDateRegex firstMatchInString:content options:0 range:NSMakeRange(0, content.length)];
+    
     if (!textCheckingResultStart) return NULL;
+    
     NSRange matchRangeStart = [textCheckingResultStart rangeAtIndex:1];
     NSString *startDate = [content substringWithRange:matchRangeStart];
     [startEndDates addObject:startDate];
@@ -429,17 +433,30 @@
                                               options:0
                                                 error:&error];
     NSTextCheckingResult *textCheckingResultEnd = [endDateRegex firstMatchInString:content options:0 range:NSMakeRange(0, content.length)];
-    if (!textCheckingResultEnd) return NULL;
-    NSRange matchRangeEnd = [textCheckingResultEnd rangeAtIndex:1];
-    NSString *endDate = [content substringWithRange:matchRangeEnd];
+    
+    //if (!textCheckingResultEnd) return NULL;
+    NSString *endDate;
+    if (textCheckingResultEnd) {
+        NSRange matchRangeEnd = [textCheckingResultEnd rangeAtIndex:1];
+        endDate = [content substringWithRange:matchRangeEnd];
+    }
+    else {
+        endDate = startDate;
+    }
+    
+    
+    //NSRange matchRangeEnd = [textCheckingResultEnd rangeAtIndex:1];
+    //NSString *endDate = [content substringWithRange:matchRangeEnd];
     
     [startEndDates addObject:endDate];
+    
+    //NSLog(@"%@", startEndDates);
     return startEndDates;
 }
 
 - (NSMutableArray *)createDateRange :(NSString *)content {
     NSMutableArray *dates = [self determineDateRange:content];
-    
+    //NSLog(@"%@", dates);
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/d/yyyy"];
     
@@ -448,7 +465,10 @@
     NSDate *date1 = [dateFormatter dateFromString:dates[0]];
     NSDate *date2 = [dateFormatter dateFromString:dates[1]];
     
+    //NSLog(@"%@, %@", date1, date2);
+    
     NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
+    
     return datesArray;
 
 }

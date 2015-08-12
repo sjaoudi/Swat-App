@@ -176,7 +176,7 @@
         
         NSMutableString *placeRegexMutableString = [[NSMutableString alloc] init];
         if ([places[i] isEqualToString:@"Paces Cafe"]) {
-            NSLog(@"PACES");
+            //NSLog(@"PACES");
             [placeRegexMutableString appendString:@"<strong>:\\W?<\\/strong>(.+)<"];
             [placeRegexMutableString insertString:places[i] atIndex:8];
         }
