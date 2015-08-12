@@ -18,7 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIWindow *window;
 @property (strong, nonatomic) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, copy) NSArray *hours;
-@property (nonatomic, copy) NSArray *menu;
+@property (nonatomic, copy) NSDictionary *menu;
 @property (nonatomic, copy) NSArray *transportation;
 
 

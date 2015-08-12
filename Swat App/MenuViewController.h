@@ -14,29 +14,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenuViewController: UIViewController {
+@interface MenuViewController: UITableViewController {
     
-    IBOutlet UILabel *breakfastBox;
-    IBOutlet UILabel *lunchBox;
-    IBOutlet UILabel *dinnerBox;
-    
-    IBOutlet UILabel *breakfastLabel;
-    IBOutlet UILabel *lunchLabel;
-    IBOutlet UILabel *dinnerLabel;
+    NSArray *titles;
+    NSArray *menus;
     
 }
 
-@property (retain, nonatomic) IBOutlet UILabel *breakfastBox;
-@property (retain, nonatomic) IBOutlet UILabel *lunchBox;
-@property (retain, nonatomic) IBOutlet UILabel *dinnerBox;
 
-@property (retain, nonatomic) IBOutlet UILabel *breakfastLabel;
-@property (retain, nonatomic) IBOutlet UILabel *lunchLabel;
-@property (retain, nonatomic) IBOutlet UILabel *dinnerLabel;
-
-@property (retain, nonatomic) NSArray *loadedTitlesAndMenus;
+@property (retain, nonatomic) NSDictionary *loadedTitlesAndMenus;
+@property (retain, nonatomic) NSArray *titles;
+@property (retain, nonatomic) NSArray *menus;
 
 - (NSArray *)menuViewLoad :(NSString *)dashString;
-
 
 @end

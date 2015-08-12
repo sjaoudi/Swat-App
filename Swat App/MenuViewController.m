@@ -22,46 +22,31 @@
 
 @implementation MenuViewController
 
-@synthesize breakfastBox;
-@synthesize lunchBox;
-@synthesize dinnerBox;
-
-@synthesize breakfastLabel;
-@synthesize lunchLabel;
-@synthesize dinnerLabel;
-
-@synthesize loadedTitlesAndMenus;
+@synthesize loadedTitlesAndMenus, menus, titles;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     NSLog(@"MenuViewController Loaded");
     
+    CGFloat dummyViewHeight = 40;
+    UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, dummyViewHeight)];
+    self.tableView.tableHeaderView = dummyView;
+    self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0);
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     FirstViewController *firstView = [[FirstViewController alloc] init];
     self.navigationItem.titleView = [firstView createNavbarTitle:@"Menus" :NO];
-    
-    NSMutableArray *textBoxes = [[NSMutableArray alloc] initWithObjects:breakfastBox, lunchBox, dinnerBox, nil];
-    NSMutableArray *labelBoxes = [[NSMutableArray alloc] initWithObjects:breakfastLabel, lunchLabel, dinnerLabel, nil];
-    
-    NSArray *meals = @[@"Breakfast", @"Lunch", @"Dinner"];
-    
-    NSMutableDictionary *mealsAndBoxes = [[NSMutableDictionary alloc] initWithObjects:textBoxes forKeys:meals];
-    NSMutableDictionary *labelsAndBoxes = [[NSMutableDictionary alloc] initWithObjects:labelBoxes forKeys:meals];
     
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     loadedTitlesAndMenus = appDelegate.menu;
     
-    [self initTextBoxes:loadedTitlesAndMenus :mealsAndBoxes :@"meal"];
-    [self initTextBoxes:loadedTitlesAndMenus :labelsAndBoxes :@"label"];
-    
-    UIScrollView *tempScrollView=(UIScrollView *)self.view;
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    
-    tempScrollView.contentSize=CGSizeMake(width,550);
+    titles = [loadedTitlesAndMenus objectForKey:@"titles"];
+    menus = [loadedTitlesAndMenus objectForKey:@"menus"];
     
 }
 
-- (NSArray *)menuViewLoad :(NSString *)dashString{
+- (NSDictionary *)menuViewLoad :(NSString *)dashString{
 
     NSString *menuBlock = [self getMenuInfo:dashString];
     NSLog(@"%@", menuBlock);
@@ -82,10 +67,75 @@
         [mealMenus addObject:mealMenu];
     }
     
-    NSArray *titlesAndMenus = [[NSArray alloc] initWithObjects:mealTitles, mealMenus, nil];
-    
+    //NSArray *titlesAndMenus = [[NSArray alloc] initWithObjects:mealTitles, mealMenus, nil];
+    NSDictionary *titlesAndMenus = [[NSDictionary alloc] initWithObjectsAndKeys:mealTitles, @"titles", mealMenus, @"menus", nil];
     return titlesAndMenus;
 }
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
+    /* Create custom view to display section header... */
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont fontWithName:@"Avenir" size:21]];
+    label.textColor = [UIColor colorWithRed:185/255.0 green:22/255.0 blue:60/255.0 alpha:1.0];
+    NSString *string = [titles objectAtIndex:section];
+    [label setText:string];
+    [view addSubview:label];
+    return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [titles count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+    }
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.textLabel.text = [menus objectAtIndex:indexPath.section];
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.textColor = [UIColor colorWithRed:(51/255.f) green:(51/255.f) blue:(51/255.f) alpha:1.0f];
+    
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGSize menuSize = [[menus objectAtIndex:indexPath.section] sizeWithFont:[UIFont fontWithName:@"Avenir" size:15]
+                   constrainedToSize:CGSizeMake(self.view.bounds.size.width + 20, MAXFLOAT)  // - 40 For cell padding
+                       lineBreakMode:NSLineBreakByWordWrapping];
+    
+    NSLog(@"%f", menuSize.height);
+    return menuSize.height;
+    //return 130;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGSize menuSize = [[menus objectAtIndex:indexPath.section] sizeWithFont:[UIFont fontWithName:@"Avenir" size:15]
+                                                      constrainedToSize:CGSizeMake(self.view.bounds.size.width + 20, MAXFLOAT)  // - 40 For cell padding
+                                                          lineBreakMode:NSLineBreakByWordWrapping];
+    
+    NSLog(@"%f", menuSize.height);
+    //return menuSize.height;
+}
+
 
 - (NSString *)getMenuInfo :(NSString *)content {
     
@@ -93,37 +143,6 @@
     NSString *menuInfo = [self findRegex:menuInfoRegexString :content];
     
     return menuInfo;
-}
-
-- (void)initTextBoxes :(NSArray *)titlesAndMenus :(NSMutableDictionary *)dict :(NSString *)labelOrMeal{
-    
-    NSArray *mealTitles = titlesAndMenus[0];
-    NSArray *mealMenus = titlesAndMenus[1];
-    
-    //for (int i=0; i < textBoxes.count; i++) {
-    for (int i=0; i < mealMenus.count; i++) {
-        UILabel *textBox = [[UILabel alloc] init];
-        //textBox = textBoxes[i];
-        textBox = [dict objectForKey:mealTitles[i]];
-        
-        if ([labelOrMeal isEqualToString:@"meal"]) {
-            NSString *mealText = [mealMenus objectAtIndex:i];
-            textBox.text = mealText;
-        }
-        
-        if ([labelOrMeal isEqualToString:@"label"]) {
-            NSString *labelText = [mealTitles objectAtIndex:i];
-            textBox.text = labelText;
-        }
-        
-
-        textBox.numberOfLines = 0;
-        CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
-
-        textBox.frame = CGRectMake(
-                                   textBox.frame.origin.x, textBox.frame.origin.y,
-                                   textBox.frame.size.width, labelSize.height);
-    }
 }
 
 - (NSString *)findRegex :(NSString *)regexString :(NSString *)content{

@@ -17,7 +17,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //self.tableView.allowsSelection = NO;
     CGFloat dummyViewHeight = 40;
     UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, dummyViewHeight)];
     self.tableView.tableHeaderView = dummyView;
@@ -90,8 +89,7 @@
     
     [label setText:string];
     [view addSubview:label];
-    //[view setBackgroundColor:[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1.0]]; //your background color...
-    //[view setBackgroundColor:[UIColor whiteColor]];
+
     return view;
 }
 
@@ -139,16 +137,13 @@
     NSString *hours = [[hoursDict objectForKey:sectionString] objectAtIndex:indexPath.row][1];
     hours = [hours stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
     hours = [hours stringByReplacingOccurrencesOfString:@"midnight" withString:@"12am"];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.detailTextLabel.text = hours;
     cell.detailTextLabel.numberOfLines = 0;
     
-
-    
-    //cell.textLabel.font = [UIFont fontWithName:@"Avenir" size:15];
     cell.textLabel.textColor = [UIColor colorWithRed:(51/255.f) green:(51/255.f) blue:(51/255.f) alpha:1.0f];
     cell.detailTextLabel.textColor = [UIColor colorWithRed:(51/255.f) green:(51/255.f) blue:(51/255.f) alpha:1.0f];
-
-    //NSLog(@"%ld", indexPath.section);
     
     return cell;
 }
@@ -159,8 +154,6 @@
     
     NSUInteger commas = [[time componentsSeparatedByString:@","] count] - 1;
     
-    //NSLog(@"%@ - %lu", time, commas);
-
     return (commas+1)*25;
 }
 
@@ -173,7 +166,6 @@
     
     return hoursInfo;
 }
-
 
 - (NSArray *)getHours :(NSString *)hoursInfo :(NSArray *)places{
     
@@ -195,25 +187,13 @@
         
         NSString *placeRegexString = [NSString stringWithString:placeRegexMutableString];
         NSString *placeToParse = [self findRegex:placeRegexString :hoursInfo];
-        
-        //NSString *linkRegexString = @"<a href=\"(.+)\">";
-        //NSString *placeLink = [self findRegex:linkRegexString :placeToParse];
-        
+
         NSString *hoursRegexString = @"<\\/strong>\\s?(.+)\\s?<a";
         NSString *placeHours = [self findRegex:hoursRegexString :placeToParse];
-        //Place *placeObj = [[Place alloc] init];
-        
-        //placeObj.placeName = places[i];
-        //placeObj.placeHours = placeHours;
-        //placeObj.placeLink = placeLink;
-        
         [hoursArray addObject:placeHours];
-        //[linksArray addObject:placeLink];
+
     }
-    //return hoursArray;
-    
-    //NSDictionary *hoursInfo = [[NSDictionary alloc] initWithObjects:hoursArray forKeys:places];
-    //return hoursInfo;
+
     return hoursArray;
 }
 
