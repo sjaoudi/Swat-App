@@ -28,6 +28,7 @@
 		AA90F10A1B65E0AF00F521F1 /* Clock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1091B65E0AF00F521F1 /* Clock-50.png */; };
 		AA90F10C1B65E0B500F521F1 /* Restaurant-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */; };
 		AAC7FCCC1B7AA5FD00CF3227 /* HoursTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7FCCB1B7AA5FD00CF3227 /* HoursTableViewController.m */; };
+		AAC7FCD01B7AEA3100CF3227 /* added-buildings.csv in Resources */ = {isa = PBXBuildFile; fileRef = AAC7FCCF1B7AEA3100CF3227 /* added-buildings.csv */; };
 		AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACFD2341B646E8000DDED74 /* Default-568h@2x.png */; };
 		AAD43E611B6E8E30004670B2 /* EmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD43E601B6E8E30004670B2 /* EmergencyViewController.m */; };
 		AAD43E631B6EDC4A004670B2 /* Calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD43E621B6EDC4A004670B2 /* Calendar-32.png */; };
@@ -80,6 +81,7 @@
 		AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Restaurant-50.png"; sourceTree = "<group>"; };
 		AAC7FCCA1B7AA5FD00CF3227 /* HoursTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoursTableViewController.h; sourceTree = "<group>"; };
 		AAC7FCCB1B7AA5FD00CF3227 /* HoursTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursTableViewController.m; sourceTree = "<group>"; };
+		AAC7FCCF1B7AEA3100CF3227 /* added-buildings.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "added-buildings.csv"; sourceTree = "<group>"; };
 		AACFD2341B646E8000DDED74 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AAD43E5F1B6E8E21004670B2 /* EmergencyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmergencyViewController.h; sourceTree = "<group>"; };
 		AAD43E601B6E8E30004670B2 /* EmergencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyViewController.m; sourceTree = "<group>"; };
@@ -143,7 +145,6 @@
 				AA90F1091B65E0AF00F521F1 /* Clock-50.png */,
 				AA90F1051B65E0A300F521F1 /* Calendar-50.png */,
 				AAD43E621B6EDC4A004670B2 /* Calendar-32.png */,
-				AA90F0F61B65D5AA00F521F1 /* icons */,
 				AA2971291B2E78EB00D4FDF9 /* AppDelegate.h */,
 				AA29712A1B2E78EB00D4FDF9 /* AppDelegate.m */,
 				AA29712C1B2E78EB00D4FDF9 /* FirstViewController.h */,
@@ -165,6 +166,7 @@
 				AA4149971B5DFB2100866FFA /* MapViewController.h */,
 				AA4149951B5DFB1000866FFA /* MapViewController.m */,
 				AA2971321B2E78EC00D4FDF9 /* Main.storyboard */,
+				AAC7FCCF1B7AEA3100CF3227 /* added-buildings.csv */,
 				AA4F25051B64990400C4134C /* tags.geojson */,
 				AA4F25071B649A0300C4134C /* boat.geojson */,
 				AA2971351B2E78EC00D4FDF9 /* Images.xcassets */,
@@ -197,13 +199,6 @@
 				AA2971431B2E78EC00D4FDF9 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		AA90F0F61B65D5AA00F521F1 /* icons */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = icons;
 			sourceTree = "<group>";
 		};
 		E058DD5A1300240B38C43E90 /* Pods */ = {
@@ -313,6 +308,7 @@
 				AA90F10C1B65E0B500F521F1 /* Restaurant-50.png in Resources */,
 				AA2971361B2E78EC00D4FDF9 /* Images.xcassets in Resources */,
 				AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */,
+				AAC7FCD01B7AEA3100CF3227 /* added-buildings.csv in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

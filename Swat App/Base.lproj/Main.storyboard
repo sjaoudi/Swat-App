@@ -460,44 +460,37 @@
                     <view key="view" contentMode="scaleToFill" id="Lpn-WC-010">
                         <rect key="frame" x="0.0" y="64" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="NDu-3r-rwe">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="20" width="400" height="44"/>
-                                </variation>
-                                <connections>
-                                    <outlet property="delegate" destination="4s4-zZ-pIP" id="TRC-bc-o7v"/>
-                                </connections>
-                            </searchBar>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="NDu-3r-rwe"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=regular-widthClass=compact">
-                            <mask key="subviews">
-                                <include reference="NDu-3r-rwe"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="f3I-Si-PRv"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="5X1-Ep-beT" id="Mkz-5g-goF"/>
+                        <outlet property="searchDisplayController" destination="384-e9-HNa" id="GXk-cC-wiA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZm-af-ctB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <searchDisplayController id="5X1-Ep-beT">
                     <connections>
                         <outlet property="delegate" destination="4s4-zZ-pIP" id="VPu-F7-4Vq"/>
-                        <outlet property="searchBar" destination="NDu-3r-rwe" id="Wh3-jA-k70"/>
                         <outlet property="searchContentsController" destination="4s4-zZ-pIP" id="i7x-QI-CGC"/>
                         <outlet property="searchResultsDataSource" destination="4s4-zZ-pIP" id="Oyr-VS-5Xd"/>
                         <outlet property="searchResultsDelegate" destination="4s4-zZ-pIP" id="LeA-at-oSD"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="dnP-zb-4cK">
+                    <connections>
+                        <outlet property="delegate" destination="4s4-zZ-pIP" id="sAA-uT-K7B"/>
+                        <outlet property="searchContentsController" destination="4s4-zZ-pIP" id="XS1-0U-xDJ"/>
+                        <outlet property="searchResultsDataSource" destination="4s4-zZ-pIP" id="0Xg-Nn-2yd"/>
+                        <outlet property="searchResultsDelegate" destination="4s4-zZ-pIP" id="olF-mn-kGi"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="384-e9-HNa">
+                    <connections>
+                        <outlet property="delegate" destination="4s4-zZ-pIP" id="gKf-oN-IgM"/>
+                        <outlet property="searchContentsController" destination="4s4-zZ-pIP" id="gNa-f5-WQ4"/>
+                        <outlet property="searchResultsDataSource" destination="4s4-zZ-pIP" id="3oh-cA-HAj"/>
+                        <outlet property="searchResultsDelegate" destination="4s4-zZ-pIP" id="kfL-Ze-Xr2"/>
                     </connections>
                 </searchDisplayController>
             </objects>

@@ -19,9 +19,16 @@
 
 
 @interface MapViewController : UIViewController <RMMapViewDelegate> {
+//@interface MapViewController : UIViewController <> {
+    
+    NSArray *originalData;
+    NSMutableArray *searchData;
+    
+    UISearchBar *searchBar;
+    UISearchDisplayController *searchDisplayController;
 
 }
 
-//@property (nonatomic, assign) BOOL hideAttribution;
+@property (nonatomic) UISearchDisplayController *searchDisplayController;
 
 @end

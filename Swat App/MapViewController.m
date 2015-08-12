@@ -18,17 +18,18 @@
 
 @implementation MapViewController
 
-//@synthesize hideAttribution;
+@synthesize searchDisplayController;
 
 - (void)viewDidLoad {
-
     [super viewDidLoad];
     NSLog(@"map loaded");
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1Ijoic2phb3VkaSIsImEiOiIzMWNjNjdjMTRmOTQ2MjUwYzA0OTdjYmM2MTIzZTRhYyJ9.VHYjLmLq9AeTgjQE_X16lg"];
     RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.n0fh2c9n"];
-    //RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.ef0b6517"];
     RMMapView *mapView = [[RMMapView alloc] initWithFrame:self.view.bounds
                                             andTilesource:tileSource];
+    
     RMMapboxSource *addedTileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.7422ff37"];
     [mapView addTileSource:addedTileSource];
     mapView.delegate = self;
@@ -37,40 +38,72 @@
     mapView.centerCoordinate = center;
     //mapView.latitudeLongitudeBoundingBox
     
-    //self.navigationItem.rightBarButtonItem = [[RMUserTrackingBarButtonItem alloc] initWithMapView:mapView];
-    //mapView.userTrackingMode = RMUserTrackingModeFollow;
-     UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0., 0., 320., 44.)];
-    
     [self.view addSubview:mapView];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0., 0., 320., 44.)];
+    self.searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     
-    // convert `boat.geojson` to an NSDIctionary
-    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"tags" ofType:@"geojson"];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[[NSData alloc]
-                                                                  initWithContentsOfFile:jsonPath]
-                                                         options:0
-                                                           error:nil];
+    //self.searchDisplayController.delegate = self;
+    //searchDisplayController.searchResultsDataSource = self;
     
-//    NSArray *features = json[@"features"];
-//    
-//    
-//    // set the current shape
-//    for (NSUInteger i = 0; i < [features count]; i++) {
-//        NSDictionary *currentNode = (NSDictionary *)features[i];
-//        NSArray *coordinates = currentNode[@"geometry"][@"coordinates"];
-//        
-//        CLLocationDegrees latitude = [[coordinates lastObject] doubleValue];
-//        CLLocationDegrees longitude = [[coordinates firstObject] doubleValue];
-//        CLLocationCoordinate2D loc2d = CLLocationCoordinate2DMake(latitude, longitude);
-//        
-//        RMPointAnnotation *annotation = [[RMPointAnnotation alloc] initWithMapView:mapView
-//                                                              coordinate:loc2d
-//                                                                          andTitle:currentNode[@"properties"][@"title"]];
-//        
-//        [mapView addAnnotation:annotation];
-//    }
+    [self.view addSubview:searchBar];
+    
+    NSDictionary *csvDict = [self parseCSV];
+    
+    NSArray *locationsArray = [csvDict objectForKey:@"locations"];
+    originalData = [csvDict objectForKey:@"places"];
+    
+}
+
+- (NSDictionary *)parseCSV {
+    NSString *pathName = [[NSBundle mainBundle] pathForResource:@"added-buildings"
+                                                         ofType:@"csv"];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *csvString;
+    if ([fm fileExistsAtPath:pathName]) {
+        csvString = [NSString stringWithContentsOfFile:pathName encoding:NSUTF8StringEncoding error:nil];
+    }
+    
+    NSMutableArray *locationsArray = [[NSMutableArray alloc] init];
+    NSMutableArray *placesArray = [[NSMutableArray alloc] init];
+    
+    NSArray *csvStringArray = [csvString componentsSeparatedByString:@"\n"];
+    for (int i=0; i<csvStringArray.count; i++) {
+        if (!i) {
+            // skips header
+            continue;
+        }
+        NSString *csvStringArrayElt = csvStringArray[i];
+        NSArray *csvStringParsed = [csvStringArrayElt componentsSeparatedByString:@","];
+        [locationsArray addObject:csvStringParsed];
+        [placesArray addObject:csvStringParsed[0]];
+        
+    }
+    
+    NSLog(@"%@", locationsArray);
+    
+    return @{locationsArray: @"locations", placesArray: @"places"};
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [originalData count];
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+{
+    static NSString *cellIdentifier = @"cell";
+    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+    }
+    
+    NSString *currentValue = [originalData objectAtIndex:[indexPath row]];
+    //NSString *currentValue = @"cell";
+    [[cell textLabel]setText:currentValue];
+    return cell;
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
