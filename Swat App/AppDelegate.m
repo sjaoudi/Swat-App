@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "MWFeedParser.h"
 
-#import "HoursViewController.h"
+#import "HoursTableViewController.h"
 #import "MenuViewController.h"
 #import "TransportationViewController.h"
 
@@ -31,8 +31,8 @@
     
     NSLog(@"App has launched.");
     
-    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
-    //NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
+    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
     NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
     NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
     
@@ -40,7 +40,7 @@
     [window makeKeyAndVisible];
     
     [[UITabBar appearance] setTintColor:[UIColor colorWithRed:(185/255.f) green:(22/255.f) blue:(60/255.f) alpha:1.0f]];
-    HoursViewController *hoursLoad = [[HoursViewController alloc] initWithNibName:@"HoursViewController" bundle:nil];
+    HoursTableViewController *hoursLoad = [[HoursTableViewController alloc] initWithNibName:@"HoursTableViewController" bundle:nil];
     hours = [hoursLoad HoursViewLoad :dashString];
     hoursLoad.loadedHoursInfo = hours;
     

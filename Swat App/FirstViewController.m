@@ -9,6 +9,8 @@
 #import "FirstViewController.h"
 
 #import "HoursViewController.h"
+#import "HoursTableViewController.h"
+
 #import "TransportationViewController.h"
 #import "MenuViewController.h"
 #import "EmergencyViewController.h"
@@ -117,6 +119,10 @@
     //UIViewController *viewController = nil;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     HoursViewController *hoursView = [storyboard  instantiateViewControllerWithIdentifier:@"Hours"];
+    HoursTableViewController *hoursTableView = [storyboard instantiateViewControllerWithIdentifier:@"HoursTable"];
+    
+    
+    
     TransporationViewController *transportationView = [storyboard  instantiateViewControllerWithIdentifier:@"Transportation"];
     MenuViewController *menuView = [storyboard instantiateViewControllerWithIdentifier:@"Menu"];
     EmergencyViewController *emergencyView = [storyboard instantiateViewControllerWithIdentifier:@"Emergency"];
@@ -124,7 +130,8 @@
 
     switch (indexPath.row) {
         case 0:
-            [self.navigationController pushViewController:hoursView animated:YES];
+            //[self.navigationController pushViewController:hoursView animated:YES];
+            [self.navigationController pushViewController:hoursTableView animated:YES];
             break;
         case 1:
             [self.navigationController pushViewController:menuView animated:YES];

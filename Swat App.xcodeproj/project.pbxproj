@@ -27,6 +27,7 @@
 		AA90F1081B65E0AA00F521F1 /* High-Importance-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1071B65E0AA00F521F1 /* High-Importance-50.png */; };
 		AA90F10A1B65E0AF00F521F1 /* Clock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1091B65E0AF00F521F1 /* Clock-50.png */; };
 		AA90F10C1B65E0B500F521F1 /* Restaurant-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */; };
+		AAC7FCCC1B7AA5FD00CF3227 /* HoursTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7FCCB1B7AA5FD00CF3227 /* HoursTableViewController.m */; };
 		AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACFD2341B646E8000DDED74 /* Default-568h@2x.png */; };
 		AAD43E611B6E8E30004670B2 /* EmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD43E601B6E8E30004670B2 /* EmergencyViewController.m */; };
 		AAD43E631B6EDC4A004670B2 /* Calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD43E621B6EDC4A004670B2 /* Calendar-32.png */; };
@@ -77,6 +78,8 @@
 		AA90F1071B65E0AA00F521F1 /* High-Importance-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High-Importance-50.png"; sourceTree = "<group>"; };
 		AA90F1091B65E0AF00F521F1 /* Clock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clock-50.png"; sourceTree = "<group>"; };
 		AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Restaurant-50.png"; sourceTree = "<group>"; };
+		AAC7FCCA1B7AA5FD00CF3227 /* HoursTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoursTableViewController.h; sourceTree = "<group>"; };
+		AAC7FCCB1B7AA5FD00CF3227 /* HoursTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursTableViewController.m; sourceTree = "<group>"; };
 		AACFD2341B646E8000DDED74 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AAD43E5F1B6E8E21004670B2 /* EmergencyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmergencyViewController.h; sourceTree = "<group>"; };
 		AAD43E601B6E8E30004670B2 /* EmergencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyViewController.m; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				AAD43E601B6E8E30004670B2 /* EmergencyViewController.m */,
 				AA3C1CE81B4E182C00AE0320 /* HoursViewController.h */,
 				AA3C1CE61B4E182000AE0320 /* HoursViewController.m */,
+				AAC7FCCA1B7AA5FD00CF3227 /* HoursTableViewController.h */,
+				AAC7FCCB1B7AA5FD00CF3227 /* HoursTableViewController.m */,
 				AA5C9F831B535D3100928501 /* TransportationViewController.h */,
 				AA5C9F811B535D2000928501 /* TransportationViewController.m */,
 				AA6545A11B5C244D004FC7AD /* MenuViewController.h */,
@@ -368,6 +373,7 @@
 				AA5C9F821B535D2000928501 /* TransportationViewController.m in Sources */,
 				AA3C1CE71B4E182000AE0320 /* HoursViewController.m in Sources */,
 				AA2971281B2E78EB00D4FDF9 /* main.m in Sources */,
+				AAC7FCCC1B7AA5FD00CF3227 /* HoursTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
