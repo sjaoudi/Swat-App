@@ -211,12 +211,12 @@ typedef enum { SectionDetailSummary } DetailRows;
     [NSRegularExpression regularExpressionWithPattern:allDayRegexString
                                               options:0
                                                 error:&error];
-    NSString *endTimeRegexString = @"&nbsp;<b>End Time:</b>";
+    NSString *endTimeRegexString = @"&nbsp;<b>End Time:<\\/b>";
     NSRegularExpression *endTimeRegex =
     [NSRegularExpression regularExpressionWithPattern:endTimeRegexString
                                               options:0
                                                 error:&error];
-    NSString *startTimeRegexString = @"&nbsp;<b>Start Time:</b>";
+//    NSString *startTimeRegexString = @"&nbsp;<b>Start Time:</b>";
 //    NSRegularExpression *startTimeRegex =
 //    [NSRegularExpression regularExpressionWithPattern:startTimeRegexString
 //                                              options:0
@@ -228,7 +228,7 @@ typedef enum { SectionDetailSummary } DetailRows;
                                                         options:0
                                                           range:NSMakeRange(0, [content length])];
     
-    NSUInteger endTimeMatches = [allDayRegex numberOfMatchesInString:content
+    NSUInteger endTimeMatches = [endTimeRegex numberOfMatchesInString:content
                                                               options:0
                                                                 range:NSMakeRange(0, [content length])];
     

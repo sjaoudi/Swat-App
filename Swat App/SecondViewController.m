@@ -51,7 +51,7 @@
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"M/dd/yyyy"];
     todayString = [dateFormat stringFromDate:today];
-    NSDate *twoWeek = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:14 toDate:today options:0];
+    NSDate *twoWeek = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:28 toDate:today options:0];
     twoWeekString = [dateFormat stringFromDate:twoWeek];
     
     NSString *feedURLNSString = @"http://calendar.swarthmore.edu/calendar/RSSSyndicator.aspx?category=&location=&type=N&starting=&ending=&binary=Y&keywords=&ics=Y";
@@ -207,6 +207,22 @@
     //NSLog(@"%l", sectionEvents.count);
     return [sectionEvents count];
     //return 3;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MWFeedItem *item = [[dateArrays objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    CGSize titleSize = [item.title sizeWithFont:[UIFont fontWithName:@"Avenir" size:16]
+                   constrainedToSize:CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT)  // - 40 For cell padding
+                       lineBreakMode:NSLineBreakByWordWrapping];
+
+    CGFloat titleHeight = titleSize.height + 20; // Subtitle of cell is 20px high
+    if (titleHeight > 75) {
+        return titleHeight;
+    }
+    else {
+        return 75;
+    }
 }
 
 //- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
