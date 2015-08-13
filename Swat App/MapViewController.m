@@ -81,7 +81,7 @@
         
     }
     
-    NSLog(@"%@", locationsArray);
+    //NSLog(@"%@", locationsArray);
     
     return @{locationsArray: @"locations", placesArray: @"places"};
 }

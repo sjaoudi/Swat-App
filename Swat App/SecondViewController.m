@@ -102,6 +102,11 @@
     //NSLog(@"Parsed Feed Info: “%@”", info.title);
     //self.title = info.title;
     self.title = @"Events";
+    [self.navigationController.navigationBar setTitleTextAttributes:
+     [NSDictionary dictionaryWithObjectsAndKeys:
+      [UIColor whiteColor],NSForegroundColorAttributeName,
+      [UIFont fontWithName:@"Avenir" size:21],
+      NSFontAttributeName, nil]];
 }
 
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
