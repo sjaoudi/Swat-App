@@ -45,7 +45,9 @@
     
     eventSectionsTest = [[NSArray alloc] init];
     
-    // Refresh button (?)
+    UINavigationBar *navbar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    navbar.translucent = NO;
+    //[self.view addSubview:navbar];
     
     NSDate *today = [NSDate date];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -76,8 +78,9 @@
 
     [self.tableView reloadData];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    //self.tableView.dataSource = self;
-    //self.tableView.delegate = self;
+
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:205/255.0 green:42/255.0 blue:80/255.0 alpha:1.0]];
+    [self.navigationController.navigationBar setTranslucent:YES];
     
 }
 

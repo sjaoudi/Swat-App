@@ -39,29 +39,6 @@
     FirstViewController *firstView = [[FirstViewController alloc] init];
     self.navigationItem.titleView = [firstView createNavbarTitle:@"Transportation" :NO];
     
-//    //NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
-//    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
-//    
-//    NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
-//    NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
-//    
-//    NSString *transportationBlock = [self getTransporationInfo:dashString];
-//
-//    NSString *septaScheduleLink = @"http://www.septa.org/schedules/rail/pdf/elw.pdf";
-//    //NSString *phillyShuttleLink = @"http://www.swarthmore.edu/x10940.xml";
-//    //NSString *moreShuttlesLink = @"http://www.swarthmore.edu/gettingaround.xml";
-//    //NSString *parkingLink = @"http://www.swarthmore.edu/x16144.xml";
-//    
-//    NSMutableArray *transportationLinksInitial = [[NSMutableArray alloc] initWithObjects:septaScheduleLink, nil];
-//    
-//    NSMutableArray *transportationTimes = [self getInfoStrings:transportationBlock];
-//    [self replaceCommas:transportationTimes];
-//   
-//    NSMutableArray *transporationLinks = [self getLinks:transportationBlock];
-//    [transporationLinks addObjectsFromArray:transportationLinksInitial];
-    
-    //NSLog(@"%@", transporationLinks);
-    
     NSArray *linkLabels = @[@"Septa Trip Planner", @"Trico Van Schedule", @"Septa Schedule"];
 
     NSMutableArray *textBoxes = [[NSMutableArray alloc] initWithObjects:phillyTrainsBox, vanScheduleBox, nil];
@@ -73,11 +50,8 @@
     [self initTextBoxes:textBoxes :loadedTransportationInfo[0]];
     [self initLinks:loadedTransportationInfo[1] :linkBoxes :linkLabels];
     
-    
     UIScrollView *tempScrollView=(UIScrollView *)self.view;
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    //CGFloat height = [UIScreen mainScreen].bounds.size.height;
-    
     tempScrollView.contentSize=CGSizeMake(width,450);
     
 }
@@ -118,9 +92,7 @@
         UILabel *textBox = [[UILabel alloc] init];
         textBox = textBoxes[i];
         
-        //textBox.numberOfLines = 0;
         textBox.text = [places objectAtIndex:i];
-        //textBox.text = @"hi \n hi";
         textBox.numberOfLines = 0;
         
         CGSize labelSize = [textBox.text sizeWithAttributes:@{NSFontAttributeName:textBox.font}];
@@ -136,10 +108,6 @@
     for (int i=0; i<linkBoxes.count; i++) {
         NSURL* URL = [NSURL URLWithString:[links[i] stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding]];
         NSMutableAttributedString * str = [[NSMutableAttributedString alloc] initWithString:linkLabels[i]];
-//        UIFont *font = [UIFont fontWithName:@"Avenir" size:18];
-//        NSDictionary *attrsDictionary = [NSDictionary dictionaryWithObject:font
-//                                                                    forKey:NSFontAttributeName];
-//        NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:linkLabels[i] attributes:attrsDictionary];
         [str addAttribute: NSLinkAttributeName value:URL range: NSMakeRange(0, str.length)];
         [str addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Avenir" size:18] range:NSMakeRange(0, str.length)];
         

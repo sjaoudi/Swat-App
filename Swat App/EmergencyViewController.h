@@ -17,4 +17,6 @@
 
 @interface EmergencyViewController : UIViewController
 
+@property (retain, nonatomic) IBOutlet UITextView *emergencyResponseBox;
+
 @end

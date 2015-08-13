@@ -51,6 +51,7 @@
     NSLog(@"HoursViewController Loaded");
     
     FirstViewController *firstView = [[FirstViewController alloc] init];
+    
     self.navigationItem.titleView = [firstView createNavbarTitle:@"Hours" :NO];
     
     

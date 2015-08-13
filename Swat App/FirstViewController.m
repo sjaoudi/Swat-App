@@ -158,13 +158,15 @@
         offset = 12;
     }
 
-    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0-offset,0,200,50)];
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0-offset,0,200,50)];
+    UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0,0,200,50)];
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0,0,200,50)];
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.text = title;
     titleLabel.font = [UIFont fontWithName:@"Avenir" size:22];
     titleLabel.textColor=[UIColor whiteColor];
     [titleView addSubview:titleLabel];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
+
     return titleView;
 }
 
