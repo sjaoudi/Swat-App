@@ -5,6 +5,7 @@
 //  Created by Steve Jaoudi on 6/14/15.
 //  Copyright (c) 2015 Steve Jaoudi. All rights reserved.
 //
+#import "AppDelegate.h"
 
 #import "FirstViewController.h"
 
@@ -51,10 +52,21 @@
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UITabBar appearance] setTintColor:[UIColor redColor]];
+    
+    //AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    //SEL compareByDeliveryTimeSelector = sel_registerName("refreshWasPressed:");
+    
+    UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshWasPressed:)];
+    self.navigationItem.rightBarButtonItem = button;
+}
+
+- (void)refreshWasPressed {
+    NSLog(@"refresh pressed");
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    //[self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,6 +74,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 
 

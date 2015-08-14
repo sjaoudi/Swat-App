@@ -36,6 +36,12 @@ typedef enum { SectionDetailSummary } DetailRows;
     [timeFormatter setDateFormat:@"h:mm a"];
     
     
+    // Hide back button text
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
+    
+    [self.navigationController.navigationBar setTranslucent:YES];
+    
+    
     // Date
     if (item.date) {
         //NSLog(@"%@", item.date);

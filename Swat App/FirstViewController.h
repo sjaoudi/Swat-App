@@ -15,4 +15,6 @@
 
 - (UIView *)createNavbarTitle :(NSString *)title :(BOOL)mainPage;
 
+- (void)refreshWasPressed;
+
 @end
