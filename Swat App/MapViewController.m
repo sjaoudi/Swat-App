@@ -8,6 +8,8 @@
 
 #import "MapViewController.h"
 
+#import "MapTableViewController.h"
+
 //#import <MapboxGL/MapboxGL.h>
 //#import <CoreLocation/CoreLocation.h>
 #import "Mapbox.h"
@@ -41,18 +43,24 @@
     [self.view addSubview:mapView];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
-    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0., 0., 320., 44.)];
-    self.searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    //MapTableViewController *mapTable = [[MapTableViewController alloc] init];
     
-    //self.searchDisplayController.delegate = self;
-    //searchDisplayController.searchResultsDataSource = self;
+    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0., 0., 320., 44.)];
+    searchBar.delegate = self;
+
+    searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    
+    searchDisplayController.delegate = self;
+    searchDisplayController.searchResultsDataSource = self;
     
     [self.view addSubview:searchBar];
     
     NSDictionary *csvDict = [self parseCSV];
     
-    NSArray *locationsArray = [csvDict objectForKey:@"locations"];
+    //NSArray *locationsArray = [csvDict objectForKey:@"locations"];
+    
     originalData = [csvDict objectForKey:@"places"];
+
     
 }
 
@@ -83,14 +91,31 @@
     
     //NSLog(@"%@", locationsArray);
     
-    return @{locationsArray: @"locations", placesArray: @"places"};
+    //return @{locationsArray: @"locations", placesArray: @"places"};
+    return @{@"locations": locationsArray, @"places": placesArray};
 }
 
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [originalData count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchData count];
+        
+    } else {
+        return [originalData count];
+    }
 }
 
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    NSLog(@"%@", searchString);
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:
+                                    @"SELF contains[cd] %@", searchString];
+    
+    [searchData removeAllObjects];
+    searchData = [[NSMutableArray alloc] initWithArray:[originalData filteredArrayUsingPredicate:resultPredicate]];
+    
+    return YES;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
 {
@@ -99,12 +124,25 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
+    NSString *currentValue;
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        currentValue = [searchData objectAtIndex:indexPath.row];
+    } else {
+        currentValue = [originalData objectAtIndex:indexPath.row];
+    }
     
-    NSString *currentValue = [originalData objectAtIndex:[indexPath row]];
-    //NSString *currentValue = @"cell";
     [[cell textLabel]setText:currentValue];
+    
     return cell;
+    
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 71;
+}
+
+
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
 {

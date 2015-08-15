@@ -18,11 +18,12 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-@interface MapViewController : UIViewController <RMMapViewDelegate> {
+@interface MapViewController : UIViewController <UISearchControllerDelegate, UISearchBarDelegate, RMMapViewDelegate>  {
 //@interface MapViewController : UIViewController <> {
     
     NSArray *originalData;
     NSMutableArray *searchData;
+    
     
     UISearchBar *searchBar;
     UISearchDisplayController *searchDisplayController;
@@ -30,5 +31,6 @@
 }
 
 @property (nonatomic) UISearchDisplayController *searchDisplayController;
+- (NSDictionary *)parseCSV;
 
 @end
