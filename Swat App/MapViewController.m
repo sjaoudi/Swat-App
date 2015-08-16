@@ -22,6 +22,8 @@
 
 @synthesize searchDisplayController;
 
+@synthesize mapView;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"map loaded");
@@ -29,18 +31,18 @@
     
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1Ijoic2phb3VkaSIsImEiOiIzMWNjNjdjMTRmOTQ2MjUwYzA0OTdjYmM2MTIzZTRhYyJ9.VHYjLmLq9AeTgjQE_X16lg"];
     RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.n0fh2c9n"];
-    RMMapView *mapView = [[RMMapView alloc] initWithFrame:self.view.bounds
+    self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds
                                             andTilesource:tileSource];
     
     RMMapboxSource *addedTileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.7422ff37"];
-    [mapView addTileSource:addedTileSource];
-    mapView.delegate = self;
-    mapView.zoom = 16;
+    [self.mapView addTileSource:addedTileSource];
+    self.mapView.delegate = self;
+    self.mapView.zoom = 16;
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(39.9055000,-75.3538000);
-    mapView.centerCoordinate = center;
+    self.mapView.centerCoordinate = center;
     //mapView.latitudeLongitudeBoundingBox
     
-    [self.view addSubview:mapView];
+    [self.view addSubview:self.mapView];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     //MapTableViewController *mapTable = [[MapTableViewController alloc] init];
@@ -52,6 +54,7 @@
     
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
+    searchDisplayController.searchResultsDelegate = self;
     
     [self.view addSubview:searchBar];
     
@@ -62,6 +65,17 @@
     originalData = [csvDict objectForKey:@"places"];
 
     
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    NSString *result = [searchData objectAtIndex:indexPath.row];
+    NSLog(@"%@", result);
+    [self.searchDisplayController setActive:NO];
+    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(39.904381, -75.354761);
+    //center.latitude -= self.mapView.region.span.latitudeDelta * 0.40;
+    [self.mapView setCenterCoordinate:center animated:YES];
 }
 
 - (NSDictionary *)parseCSV {
@@ -95,6 +109,7 @@
     return @{@"locations": locationsArray, @"places": placesArray};
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.searchDisplayController.searchResultsTableView) {
@@ -107,7 +122,7 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    NSLog(@"%@", searchString);
+    //NSLog(@"%@", searchString);
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:
                                     @"SELF contains[cd] %@", searchString];
     
@@ -132,7 +147,7 @@
     }
     
     [[cell textLabel]setText:currentValue];
-    
+    //NSLog(@"%@", cell);
     return cell;
     
 }
@@ -141,7 +156,6 @@
 {
     return 71;
 }
-
 
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
