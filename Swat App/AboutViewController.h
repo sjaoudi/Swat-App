@@ -11,4 +11,7 @@
 
 @interface AboutViewController : UIViewController
 
+@property (retain, nonatomic) IBOutlet UITextView *email;
+@property (retain, nonatomic) IBOutlet UITextView *icons8;
+
 @end

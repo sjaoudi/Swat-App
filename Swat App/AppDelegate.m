@@ -31,6 +31,8 @@
     
     NSLog(@"App has launched.");
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
     NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
     NSData *dashData = [NSData dataWithContentsOfURL:dashURL];

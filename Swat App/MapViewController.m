@@ -21,34 +21,67 @@
 @implementation MapViewController
 
 @synthesize searchDisplayController;
-
 @synthesize mapView;
+@synthesize csvDict;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"map loaded");
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1Ijoic2phb3VkaSIsImEiOiIzMWNjNjdjMTRmOTQ2MjUwYzA0OTdjYmM2MTIzZTRhYyJ9.VHYjLmLq9AeTgjQE_X16lg"];
-    RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.n0fh2c9n"];
+    RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.ef0b6517"];
     self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds
                                             andTilesource:tileSource];
     
-    RMMapboxSource *addedTileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.7422ff37"];
-    [self.mapView addTileSource:addedTileSource];
+    //RMMapboxSource *addedTileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.7422ff37"];
+    //[self.mapView addTileSource:addedTileSource];
     self.mapView.delegate = self;
     self.mapView.zoom = 16;
+    
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(39.9055000,-75.3538000);
     self.mapView.centerCoordinate = center;
-    //mapView.latitudeLongitudeBoundingBox
+    self.mapView.maxZoom = 18;
+    self.mapView.minZoom = 15;
+    
     
     [self.view addSubview:self.mapView];
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
-    //MapTableViewController *mapTable = [[MapTableViewController alloc] init];
-    
-    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0., 0., 320., 44.)];
+    searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0., 20., self.view.bounds.size.width, 44.)];
     searchBar.delegate = self;
+    searchBar.tintColor = [UIColor whiteColor];
+    [searchBar setBackgroundImage:[UIImage new]];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTintColor:[UIColor blackColor]];
+    searchBar.layer.borderWidth = 1;
+    searchBar.layer.borderColor = [[UIColor colorWithRed:205/255.0 green:42/255.0 blue:80/255.0 alpha:1.0] CGColor];
+    [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{
+                                                                                                 NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:18],
+                                                                                                 }];
+    
+    for (UIView *subview in searchBar.subviews) {
+        if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")]) {
+            [subview removeFromSuperview];
+            break;
+        }
+    }
+    
+    searchBar.backgroundColor = [UIColor colorWithRed:205/255.0 green:42/255.0 blue:80/255.0 alpha:1.0];
+    
+    UINavigationBar *navbar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+
+    navbar.barTintColor = [UIColor colorWithRed:205/255.0 green:42/255.0 blue:80/255.0 alpha:1.0];
+    
+    [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:                    [UIFont fontWithName:@"Avenir" size:20.0], NSFontAttributeName,
+                                                        [UIColor whiteColor], UITextAttributeTextColor,
+                                                                                                nil]
+                                                                                        forState:UIControlStateNormal];
+    
+    [navbar setTranslucent:NO];
+
+    [self.view addSubview:navbar];
+    [self.view addSubview:searchBar];
 
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
     
@@ -56,30 +89,38 @@
     searchDisplayController.searchResultsDataSource = self;
     searchDisplayController.searchResultsDelegate = self;
     
-    [self.view addSubview:searchBar];
-    
-    NSDictionary *csvDict = [self parseCSV];
-    
-    //NSArray *locationsArray = [csvDict objectForKey:@"locations"];
-    
+    csvDict = [self parseCSV];
     originalData = [csvDict objectForKey:@"places"];
-
-    
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (UIImage *)imageWithColor:(UIColor *)color {
+    CGRect rect = CGRectMake(0.0f, 0.0f, 1.0f, 1.0f);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 
-    NSString *result = [searchData objectAtIndex:indexPath.row];
-    NSLog(@"%@", result);
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    NSString *place = [searchData objectAtIndex:indexPath.row];
+    NSLog(@"%@", place);
     [self.searchDisplayController setActive:NO];
-    CLLocationCoordinate2D center = CLLocationCoordinate2DMake(39.904381, -75.354761);
-    //center.latitude -= self.mapView.region.span.latitudeDelta * 0.40;
-    [self.mapView setCenterCoordinate:center animated:YES];
+    
+    CLLocationCoordinate2D coord = [[[csvDict objectForKey:@"locations"] objectForKey:place] coordinate];
+    [self.mapView setCenterCoordinate:coord animated:YES];
+    [self.mapView setZoom:17];
+    NSLog(@"%@, %f %f", place, coord.latitude, coord.longitude);
 }
 
 - (NSDictionary *)parseCSV {
-    NSString *pathName = [[NSBundle mainBundle] pathForResource:@"added-buildings"
+    NSString *pathName = [[NSBundle mainBundle] pathForResource:@"all-buildings"
                                                          ofType:@"csv"];
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *csvString;
@@ -87,7 +128,7 @@
         csvString = [NSString stringWithContentsOfFile:pathName encoding:NSUTF8StringEncoding error:nil];
     }
     
-    NSMutableArray *locationsArray = [[NSMutableArray alloc] init];
+    NSMutableDictionary *locationsDict = [[NSMutableDictionary alloc] init];
     NSMutableArray *placesArray = [[NSMutableArray alloc] init];
     
     NSArray *csvStringArray = [csvString componentsSeparatedByString:@"\n"];
@@ -97,16 +138,17 @@
             continue;
         }
         NSString *csvStringArrayElt = csvStringArray[i];
-        NSArray *csvStringParsed = [csvStringArrayElt componentsSeparatedByString:@","];
-        [locationsArray addObject:csvStringParsed];
-        [placesArray addObject:csvStringParsed[0]];
-        
+        if ([csvStringArrayElt length]) {
+            NSArray *csvStringParsed = [csvStringArrayElt componentsSeparatedByString:@","];
+            CLLocationDegrees lat = [csvStringParsed[1] doubleValue];
+            CLLocationDegrees lon = [csvStringParsed[2] doubleValue];
+            CLLocation *location = [[CLLocation alloc] initWithLatitude:lat longitude:lon];
+            [locationsDict setValue:location forKey:csvStringParsed[0]];
+            [placesArray addObject:csvStringParsed[0]];
+        }
     }
     
-    //NSLog(@"%@", locationsArray);
-    
-    //return @{locationsArray: @"locations", placesArray: @"places"};
-    return @{@"locations": locationsArray, @"places": placesArray};
+    return @{@"locations": locationsDict, @"places": placesArray};
 }
 
 
@@ -147,16 +189,23 @@
     }
     
     [[cell textLabel]setText:currentValue];
-    //NSLog(@"%@", cell);
-    return cell;
     
+    cell.textLabel.textColor = [UIColor colorWithRed:(51/255.f) green:(51/255.f) blue:(51/255.f) alpha:1.0f];
+    [cell.textLabel setFont:[UIFont fontWithName:@"Avenir" size:18]];
+    
+    cell.backgroundColor = [UIColor clearColor];
+    
+    return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 71;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    CGSize titleSize = [[searchData objectAtIndex:indexPath.row] sizeWithFont:[UIFont fontWithName:@"Avenir" size:18]
+                              constrainedToSize:CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT)  // - 40 For cell padding
+                                  lineBreakMode:NSLineBreakByWordWrapping];
+    
+    CGFloat titleHeight = titleSize.height + 20;
+    return titleHeight;
 }
-
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
 {

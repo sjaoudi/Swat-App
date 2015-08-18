@@ -29,6 +29,7 @@
     UISearchDisplayController *searchDisplayController;
     
     RMMapView *mapView;
+    NSDictionary *csvDict;
     
 
 }
@@ -36,6 +37,7 @@
 @property (nonatomic) UISearchDisplayController *searchDisplayController;
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) RMMapView *mapView;
+@property (nonatomic) NSDictionary *csvDict;
 
 - (NSDictionary *)parseCSV;
 

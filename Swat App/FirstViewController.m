@@ -47,7 +47,7 @@
     self.tableView.dataSource=self;
     self.tableView.scrollEnabled = NO;
     
-    self.navigationItem.titleView = [self createNavbarTitle:@"Swattie Info" :YES];
+    self.navigationItem.titleView = [self createNavbarTitle:@"Swat Info" :YES];
     
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
@@ -121,9 +121,13 @@
     //CGSize mySize = [tableView contentSize];
     //NSLog(@"My view's frame is: %@", NSStringFromCGRect(tableView.frame));
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenHeight = screenRect.size.height - 65 - 49;
+    CGFloat screenHeight = screenRect.size.height - 64 - 49;
+    CGFloat screenWidth = screenRect.size.height - 30 - 49;
     //CGFloat height = self.view.frame.size.height;
     //NSLog(@"%f", screenHeight);
+    if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+        return screenWidth/4;
+    }
     return screenHeight/4;
     
 }
@@ -132,7 +136,7 @@
     
     //UIViewController *viewController = nil;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    HoursViewController *hoursView = [storyboard  instantiateViewControllerWithIdentifier:@"Hours"];
+    //HoursViewController *hoursView = [storyboard  instantiateViewControllerWithIdentifier:@"Hours"];
     HoursTableViewController *hoursTableView = [storyboard instantiateViewControllerWithIdentifier:@"HoursTable"];
     
     
