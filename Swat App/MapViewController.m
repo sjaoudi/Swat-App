@@ -23,6 +23,7 @@
 @synthesize searchDisplayController;
 @synthesize mapView;
 @synthesize csvDict;
+@synthesize navbar;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -43,10 +44,14 @@
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(39.9055000,-75.3538000);
     self.mapView.centerCoordinate = center;
     self.mapView.maxZoom = 18;
-    self.mapView.minZoom = 15;
+    self.mapView.minZoom = 15.3;
     
+    // make map expand to fill screen when rotated
+    self.mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight |
+    UIViewAutoresizingFlexibleWidth;
     
     [self.view addSubview:self.mapView];
+    
     [self.navigationController setNavigationBarHidden:YES animated:NO];
     
     searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0., 20., self.view.bounds.size.width, 44.)];
@@ -55,7 +60,8 @@
     [searchBar setBackgroundImage:[UIImage new]];
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setTintColor:[UIColor blackColor]];
     searchBar.layer.borderWidth = 1;
-    searchBar.layer.borderColor = [[UIColor colorWithRed:205/255.0 green:42/255.0 blue:80/255.0 alpha:1.0] CGColor];
+    //searchBar.layer.borderColor = [[UIColor colorWithRed:205/255.0 green:42/255.0 blue:80/255.0 alpha:1.0] CGColor];
+    searchBar.layer.borderColor = (__bridge CGColorRef)([UIColor clearColor]);
     [[UITextField appearanceWhenContainedIn:[UISearchBar class], nil] setDefaultTextAttributes:@{
                                                                                                  NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:18],
                                                                                                  }];
@@ -67,20 +73,20 @@
         }
     }
     
-    searchBar.backgroundColor = [UIColor colorWithRed:205/255.0 green:42/255.0 blue:80/255.0 alpha:1.0];
+    searchBar.tintColor = [UIColor colorWithRed:205/255.0 green:42/255.0 blue:80/255.0 alpha:1.0];
     
-    UINavigationBar *navbar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
+    self.navbar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 64)];
 
-    navbar.barTintColor = [UIColor colorWithRed:205/255.0 green:42/255.0 blue:80/255.0 alpha:1.0];
+    self.navbar.barTintColor = [UIColor colorWithRed:195/255.0 green:32/255.0 blue:70/255.0 alpha:1.0];
     
     [[UIBarButtonItem appearanceWhenContainedIn:[UISearchBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:                    [UIFont fontWithName:@"Avenir" size:20.0], NSFontAttributeName,
-                                                        [UIColor whiteColor], UITextAttributeTextColor,
+                                                        [UIColor whiteColor],UITextAttributeTextColor,
                                                                                                 nil]
                                                                                         forState:UIControlStateNormal];
     
-    [navbar setTranslucent:NO];
+    //[navbar setTranslucent:NO];
 
-    [self.view addSubview:navbar];
+    [self.view addSubview:self.navbar];
     [self.view addSubview:searchBar];
 
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
@@ -91,6 +97,17 @@
     
     csvDict = [self parseCSV];
     originalData = [csvDict objectForKey:@"places"];
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+    CGRect frame = self.navbar.frame;
+    if (UIInterfaceOrientationIsPortrait(fromInterfaceOrientation)) {
+        frame.size.width = self.view.bounds.size.width;
+    } else {
+        frame.size.width = self.view.bounds.size.width;
+    }
+    self.navbar.frame = frame;
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color {

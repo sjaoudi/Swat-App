@@ -31,6 +31,8 @@
     RMMapView *mapView;
     NSDictionary *csvDict;
     
+    UINavigationBar *navbar;
+    
 
 }
 
@@ -38,6 +40,8 @@
 @property (nonatomic) UITableView *tableView;
 @property (nonatomic) RMMapView *mapView;
 @property (nonatomic) NSDictionary *csvDict;
+@property (nonatomic) UINavigationBar *navbar;
+
 
 - (NSDictionary *)parseCSV;
 
