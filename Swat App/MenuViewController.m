@@ -35,6 +35,9 @@
     self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0);
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
+    [self.tableView setSeparatorInset:UIEdgeInsetsZero];
+    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
     FirstViewController *firstView = [[FirstViewController alloc] init];
     self.navigationItem.titleView = [firstView createNavbarTitle:@"Menus" :NO];
     
@@ -74,20 +77,22 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 60)];
     /* Create custom view to display section header... */
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, tableView.frame.size.width, 18)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 6, tableView.frame.size.width, 30)];
     [label setFont:[UIFont fontWithName:@"Avenir" size:21]];
     label.textColor = [UIColor colorWithRed:185/255.0 green:22/255.0 blue:60/255.0 alpha:1.0];
     NSString *string = [titles objectAtIndex:section];
+    
     [label setText:string];
     [view addSubview:label];
+    
     return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 30;
+    return 40;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

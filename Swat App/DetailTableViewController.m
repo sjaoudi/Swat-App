@@ -175,10 +175,15 @@ typedef enum { SectionDetailSummary } DetailRows;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == SectionHeader) {
-        if (!indexPath.row) {
-            return 60;
-        }
+    if (indexPath.section == SectionHeader && indexPath.row == SectionHeaderTitle) {
+        CGSize s = [item.title sizeWithFont:[UIFont fontWithName:@"Avenir" size:14]
+                          constrainedToSize:CGSizeMake(self.view.bounds.size.width - 40, MAXFLOAT)];
+        return s.height+40;
+    }
+    if (indexPath.section == SectionHeader && indexPath.row != SectionHeaderTitle) {
+        //if (!indexPath.row) {
+        //    return 60;
+        //}
         
         // Regular
         return 34;
@@ -193,12 +198,14 @@ typedef enum { SectionDetailSummary } DetailRows;
                            lineBreakMode:NSLineBreakByWordWrapping];
         
         //CGSize s = [summary sizeWithAttributes:@{NSFontAttributeName: [UIFont fontWithName:@"Avenir" size:18]}];
-        return s.height + 16; // Add padding
+        return s.height + 40; // Add padding
         
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"%ld %ld", (long)indexPath.section, (long)indexPath.row);
     
     // Open URL
     if (indexPath.section == SectionHeader && indexPath.row == SectionHeaderURL) {

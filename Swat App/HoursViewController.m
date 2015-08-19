@@ -73,8 +73,6 @@
     //scrollView.contentSize=CGSizeMake(width,550);
     //scrollView.contentSize = self.view.frame.size;
     
-    
-    
 }
 
 - (NSArray *)HoursViewLoad :(NSString *)dashString{
