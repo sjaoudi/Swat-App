@@ -35,6 +35,7 @@ typedef enum { SectionDetailSummary } DetailRows;
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"h:mm a"];
     
+    NSLog(@"%@", self.theDate);
     
     // Hide back button text
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
@@ -45,20 +46,23 @@ typedef enum { SectionDetailSummary } DetailRows;
     // Date
     if (item.date) {
         //NSLog(@"%@", item.date);
-        //NSDateFormatter *format = [[NSDateFormatter alloc] init];
-        //[format setDateFormat:@"MMMM dd, yyyy"];
+        NSDateFormatter *format = [[NSDateFormatter alloc] init];
+        [format setDateFormat:@"MMMM d, yyyy"];
 //        SecondViewController *secondView = [[SecondViewController alloc] init];
         
-        NSString *allDayString = [self findAllDay:item.date :item.content :dateFormatter];
+        NSString *date = [format stringFromDate:self.theDate];
+        
+        NSString *allDayString = [self findAllDay:date :item.content :dateFormatter];
         //NSLog(@"all day");
         self.dateString = allDayString;
+        
         if (!allDayString) {
             NSString *endTime = [self determineTimeRange :timeFormatter :item.content :item.date];
             
-            NSString *eventDate = [dateFormatter stringFromDate:item.date];
+            //NSString *eventDate = [dateFormatter stringFromDate:item.date];
 //            NSString *eventDate = secondView.eventDate;
             
-            eventDate = [eventDate stringByAppendingString:@", "];
+            NSString *eventDate = [date stringByAppendingString:@", "];
             
             self.dateString = [eventDate stringByAppendingString:endTime];
 //            self.dateString = secondView.eventDate;
@@ -217,7 +221,7 @@ typedef enum { SectionDetailSummary } DetailRows;
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (NSString *) findAllDay:(NSDate *)givenDate :(NSString *)content :(NSDateFormatter *)format {
+- (NSString *) findAllDay:(NSString *)givenDateString :(NSString *)content :(NSDateFormatter *)format {
     NSError *error = NULL;
     NSString *allDayRegexString = @"&nbsp;<b>All Day</b>";
     NSRegularExpression *allDayRegex =
@@ -235,7 +239,7 @@ typedef enum { SectionDetailSummary } DetailRows;
 //                                              options:0
 //                                                error:&error];
     
-    NSDate *eventDate = givenDate;
+    //NSDate *eventDate = givenDate;
     
     NSUInteger numberOfMatches = [allDayRegex numberOfMatchesInString:content
                                                         options:0
@@ -245,10 +249,10 @@ typedef enum { SectionDetailSummary } DetailRows;
                                                               options:0
                                                                 range:NSMakeRange(0, [content length])];
     
-    NSString *finalDateString = [format stringFromDate:eventDate];
+    //NSString *finalDateString = [format stringFromDate:eventDate];
     
     if ((numberOfMatches > 0) || (!endTimeMatches)) {
-        NSString *allDayString = [finalDateString stringByAppendingString:@", All Day"];
+        NSString *allDayString = [givenDateString stringByAppendingString:@", All Day"];
         return allDayString;
     }
     return NULL;

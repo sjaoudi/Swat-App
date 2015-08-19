@@ -20,14 +20,16 @@
     MWFeedItem *item;
     NSString *dateString, *summaryString;
     NSArray *eventSections;
+    NSDate *theDate;
 }
 
 @property (nonatomic, strong) MWFeedItem *item;
 @property (nonatomic, strong) NSString *dateString, *summaryString;
 @property (nonatomic, retain) NSArray *eventSections;
+@property (nonatomic, strong) NSDate *theDate;
 
 - (NSString *) determineTimeRange:(NSDateFormatter *)timeFormatter :(NSString *)content :(NSDate *)date;
-- (NSString *) findAllDay:(NSDate *)givenDate :(NSString *)content :(NSDateFormatter *)format;
+- (NSString *) findAllDay:(NSString *)givenDateString :(NSString *)content :(NSDateFormatter *)format;
 
 
 @end

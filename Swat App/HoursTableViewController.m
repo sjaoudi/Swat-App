@@ -177,20 +177,27 @@
         NSMutableString *placeRegexMutableString = [[NSMutableString alloc] init];
         if ([places[i] isEqualToString:@"Paces Cafe"]) {
             //NSLog(@"PACES");
-            [placeRegexMutableString appendString:@"<strong>:\\W?<\\/strong>(.+)<"];
+            //[placeRegexMutableString appendString:@"<strong>:\\W?<\\/strong>(.+)<"];
+            [placeRegexMutableString appendString:@"<strong>:\\W?<\\/strong>(?:<ul>)?(?:<li>)?(.*?)<"];
             [placeRegexMutableString insertString:places[i] atIndex:8];
+            
+            NSString *placeRegexString = [NSString stringWithString:placeRegexMutableString];
+            NSString *placeHours = [self findRegex:placeRegexString :hoursInfo];
+            [hoursArray addObject:placeHours];
+            
         }
         else {
             [placeRegexMutableString appendString:@"<li><strong>:(.+)<\\/a><\\/li>"];
             [placeRegexMutableString insertString:places[i] atIndex:12];
+            NSString *placeRegexString = [NSString stringWithString:placeRegexMutableString];
+            NSString *placeToParse = [self findRegex:placeRegexString :hoursInfo];
+            
+            NSString *hoursRegexString = @"<\\/strong>\\s?(.+)\\s?<a";
+            NSString *placeHours = [self findRegex:hoursRegexString :placeToParse];
+            [hoursArray addObject:placeHours];
         }
         
-        NSString *placeRegexString = [NSString stringWithString:placeRegexMutableString];
-        NSString *placeToParse = [self findRegex:placeRegexString :hoursInfo];
-
-        NSString *hoursRegexString = @"<\\/strong>\\s?(.+)\\s?<a";
-        NSString *placeHours = [self findRegex:hoursRegexString :placeToParse];
-        [hoursArray addObject:placeHours];
+        
 
     }
 

@@ -330,8 +330,11 @@
             NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
             [timeFormatter setDateFormat:@"h:mm a"];
             
+            NSArray *dateRange = [self createStringDateRange:eventSectionTitles];
+            NSString *date = [dateRange objectAtIndex:indexPath.section];
+            
             DetailTableViewController *c = [[DetailTableViewController alloc] init];
-            NSString *allDay = [c findAllDay:item.date :item.content :timeFormatter];
+            NSString *allDay = [c findAllDay:date :item.content :timeFormatter];
             if (!allDay) {
                 NSString *timeRange = [c determineTimeRange:timeFormatter :item.content :item.date];
                 
@@ -350,8 +353,8 @@
         }
         [subtitle appendString:itemSummary];
         cell.detailTextLabel.text = subtitle;
-        NSArray *dateRange = [self createStringDateRange:eventSectionTitles];
-        NSString *string = [dateRange objectAtIndex:indexPath.section];
+        //NSArray *dateRange = [self createStringDateRange:eventSectionTitles];
+        //NSString *string = [dateRange objectAtIndex:indexPath.section];
 //        NSLog(@"%@", string);
 //        eventDate = string;
         
@@ -362,10 +365,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    //NSArray *dateRange = [self createStringDateRange:eventSectionTitles];
+    NSDate *date = [eventSectionTitles objectAtIndex:indexPath.section];
+    
     //Show detail
     DetailTableViewController *detail = [[DetailTableViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    
+
     detail.item = (MWFeedItem *)[[dateArrays objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+    detail.theDate = date;
+    
    
     [self.navigationController pushViewController:detail animated:YES];
     
