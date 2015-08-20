@@ -42,6 +42,8 @@
 @property (nonatomic) NSDictionary *csvDict;
 @property (nonatomic) UINavigationBar *navbar;
 
+@property (nonatomic, strong) NSMutableArray *shapes;
+
 
 - (NSDictionary *)parseCSV;
 - (void)loadMap;

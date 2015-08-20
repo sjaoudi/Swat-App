@@ -20,10 +20,10 @@
     
     MapViewController *mapView = [[MapViewController alloc] init];
     
-    NSDictionary *csvDict = [mapView parseCSV];
-    NSLog(@"%@", csvDict);
+    //NSDictionary *csvDict = [mapView parseCSV];
+    //NSLog(@"%@", csvDict);
     
-    originalData = [csvDict objectForKey:@"places"];
+    //originalData = [csvDict objectForKey:@"places"];
     
     
     

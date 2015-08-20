@@ -14,9 +14,9 @@
 //#import <CoreLocation/CoreLocation.h>
 #import "Mapbox.h"
 
-@interface MapViewController ()
-@property (nonatomic, strong) NSMutableArray *shapes;
-@end
+//@interface MapViewController ()
+//@property (nonatomic, strong) NSMutableArray *shapes;
+//@end
 
 @implementation MapViewController
 
@@ -24,6 +24,7 @@
 @synthesize mapView;
 @synthesize csvDict;
 @synthesize navbar;
+@synthesize shapes;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,6 +36,7 @@
     
     //RMMapboxSource *addedTileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.7422ff37"];
     //[self.mapView addTileSource:addedTileSource];
+    
     self.mapView.delegate = self;
     self.mapView.zoom = 16;
     
@@ -94,6 +96,90 @@
     
     csvDict = [self parseCSV];
     originalData = [csvDict objectForKey:@"places"];
+    
+    
+    
+    //convert `boat.geojson` to an NSDIctionary
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"boat" ofType:@"geojson"];
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[[NSData alloc]
+                                                                  initWithContentsOfFile:jsonPath]
+                                                         options:0
+                                                           error:nil];
+    
+    NSArray *features = json[@"features"];
+    
+    // create an empty array
+    NSMutableArray *theshapes = [[NSMutableArray alloc] init];
+    self.shapes = theshapes;
+    
+    // set the current shape
+    for (NSUInteger i = 0; i < [features count]; i++) {
+        
+        // add an empty array to the shapes array to hold the coordinates
+        [self.shapes addObject:[[NSMutableArray alloc] init]];
+        
+        // get the current shape out of the feature array
+        NSDictionary *currentNode = (NSDictionary *)features[i];
+        
+        NSArray *coordinates = currentNode[@"geometry"][@"coordinates"][0];
+        
+        // loop over the coordinates in the coordinate array
+        for (NSArray *coordinate in coordinates) {
+            
+            // convert the coordinates to location coordinates
+            CLLocation *loc = [[CLLocation alloc]
+                               initWithLatitude:[[coordinate lastObject] doubleValue]
+                               longitude:[[coordinate firstObject] doubleValue]];
+            
+            // add the location object (with both coordinates) to the array
+            [[self.shapes lastObject] addObject:loc];
+        }
+    }
+    
+    NSLog(@"Shapes: %@", self.shapes);
+
+//    RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:self.mapView
+//                                                          coordinate:self.mapView.centerCoordinate
+//                                                            andTitle:@"My Path"];
+//    
+//    // add the shapes to the mapView
+//    [self.mapView addAnnotation:annotation];
+//    //[annotation setBoundingBoxFromLocations:[self.shapes objectAtIndex:0]];
+    
+    NSArray *locations = [NSArray arrayWithObjects:
+                          [[CLLocation alloc] initWithLatitude:39.906885 longitude:-75.353064],
+                          [[CLLocation alloc] initWithLatitude:39.906901 longitude:-75.352533],
+                          [[CLLocation alloc] initWithLatitude:39.906609 longitude:-75.352812],
+                          [[CLLocation alloc] initWithLatitude:39.906885 longitude:-75.353064],
+                          nil];
+    
+    RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:mapView
+                                                          coordinate:((CLLocation *)[self.shapes[0] objectAtIndex:0]).coordinate
+                                                            andTitle:@"Home"];
+    
+    annotation.userInfo = self.shapes[0];
+    
+    [annotation setBoundingBoxFromLocations:self.shapes[0]];
+    
+    [mapView addAnnotation:annotation];
+}
+
+- (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
+{
+    if (annotation.isUserLocationAnnotation)
+        return nil;
+    
+    RMShape *shape = [[RMShape alloc] initWithView:self.mapView];
+    
+    // set line color and width
+    shape.lineColor = [UIColor colorWithRed:0.224 green:0.671 blue:0.780 alpha:1.000];
+    shape.lineWidth = 0.5;
+    
+    for (CLLocation *location in (NSArray *)annotation.userInfo)
+        [shape addLineToCoordinate:location.coordinate];
+    
+    return shape;
+    
 }
 
 - (void)loadMap {
@@ -230,18 +316,18 @@
     return titleHeight;
 }
 
-- (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
-{
-    if (annotation.isUserLocationAnnotation)
-        return nil;
-    
-    // add Maki icon and color the marker
-    RMMarker *marker = [[RMMarker alloc] initWithMapboxMarkerImage:@"rocket" tintColor:
-                        [UIColor colorWithRed:0.224 green:0.671 blue:0.780 alpha:1.000]];
-    
-    marker.canShowCallout = YES;
-    
-    return marker;
-}
+//- (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
+//{
+//    if (annotation.isUserLocationAnnotation)
+//        return nil;
+//
+//    // add Maki icon and color the marker
+//    RMMarker *marker = [[RMMarker alloc] initWithMapboxMarkerImage:@"rocket" tintColor:
+//                        [UIColor colorWithRed:0.224 green:0.671 blue:0.780 alpha:1.000]];
+//    
+//    marker.canShowCallout = YES;
+//    
+//    return marker;
+//}
 
 @end

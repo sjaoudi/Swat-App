@@ -31,6 +31,8 @@
 		AA90F1081B65E0AA00F521F1 /* High-Importance-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1071B65E0AA00F521F1 /* High-Importance-50.png */; };
 		AA90F10A1B65E0AF00F521F1 /* Clock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1091B65E0AF00F521F1 /* Clock-50.png */; };
 		AA90F10C1B65E0B500F521F1 /* Restaurant-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */; };
+		AAB46A111B858C6B006FCB01 /* buildings.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AAB46A101B858C69006FCB01 /* buildings.geojson */; };
+		AAB46A131B8594E9006FCB01 /* boats.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AAB46A121B8594E9006FCB01 /* boats.geojson */; };
 		AAC7FCCC1B7AA5FD00CF3227 /* HoursTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7FCCB1B7AA5FD00CF3227 /* HoursTableViewController.m */; };
 		AAC7FCD01B7AEA3100CF3227 /* all-buildings.csv in Resources */ = {isa = PBXBuildFile; fileRef = AAC7FCCF1B7AEA3100CF3227 /* all-buildings.csv */; };
 		AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACFD2341B646E8000DDED74 /* Default-568h@2x.png */; };
@@ -89,6 +91,8 @@
 		AA90F1071B65E0AA00F521F1 /* High-Importance-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High-Importance-50.png"; sourceTree = "<group>"; };
 		AA90F1091B65E0AF00F521F1 /* Clock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clock-50.png"; sourceTree = "<group>"; };
 		AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Restaurant-50.png"; sourceTree = "<group>"; };
+		AAB46A101B858C69006FCB01 /* buildings.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buildings.geojson; sourceTree = "<group>"; };
+		AAB46A121B8594E9006FCB01 /* boats.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boats.geojson; sourceTree = "<group>"; };
 		AAC7FCCA1B7AA5FD00CF3227 /* HoursTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoursTableViewController.h; sourceTree = "<group>"; };
 		AAC7FCCB1B7AA5FD00CF3227 /* HoursTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursTableViewController.m; sourceTree = "<group>"; };
 		AAC7FCCF1B7AEA3100CF3227 /* all-buildings.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "all-buildings.csv"; sourceTree = "<group>"; };
@@ -183,8 +187,10 @@
 				AA5F2D4B1B7C359E00AFFA76 /* AboutViewController.m */,
 				AA2971321B2E78EC00D4FDF9 /* Main.storyboard */,
 				AAC7FCCF1B7AEA3100CF3227 /* all-buildings.csv */,
+				AAB46A101B858C69006FCB01 /* buildings.geojson */,
 				AA4F25051B64990400C4134C /* tags.geojson */,
 				AA4F25071B649A0300C4134C /* boat.geojson */,
+				AAB46A121B8594E9006FCB01 /* boats.geojson */,
 				AA2971351B2E78EC00D4FDF9 /* Images.xcassets */,
 				AA2971251B2E78EB00D4FDF9 /* Supporting Files */,
 			);
@@ -321,10 +327,12 @@
 				AA4F25061B64990400C4134C /* tags.geojson in Resources */,
 				AA5F2D471B7C322C00AFFA76 /* Info-50.png in Resources */,
 				AA5F2D491B7C327300AFFA76 /* Info-32.png in Resources */,
+				AAB46A111B858C6B006FCB01 /* buildings.geojson in Resources */,
 				AA2971341B2E78EC00D4FDF9 /* Main.storyboard in Resources */,
 				AA4F25081B649A0300C4134C /* boat.geojson in Resources */,
 				AA90F1081B65E0AA00F521F1 /* High-Importance-50.png in Resources */,
 				AA90F10C1B65E0B500F521F1 /* Restaurant-50.png in Resources */,
+				AAB46A131B8594E9006FCB01 /* boats.geojson in Resources */,
 				AA2971361B2E78EC00D4FDF9 /* Images.xcassets in Resources */,
 				AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */,
 				AAC7FCD01B7AEA3100CF3227 /* all-buildings.csv in Resources */,

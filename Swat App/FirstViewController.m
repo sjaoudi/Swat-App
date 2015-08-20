@@ -74,7 +74,7 @@
     [appDelegate parseData];
     
     MapViewController *mapView = [[MapViewController alloc] init];
-    [mapView loadMap];
+    //[mapView loadMap];
     
     //SecondViewController *secondView = [[SecondViewController alloc] init];
     //[secondView viewDidLoad];
