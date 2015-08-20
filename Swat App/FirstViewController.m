@@ -26,6 +26,8 @@
 
 @implementation FirstViewController
 
+@synthesize hours, menu, transportation;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -59,14 +61,18 @@
     //AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     //SEL compareByDeliveryTimeSelector = sel_registerName("refreshWasPressed:");
     
-    UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshWasPressed:)];
+    //UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refreshWasPressed:)];
+    //self.navigationItem.rightBarButtonItem = button;
+    UIBarButtonItem *button = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh:)];
     self.navigationItem.rightBarButtonItem = button;
 }
 
-
-- (void)refreshWasPressed {
-    NSLog(@"refresh pressed");
+- (void) refresh:(id)sender
+{
+    AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    [appDelegate parseData];
 }
+
 
 - (void)viewDidAppear:(BOOL)animated {
     //[self.navigationController setNavigationBarHidden:NO animated:NO];

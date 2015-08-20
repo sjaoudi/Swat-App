@@ -21,8 +21,7 @@
 @property (nonatomic, copy) NSDictionary *menu;
 @property (nonatomic, copy) NSArray *transportation;
 
-
-
+- (void)parseData;
 
 @end
 

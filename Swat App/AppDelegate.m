@@ -33,8 +33,14 @@
     
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    //NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
-    NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
+    [self parseData];
+    
+    return YES;
+}
+
+- (void)parseData {
+    NSURL *dashURL = [NSURL URLWithString:@"https://secure.swarthmore.edu/dash/"];
+    //NSURL *dashURL = [NSURL URLWithString:@"http://web.archive.org/web/20121004221810/https://secure.swarthmore.edu/dash/"];
     NSData *dashData = [NSData dataWithContentsOfURL:dashURL];
     NSString *dashString = [[NSString alloc] initWithData:dashData encoding:NSUTF8StringEncoding];
     
@@ -55,8 +61,6 @@
     transportationLoad.loadedTransportationInfo = transportation;
     
     NSLog(@"App has parsed data.");
-    
-    return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

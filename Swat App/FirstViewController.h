@@ -13,8 +13,10 @@
 
 @interface FirstViewController: UITableViewController
 
-- (UIView *)createNavbarTitle :(NSString *)title :(BOOL)mainPage;
+@property (nonatomic, copy) NSArray *hours;
+@property (nonatomic, copy) NSDictionary *menu;
+@property (nonatomic, copy) NSArray *transportation;
 
-- (void)refreshWasPressed;
+- (UIView *)createNavbarTitle :(NSString *)title :(BOOL)mainPage;
 
 @end
