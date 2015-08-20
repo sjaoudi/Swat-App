@@ -8,13 +8,14 @@
 #import "AppDelegate.h"
 
 #import "FirstViewController.h"
+#import "SecondViewController.h"
 
-#import "HoursViewController.h"
 #import "HoursTableViewController.h"
 
 #import "TransportationViewController.h"
 #import "MenuViewController.h"
 #import "EmergencyViewController.h"
+#import "MapViewController.h"
 
 @interface FirstViewController () {
     NSDictionary *menuItem;
@@ -71,6 +72,12 @@
 {
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [appDelegate parseData];
+    
+    MapViewController *mapView = [[MapViewController alloc] init];
+    [mapView loadMap];
+    
+    //SecondViewController *secondView = [[SecondViewController alloc] init];
+    //[secondView viewDidLoad];
 }
 
 
@@ -171,6 +178,12 @@
     
     UIView *titleView = [[UIView alloc]initWithFrame:CGRectMake(0,0,200,50)];
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0,0,200,50)];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = @"EEEE, MMMM d";
+    NSString *dateString = [formatter stringFromDate:[NSDate date]];
+    [title stringByAppendingString:dateString];
+    NSLog(@"%@", dateString);
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.text = title;
     titleLabel.font = [UIFont fontWithName:@"Avenir" size:22];

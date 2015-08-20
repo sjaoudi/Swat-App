@@ -30,13 +30,8 @@
     NSLog(@"map loaded");
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+    [self loadMap];
     
-    [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1Ijoic2phb3VkaSIsImEiOiIzMWNjNjdjMTRmOTQ2MjUwYzA0OTdjYmM2MTIzZTRhYyJ9.VHYjLmLq9AeTgjQE_X16lg"];
-    //RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.ef0b6517"];
-    
-    RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.n7eh1di1"];
-    self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds
-                                            andTilesource:tileSource];
     
     //RMMapboxSource *addedTileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.7422ff37"];
     //[self.mapView addTileSource:addedTileSource];
@@ -85,7 +80,7 @@
                                                         [UIColor whiteColor],UITextAttributeTextColor,
                                                                                                 nil]
                                                                                         forState:UIControlStateNormal];
-    
+
     //[navbar setTranslucent:NO];
 
     [self.view addSubview:self.navbar];
@@ -99,6 +94,15 @@
     
     csvDict = [self parseCSV];
     originalData = [csvDict objectForKey:@"places"];
+}
+
+- (void)loadMap {
+    [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1Ijoic2phb3VkaSIsImEiOiIzMWNjNjdjMTRmOTQ2MjUwYzA0OTdjYmM2MTIzZTRhYyJ9.VHYjLmLq9AeTgjQE_X16lg"];
+    //RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.ef0b6517"];
+    
+    RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.n7eh1di1"];
+    self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds
+                                      andTilesource:tileSource];
 }
 
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {

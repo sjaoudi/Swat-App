@@ -44,5 +44,6 @@
 
 
 - (NSDictionary *)parseCSV;
+- (void)loadMap;
 
 @end

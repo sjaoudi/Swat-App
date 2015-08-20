@@ -84,6 +84,11 @@
     
 }
 
+-(void)parseFeed {
+    [feedParser parse];
+}
+
+
 -(void)updateTableWithParsedItems :(NSArray *)events{
     self.itemsToDisplay = [parsedItems sortedArrayUsingDescriptors:
                            [NSArray arrayWithObject:[[NSSortDescriptor alloc] initWithKey:@"date" ascending:YES]]];

@@ -37,5 +37,7 @@
 //@property(nonatomic, strong) IBOutlet UITableView *tableView;
 - (NSString *)removeDateTitle :(NSString *)title;
 //- (NSArray *)getDateStringArray;
+-(void)parseFeed;
+- (void)viewDidLoad;
 
 @end
