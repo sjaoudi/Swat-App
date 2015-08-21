@@ -125,18 +125,19 @@
         
         // loop over the coordinates in the coordinate array
         for (NSArray *coordinate in coordinates) {
-            
+            CGFloat lat = [[coordinate firstObject] floatValue];
+            CGFloat lon = [[coordinate lastObject] floatValue];
             // convert the coordinates to location coordinates
             CLLocation *loc = [[CLLocation alloc]
-                               initWithLatitude:[[coordinate lastObject] doubleValue]
-                               longitude:[[coordinate firstObject] doubleValue]];
+                               initWithLatitude:lat
+                               longitude:lon];
             
             // add the location object (with both coordinates) to the array
             [[self.shapes lastObject] addObject:loc];
         }
     }
     
-    NSLog(@"Shapes: %@", self.shapes);
+    //NSLog(@"Shapes: %@", self.shapes);
 
 //    RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:self.mapView
 //                                                          coordinate:self.mapView.centerCoordinate
@@ -146,22 +147,34 @@
 //    [self.mapView addAnnotation:annotation];
 //    //[annotation setBoundingBoxFromLocations:[self.shapes objectAtIndex:0]];
     
-    NSArray *locations = [NSArray arrayWithObjects:
-                          [[CLLocation alloc] initWithLatitude:39.906885 longitude:-75.353064],
-                          [[CLLocation alloc] initWithLatitude:39.906901 longitude:-75.352533],
-                          [[CLLocation alloc] initWithLatitude:39.906609 longitude:-75.352812],
-                          [[CLLocation alloc] initWithLatitude:39.906885 longitude:-75.353064],
-                          nil];
+//    NSArray *locations1 = [NSArray arrayWithObjects:
+//                          [[CLLocation alloc] initWithLatitude:39.902755 longitude:-75.354446],
+//                          [[CLLocation alloc] initWithLatitude:39.902823 longitude:-75.354410],
+//                          [[CLLocation alloc] initWithLatitude:39.902850 longitude:-75.354531],
+//                          [[CLLocation alloc] initWithLatitude:39.902863 longitude:-75.354528],
+//                           [[CLLocation alloc] initWithLatitude:39.902882 longitude:-75.354614],
+//                           [[CLLocation alloc] initWithLatitude:39.902798 longitude:-75.354645],
+//                           [[CLLocation alloc] initWithLatitude:39.902755 longitude:-75.354446],
+//                          nil];
     
-    RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:mapView
-                                                          coordinate:((CLLocation *)[self.shapes[0] objectAtIndex:0]).coordinate
-                                                            andTitle:@"Home"];
+    //NSArray *locations = [NSArray arrayWithArray:self.shapes[0]];
+    NSLog(@"%@", self.shapes);
     
-    annotation.userInfo = self.shapes[0];
+    //NSArray *locations = self.shapes[0];
     
-    [annotation setBoundingBoxFromLocations:self.shapes[0]];
+    for (int i=0; i < [self.shapes count]; i++) {
+        NSArray *locations = [NSArray arrayWithArray:self.shapes[i]];
+        RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:mapView
+                                                              coordinate:((CLLocation *)[locations objectAtIndex:0]).coordinate
+                                                                andTitle:@"Home"];
+        
+        annotation.userInfo = locations;
+        
+        [annotation setBoundingBoxFromLocations:locations];
+        
+        [mapView addAnnotation:annotation];
+    }
     
-    [mapView addAnnotation:annotation];
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
@@ -172,8 +185,9 @@
     RMShape *shape = [[RMShape alloc] initWithView:self.mapView];
     
     // set line color and width
-    shape.lineColor = [UIColor colorWithRed:0.224 green:0.671 blue:0.780 alpha:1.000];
-    shape.lineWidth = 0.5;
+    shape.lineColor = [UIColor colorWithRed:(221/255.f) green:(221/255.f) blue:(221/255.f) alpha:1.000];
+    shape.lineWidth = 1.0;
+    shape.fillColor = [UIColor colorWithRed:(238/255.f) green:(238/255.f) blue:(238/255.f) alpha:1.000];
     
     for (CLLocation *location in (NSArray *)annotation.userInfo)
         [shape addLineToCoordinate:location.coordinate];
