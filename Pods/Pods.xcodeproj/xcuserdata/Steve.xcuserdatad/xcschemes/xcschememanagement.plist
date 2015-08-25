@@ -4,37 +4,32 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-FMDB.xcscheme</key>
+		<key>FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-GRMustache.xcscheme</key>
+		<key>GRMustache.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-JRSwizzle.xcscheme</key>
+		<key>JRSwizzle.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-MWFeedParser.xcscheme</key>
+		<key>MWFeedParser.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Mapbox-iOS-SDK-Mapbox.xcscheme</key>
+		<key>Mapbox-iOS-SDK-Mapbox.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Mapbox-iOS-SDK.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-SMCalloutView.xcscheme</key>
+		<key>Mapbox-iOS-SDK.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -44,45 +39,50 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SMCalloutView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>014D7B16B566104CE5D051FB</key>
+		<key>44DE188FDE7D298CA0D70653FDB5EEB4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1BB2A9FC94CA5EA797790F79</key>
+		<key>6823CFFA6558F800F407ED6EC75A0D0D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2D902BE8152824BEE5BAC451</key>
+		<key>769BD57DD10558E37FB211D5A98F2DAC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3F8B7EE7F8B76F3EC5B8C382</key>
+		<key>9745B5E17B23D1AC28DE98C5C9BDF526</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4F1471DBAD77CD86B28CC576</key>
+		<key>9A205D86B9D9137CA985B68C3B1BD528</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7FF23CDBA7FB0F2202D514B1</key>
+		<key>D852DA5FFBA82C47EB504A80F476ED61</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>81DCEC5C5714E27E7ED0C4BE</key>
+		<key>E2216B30A9A029C289AC574DC366E503</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9146DEF1A188B74FFC864309</key>
+		<key>EFF28648809151E39B9E0B86F245DDC5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -54,6 +54,7 @@
 		70F3B3E436FF15CF785521E7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AA06F89D1B38F1F2000FECF5 /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
 		AA06F89F1B38F202000FECF5 /* DetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
+		AA0D19C81B8C08EB0020607E /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		AA2971221B2E78EB00D4FDF9 /* Swat Info.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swat Info.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2971261B2E78EB00D4FDF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA2971271B2E78EB00D4FDF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -126,6 +127,7 @@
 		AA2971191B2E78EA00D4FDF9 = {
 			isa = PBXGroup;
 			children = (
+				AA0D19C81B8C08EB0020607E /* PrefixHeader.pch */,
 				AA871F971B8BACE900D2D16C /* iTunesArtwork.png */,
 				AACFD2341B646E8000DDED74 /* Default-568h@2x.png */,
 				AA2971241B2E78EB00D4FDF9 /* Swat App */,
@@ -498,6 +500,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Stephen Jaoudi (7C445VL2ZS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = "/Users/Steve/Desktop/Swat-App/Swat App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -514,6 +518,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Stephen Jaoudi (7C445VL2ZS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = PrefixHeader.pch;
 				INFOPLIST_FILE = "/Users/Steve/Desktop/Swat-App/Swat App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -539,7 +545,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "Swat InfoTests";
 				SKIP_INSTALL = YES;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swat App.app/Swat App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swat Info.app/Swat Info";
 			};
 			name = Debug;
 		};
@@ -555,7 +561,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "Swat InfoTests";
 				SKIP_INSTALL = YES;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swat App.app/Swat App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swat Info.app/Swat Info";
 			};
 			name = Release;
 		};
