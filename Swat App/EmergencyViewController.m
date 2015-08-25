@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"EmergencyViewController Loaded");
+    //NSLog(@"EmergencyViewController Loaded");
     
     FirstViewController *firstView = [[FirstViewController alloc] init];
     self.navigationItem.titleView = [firstView createNavbarTitle:@"Emergency Info" :NO];

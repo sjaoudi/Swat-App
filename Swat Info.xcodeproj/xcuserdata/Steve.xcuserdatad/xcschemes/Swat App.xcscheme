@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AA2971211B2E78EB00D4FDF9"
-               BuildableName = "Swat App.app"
-               BlueprintName = "Swat App"
-               ReferencedContainer = "container:Swat App.xcodeproj">
+               BuildableName = "Swat Info.app"
+               BlueprintName = "Swat Info"
+               ReferencedContainer = "container:Swat Info.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AA29713D1B2E78EC00D4FDF9"
-               BuildableName = "Swat AppTests.xctest"
-               BlueprintName = "Swat AppTests"
-               ReferencedContainer = "container:Swat App.xcodeproj">
+               BuildableName = "Swat InfoTests.xctest"
+               BlueprintName = "Swat InfoTests"
+               ReferencedContainer = "container:Swat Info.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "AA29713D1B2E78EC00D4FDF9"
-               BuildableName = "Swat AppTests.xctest"
-               BlueprintName = "Swat AppTests"
-               ReferencedContainer = "container:Swat App.xcodeproj">
+               BuildableName = "Swat InfoTests.xctest"
+               BlueprintName = "Swat InfoTests"
+               ReferencedContainer = "container:Swat Info.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA2971211B2E78EB00D4FDF9"
-            BuildableName = "Swat App.app"
-            BlueprintName = "Swat App"
-            ReferencedContainer = "container:Swat App.xcodeproj">
+            BuildableName = "Swat Info.app"
+            BlueprintName = "Swat Info"
+            ReferencedContainer = "container:Swat Info.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -77,9 +77,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA2971211B2E78EB00D4FDF9"
-            BuildableName = "Swat App.app"
-            BlueprintName = "Swat App"
-            ReferencedContainer = "container:Swat App.xcodeproj">
+            BuildableName = "Swat Info.app"
+            BlueprintName = "Swat Info"
+            ReferencedContainer = "container:Swat Info.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -96,9 +96,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "AA2971211B2E78EB00D4FDF9"
-            BuildableName = "Swat App.app"
-            BlueprintName = "Swat App"
-            ReferencedContainer = "container:Swat App.xcodeproj">
+            BuildableName = "Swat Info.app"
+            BlueprintName = "Swat Info"
+            ReferencedContainer = "container:Swat Info.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
@@ -107,6 +107,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "Swat Info"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>

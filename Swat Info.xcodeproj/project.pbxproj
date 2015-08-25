@@ -13,28 +13,26 @@
 		AA29712B1B2E78EB00D4FDF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AA29712A1B2E78EB00D4FDF9 /* AppDelegate.m */; };
 		AA29712E1B2E78EC00D4FDF9 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA29712D1B2E78EC00D4FDF9 /* FirstViewController.m */; };
 		AA2971311B2E78EC00D4FDF9 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2971301B2E78EC00D4FDF9 /* SecondViewController.m */; };
-		AA2971341B2E78EC00D4FDF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA2971321B2E78EC00D4FDF9 /* Main.storyboard */; };
 		AA2971361B2E78EC00D4FDF9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA2971351B2E78EC00D4FDF9 /* Images.xcassets */; };
 		AA2971451B2E78EC00D4FDF9 /* Swat_AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2971441B2E78EC00D4FDF9 /* Swat_AppTests.m */; };
-		AA2EBAA41B7ECAD7004435C6 /* MapTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA2EBAA31B7ECAD6004435C6 /* MapTableViewController.m */; };
-		AA3C1CE71B4E182000AE0320 /* HoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3C1CE61B4E182000AE0320 /* HoursViewController.m */; };
 		AA4149961B5DFB1000866FFA /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA4149951B5DFB1000866FFA /* MapViewController.m */; };
-		AA4F25061B64990400C4134C /* tags.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AA4F25051B64990400C4134C /* tags.geojson */; };
-		AA4F25081B649A0300C4134C /* boat.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AA4F25071B649A0300C4134C /* boat.geojson */; };
+		AA4F25081B649A0300C4134C /* building.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AA4F25071B649A0300C4134C /* building.geojson */; };
 		AA5C9F821B535D2000928501 /* TransportationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5C9F811B535D2000928501 /* TransportationViewController.m */; };
 		AA5F2D471B7C322C00AFFA76 /* Info-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA5F2D461B7C322C00AFFA76 /* Info-50.png */; };
 		AA5F2D491B7C327300AFFA76 /* Info-32.png in Resources */ = {isa = PBXBuildFile; fileRef = AA5F2D481B7C327300AFFA76 /* Info-32.png */; };
 		AA5F2D4C1B7C359E00AFFA76 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA5F2D4B1B7C359E00AFFA76 /* AboutViewController.m */; };
 		AA6545A31B5C2467004FC7AD /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA6545A21B5C2467004FC7AD /* MenuViewController.m */; };
+		AA871F981B8BACE900D2D16C /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = AA871F971B8BACE900D2D16C /* iTunesArtwork.png */; };
+		AA871F9A1B8BC15900D2D16C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA871F991B8BC15900D2D16C /* LaunchScreen.storyboard */; };
 		AA90F1041B65DBE000F521F1 /* Train-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1031B65DBE000F521F1 /* Train-50.png */; };
 		AA90F1061B65E0A300F521F1 /* Calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1051B65E0A300F521F1 /* Calendar-50.png */; };
 		AA90F1081B65E0AA00F521F1 /* High-Importance-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1071B65E0AA00F521F1 /* High-Importance-50.png */; };
 		AA90F10A1B65E0AF00F521F1 /* Clock-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F1091B65E0AF00F521F1 /* Clock-50.png */; };
 		AA90F10C1B65E0B500F521F1 /* Restaurant-50.png in Resources */ = {isa = PBXBuildFile; fileRef = AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */; };
-		AAB46A111B858C6B006FCB01 /* buildings.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AAB46A101B858C69006FCB01 /* buildings.geojson */; };
-		AAB46A131B8594E9006FCB01 /* boats.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AAB46A121B8594E9006FCB01 /* boats.geojson */; };
+		AAB46A131B8594E9006FCB01 /* path.geojson in Resources */ = {isa = PBXBuildFile; fileRef = AAB46A121B8594E9006FCB01 /* path.geojson */; };
 		AAC7FCCC1B7AA5FD00CF3227 /* HoursTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAC7FCCB1B7AA5FD00CF3227 /* HoursTableViewController.m */; };
 		AAC7FCD01B7AEA3100CF3227 /* all-buildings.csv in Resources */ = {isa = PBXBuildFile; fileRef = AAC7FCCF1B7AEA3100CF3227 /* all-buildings.csv */; };
+		AACA3FCC1B8BF6780024A150 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AACA3FCB1B8BF6780024A150 /* Main.storyboard */; };
 		AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AACFD2341B646E8000DDED74 /* Default-568h@2x.png */; };
 		AAD43E611B6E8E30004670B2 /* EmergencyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AAD43E601B6E8E30004670B2 /* EmergencyViewController.m */; };
 		AAD43E631B6EDC4A004670B2 /* Calendar-32.png in Resources */ = {isa = PBXBuildFile; fileRef = AAD43E621B6EDC4A004670B2 /* Calendar-32.png */; };
@@ -56,7 +54,7 @@
 		70F3B3E436FF15CF785521E7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AA06F89D1B38F1F2000FECF5 /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
 		AA06F89F1B38F202000FECF5 /* DetailTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
-		AA2971221B2E78EB00D4FDF9 /* Swat App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swat App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA2971221B2E78EB00D4FDF9 /* Swat Info.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swat Info.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2971261B2E78EB00D4FDF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA2971271B2E78EB00D4FDF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AA2971291B2E78EB00D4FDF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -65,19 +63,13 @@
 		AA29712D1B2E78EC00D4FDF9 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		AA29712F1B2E78EC00D4FDF9 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		AA2971301B2E78EC00D4FDF9 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		AA2971331B2E78EC00D4FDF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AA2971351B2E78EC00D4FDF9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AA29713E1B2E78EC00D4FDF9 /* Swat AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swat AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA29713E1B2E78EC00D4FDF9 /* Swat InfoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swat InfoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA2971431B2E78EC00D4FDF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA2971441B2E78EC00D4FDF9 /* Swat_AppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Swat_AppTests.m; sourceTree = "<group>"; };
-		AA2EBAA21B7ECAD6004435C6 /* MapTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapTableViewController.h; sourceTree = "<group>"; };
-		AA2EBAA31B7ECAD6004435C6 /* MapTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapTableViewController.m; sourceTree = "<group>"; };
-		AA3C1CE61B4E182000AE0320 /* HoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursViewController.m; sourceTree = "<group>"; };
-		AA3C1CE81B4E182C00AE0320 /* HoursViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HoursViewController.h; sourceTree = "<group>"; };
 		AA4149951B5DFB1000866FFA /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		AA4149971B5DFB2100866FFA /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		AA4F25051B64990400C4134C /* tags.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tags.geojson; sourceTree = "<group>"; };
-		AA4F25071B649A0300C4134C /* boat.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boat.geojson; sourceTree = "<group>"; };
+		AA4F25071B649A0300C4134C /* building.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = building.geojson; sourceTree = "<group>"; };
 		AA5C9F811B535D2000928501 /* TransportationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransportationViewController.m; sourceTree = "<group>"; };
 		AA5C9F831B535D3100928501 /* TransportationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransportationViewController.h; sourceTree = "<group>"; };
 		AA5F2D461B7C322C00AFFA76 /* Info-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-50.png"; sourceTree = "<group>"; };
@@ -86,16 +78,18 @@
 		AA5F2D4B1B7C359E00AFFA76 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
 		AA6545A11B5C244D004FC7AD /* MenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		AA6545A21B5C2467004FC7AD /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		AA871F971B8BACE900D2D16C /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		AA871F991B8BC15900D2D16C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ../LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA90F1031B65DBE000F521F1 /* Train-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Train-50.png"; sourceTree = "<group>"; };
 		AA90F1051B65E0A300F521F1 /* Calendar-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-50.png"; sourceTree = "<group>"; };
 		AA90F1071B65E0AA00F521F1 /* High-Importance-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "High-Importance-50.png"; sourceTree = "<group>"; };
 		AA90F1091B65E0AF00F521F1 /* Clock-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Clock-50.png"; sourceTree = "<group>"; };
 		AA90F10B1B65E0B500F521F1 /* Restaurant-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Restaurant-50.png"; sourceTree = "<group>"; };
-		AAB46A101B858C69006FCB01 /* buildings.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = buildings.geojson; sourceTree = "<group>"; };
-		AAB46A121B8594E9006FCB01 /* boats.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = boats.geojson; sourceTree = "<group>"; };
+		AAB46A121B8594E9006FCB01 /* path.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = path.geojson; sourceTree = "<group>"; };
 		AAC7FCCA1B7AA5FD00CF3227 /* HoursTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoursTableViewController.h; sourceTree = "<group>"; };
 		AAC7FCCB1B7AA5FD00CF3227 /* HoursTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursTableViewController.m; sourceTree = "<group>"; };
 		AAC7FCCF1B7AEA3100CF3227 /* all-buildings.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "all-buildings.csv"; sourceTree = "<group>"; };
+		AACA3FCB1B8BF6780024A150 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AACFD2341B646E8000DDED74 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AAD43E5F1B6E8E21004670B2 /* EmergencyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmergencyViewController.h; sourceTree = "<group>"; };
 		AAD43E601B6E8E30004670B2 /* EmergencyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmergencyViewController.m; sourceTree = "<group>"; };
@@ -132,6 +126,7 @@
 		AA2971191B2E78EA00D4FDF9 = {
 			isa = PBXGroup;
 			children = (
+				AA871F971B8BACE900D2D16C /* iTunesArtwork.png */,
 				AACFD2341B646E8000DDED74 /* Default-568h@2x.png */,
 				AA2971241B2E78EB00D4FDF9 /* Swat App */,
 				AA2971411B2E78EC00D4FDF9 /* Swat AppTests */,
@@ -144,8 +139,8 @@
 		AA2971231B2E78EB00D4FDF9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA2971221B2E78EB00D4FDF9 /* Swat App.app */,
-				AA29713E1B2E78EC00D4FDF9 /* Swat AppTests.xctest */,
+				AA2971221B2E78EB00D4FDF9 /* Swat Info.app */,
+				AA29713E1B2E78EC00D4FDF9 /* Swat InfoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,8 +162,6 @@
 				AA29712D1B2E78EC00D4FDF9 /* FirstViewController.m */,
 				AAD43E5F1B6E8E21004670B2 /* EmergencyViewController.h */,
 				AAD43E601B6E8E30004670B2 /* EmergencyViewController.m */,
-				AA3C1CE81B4E182C00AE0320 /* HoursViewController.h */,
-				AA3C1CE61B4E182000AE0320 /* HoursViewController.m */,
 				AAC7FCCA1B7AA5FD00CF3227 /* HoursTableViewController.h */,
 				AAC7FCCB1B7AA5FD00CF3227 /* HoursTableViewController.m */,
 				AA5C9F831B535D3100928501 /* TransportationViewController.h */,
@@ -181,16 +174,13 @@
 				AA06F89D1B38F1F2000FECF5 /* DetailTableViewController.m */,
 				AA4149971B5DFB2100866FFA /* MapViewController.h */,
 				AA4149951B5DFB1000866FFA /* MapViewController.m */,
-				AA2EBAA21B7ECAD6004435C6 /* MapTableViewController.h */,
-				AA2EBAA31B7ECAD6004435C6 /* MapTableViewController.m */,
 				AA5F2D4A1B7C359E00AFFA76 /* AboutViewController.h */,
 				AA5F2D4B1B7C359E00AFFA76 /* AboutViewController.m */,
-				AA2971321B2E78EC00D4FDF9 /* Main.storyboard */,
+				AACA3FCB1B8BF6780024A150 /* Main.storyboard */,
+				AA871F991B8BC15900D2D16C /* LaunchScreen.storyboard */,
 				AAC7FCCF1B7AEA3100CF3227 /* all-buildings.csv */,
-				AAB46A101B858C69006FCB01 /* buildings.geojson */,
-				AA4F25051B64990400C4134C /* tags.geojson */,
-				AA4F25071B649A0300C4134C /* boat.geojson */,
-				AAB46A121B8594E9006FCB01 /* boats.geojson */,
+				AA4F25071B649A0300C4134C /* building.geojson */,
+				AAB46A121B8594E9006FCB01 /* path.geojson */,
 				AA2971351B2E78EC00D4FDF9 /* Images.xcassets */,
 				AA2971251B2E78EB00D4FDF9 /* Supporting Files */,
 			);
@@ -235,9 +225,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AA2971211B2E78EB00D4FDF9 /* Swat App */ = {
+		AA2971211B2E78EB00D4FDF9 /* Swat Info */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA2971481B2E78EC00D4FDF9 /* Build configuration list for PBXNativeTarget "Swat App" */;
+			buildConfigurationList = AA2971481B2E78EC00D4FDF9 /* Build configuration list for PBXNativeTarget "Swat Info" */;
 			buildPhases = (
 				EF3C6ABED9F8049A24884D24 /* Check Pods Manifest.lock */,
 				AA29711E1B2E78EB00D4FDF9 /* Sources */,
@@ -249,14 +239,14 @@
 			);
 			dependencies = (
 			);
-			name = "Swat App";
+			name = "Swat Info";
 			productName = "Swat App";
-			productReference = AA2971221B2E78EB00D4FDF9 /* Swat App.app */;
+			productReference = AA2971221B2E78EB00D4FDF9 /* Swat Info.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AA29713D1B2E78EC00D4FDF9 /* Swat AppTests */ = {
+		AA29713D1B2E78EC00D4FDF9 /* Swat InfoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AA29714B1B2E78EC00D4FDF9 /* Build configuration list for PBXNativeTarget "Swat AppTests" */;
+			buildConfigurationList = AA29714B1B2E78EC00D4FDF9 /* Build configuration list for PBXNativeTarget "Swat InfoTests" */;
 			buildPhases = (
 				AA29713A1B2E78EC00D4FDF9 /* Sources */,
 				AA29713B1B2E78EC00D4FDF9 /* Frameworks */,
@@ -267,9 +257,9 @@
 			dependencies = (
 				AA2971401B2E78EC00D4FDF9 /* PBXTargetDependency */,
 			);
-			name = "Swat AppTests";
+			name = "Swat InfoTests";
 			productName = "Swat AppTests";
-			productReference = AA29713E1B2E78EC00D4FDF9 /* Swat AppTests.xctest */;
+			productReference = AA29713E1B2E78EC00D4FDF9 /* Swat InfoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -286,7 +276,7 @@
 						DevelopmentTeam = 7C445VL2ZS;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -296,7 +286,7 @@
 					};
 				};
 			};
-			buildConfigurationList = AA29711D1B2E78EA00D4FDF9 /* Build configuration list for PBXProject "Swat App" */;
+			buildConfigurationList = AA29711D1B2E78EA00D4FDF9 /* Build configuration list for PBXProject "Swat Info" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -309,8 +299,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AA2971211B2E78EB00D4FDF9 /* Swat App */,
-				AA29713D1B2E78EC00D4FDF9 /* Swat AppTests */,
+				AA2971211B2E78EB00D4FDF9 /* Swat Info */,
+				AA29713D1B2E78EC00D4FDF9 /* Swat InfoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -323,16 +313,16 @@
 				AA90F1041B65DBE000F521F1 /* Train-50.png in Resources */,
 				AAD43E631B6EDC4A004670B2 /* Calendar-32.png in Resources */,
 				AA90F1061B65E0A300F521F1 /* Calendar-50.png in Resources */,
+				AA871F981B8BACE900D2D16C /* iTunesArtwork.png in Resources */,
 				AA90F10A1B65E0AF00F521F1 /* Clock-50.png in Resources */,
-				AA4F25061B64990400C4134C /* tags.geojson in Resources */,
 				AA5F2D471B7C322C00AFFA76 /* Info-50.png in Resources */,
+				AACA3FCC1B8BF6780024A150 /* Main.storyboard in Resources */,
 				AA5F2D491B7C327300AFFA76 /* Info-32.png in Resources */,
-				AAB46A111B858C6B006FCB01 /* buildings.geojson in Resources */,
-				AA2971341B2E78EC00D4FDF9 /* Main.storyboard in Resources */,
-				AA4F25081B649A0300C4134C /* boat.geojson in Resources */,
+				AA4F25081B649A0300C4134C /* building.geojson in Resources */,
+				AA871F9A1B8BC15900D2D16C /* LaunchScreen.storyboard in Resources */,
 				AA90F1081B65E0AA00F521F1 /* High-Importance-50.png in Resources */,
 				AA90F10C1B65E0B500F521F1 /* Restaurant-50.png in Resources */,
-				AAB46A131B8594E9006FCB01 /* boats.geojson in Resources */,
+				AAB46A131B8594E9006FCB01 /* path.geojson in Resources */,
 				AA2971361B2E78EC00D4FDF9 /* Images.xcassets in Resources */,
 				AACFD2351B646E8000DDED74 /* Default-568h@2x.png in Resources */,
 				AAC7FCD01B7AEA3100CF3227 /* all-buildings.csv in Resources */,
@@ -391,12 +381,10 @@
 				AA29712B1B2E78EB00D4FDF9 /* AppDelegate.m in Sources */,
 				AA4149961B5DFB1000866FFA /* MapViewController.m in Sources */,
 				AAD43E611B6E8E30004670B2 /* EmergencyViewController.m in Sources */,
-				AA2EBAA41B7ECAD7004435C6 /* MapTableViewController.m in Sources */,
 				AA6545A31B5C2467004FC7AD /* MenuViewController.m in Sources */,
 				AA5F2D4C1B7C359E00AFFA76 /* AboutViewController.m in Sources */,
 				AA29712E1B2E78EC00D4FDF9 /* FirstViewController.m in Sources */,
 				AA5C9F821B535D2000928501 /* TransportationViewController.m in Sources */,
-				AA3C1CE71B4E182000AE0320 /* HoursViewController.m in Sources */,
 				AA2971281B2E78EB00D4FDF9 /* main.m in Sources */,
 				AAC7FCCC1B7AA5FD00CF3227 /* HoursTableViewController.m in Sources */,
 			);
@@ -415,21 +403,10 @@
 /* Begin PBXTargetDependency section */
 		AA2971401B2E78EC00D4FDF9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = AA2971211B2E78EB00D4FDF9 /* Swat App */;
+			target = AA2971211B2E78EB00D4FDF9 /* Swat Info */;
 			targetProxy = AA29713F1B2E78EC00D4FDF9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		AA2971321B2E78EC00D4FDF9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AA2971331B2E78EC00D4FDF9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		AA2971461B2E78EC00D4FDF9 /* Debug */ = {
@@ -472,6 +449,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -508,6 +486,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -517,13 +496,14 @@
 			baseConfigurationReference = 257BDEDF80226F973B799FA2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Stephen Jaoudi (7C445VL2ZS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "/Users/Steve/Desktop/Swat-App/Swat App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Swat Info";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -532,13 +512,14 @@
 			baseConfigurationReference = 70F3B3E436FF15CF785521E7 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Stephen Jaoudi (7C445VL2ZS)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "/Users/Steve/Desktop/Swat-App/Swat App/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Swat Info";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
@@ -556,7 +537,8 @@
 				);
 				INFOPLIST_FILE = "Swat AppTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Swat InfoTests";
+				SKIP_INSTALL = YES;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swat App.app/Swat App";
 			};
 			name = Debug;
@@ -571,7 +553,8 @@
 				);
 				INFOPLIST_FILE = "Swat AppTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Swat InfoTests";
+				SKIP_INSTALL = YES;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swat App.app/Swat App";
 			};
 			name = Release;
@@ -579,7 +562,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		AA29711D1B2E78EA00D4FDF9 /* Build configuration list for PBXProject "Swat App" */ = {
+		AA29711D1B2E78EA00D4FDF9 /* Build configuration list for PBXProject "Swat Info" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA2971461B2E78EC00D4FDF9 /* Debug */,
@@ -588,7 +571,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA2971481B2E78EC00D4FDF9 /* Build configuration list for PBXNativeTarget "Swat App" */ = {
+		AA2971481B2E78EC00D4FDF9 /* Build configuration list for PBXNativeTarget "Swat Info" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA2971491B2E78EC00D4FDF9 /* Debug */,
@@ -597,7 +580,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AA29714B1B2E78EC00D4FDF9 /* Build configuration list for PBXNativeTarget "Swat AppTests" */ = {
+		AA29714B1B2E78EC00D4FDF9 /* Build configuration list for PBXNativeTarget "Swat InfoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AA29714C1B2E78EC00D4FDF9 /* Debug */,

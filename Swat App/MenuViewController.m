@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"MenuViewController Loaded");
+    //NSLog(@"MenuViewController Loaded");
     
     CGFloat dummyViewHeight = 40;
     UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, dummyViewHeight)];
@@ -52,7 +52,7 @@
 - (NSDictionary *)menuViewLoad :(NSString *)dashString{
 
     NSString *menuBlock = [self getMenuInfo:dashString];
-    //NSLog(@"%@", menuBlock);
+    ////NSLog(@"%@", menuBlock);
     
     NSMutableArray *regexFinds = [self findMultipleRegex:@"((strong>Breakfast<|strong>Continental Breakfast<|strong>Brunch<|strong>Lunch<|strong>Dinner<)(.|\n)*?\\/div)" :menuBlock];
     
@@ -113,7 +113,12 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = [menus objectAtIndex:indexPath.section];
+    
+    NSString *menuText = [menus objectAtIndex:indexPath.section];
+    cell.textLabel.text = menuText;
+    if ([menuText isEqualToString:@""]) {
+        cell.textLabel.text = @"No Menu.";
+    }
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.textColor = [UIColor colorWithRed:(51/255.f) green:(51/255.f) blue:(51/255.f) alpha:1.0f];
     
@@ -127,7 +132,7 @@
                    constrainedToSize:CGSizeMake(self.view.bounds.size.width + 20, MAXFLOAT)  // - 40 For cell padding
                        lineBreakMode:NSLineBreakByWordWrapping];
     
-    //NSLog(@"%f", menuSize.height);
+    ////NSLog(@"%f", menuSize.height);
     return menuSize.height;
     //return 130;
 }
@@ -137,7 +142,7 @@
                                                       constrainedToSize:CGSizeMake(self.view.bounds.size.width + 20, MAXFLOAT)  // - 40 For cell padding
                                                           lineBreakMode:NSLineBreakByWordWrapping];
     
-    //NSLog(@"%f", menuSize.height);
+    ////NSLog(@"%f", menuSize.height);
     //return menuSize.height;
 }
 

@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"TransporationViewController Loaded");
+    //NSLog(@"TransporationViewController Loaded");
     
     FirstViewController *firstView = [[FirstViewController alloc] init];
     self.navigationItem.titleView = [firstView createNavbarTitle:@"Transportation" :NO];

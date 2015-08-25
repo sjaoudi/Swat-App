@@ -35,7 +35,7 @@ typedef enum { SectionDetailSummary } DetailRows;
     NSDateFormatter *timeFormatter = [[NSDateFormatter alloc] init];
     [timeFormatter setDateFormat:@"h:mm a"];
     
-    NSLog(@"%@", self.theDate);
+    //NSLog(@"%@", self.theDate);
     
     // Hide back button text
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:self.navigationItem.backBarButtonItem.style target:nil action:nil];
@@ -45,7 +45,7 @@ typedef enum { SectionDetailSummary } DetailRows;
     
     // Date
     if (item.date) {
-        //NSLog(@"%@", item.date);
+        ////NSLog(@"%@", item.date);
         NSDateFormatter *format = [[NSDateFormatter alloc] init];
         [format setDateFormat:@"MMMM d, yyyy"];
 //        SecondViewController *secondView = [[SecondViewController alloc] init];
@@ -53,7 +53,7 @@ typedef enum { SectionDetailSummary } DetailRows;
         NSString *date = [format stringFromDate:self.theDate];
         
         NSString *allDayString = [self findAllDay:date :item.content :dateFormatter];
-        //NSLog(@"all day");
+        ////NSLog(@"all day");
         self.dateString = allDayString;
         
         if (!allDayString) {
@@ -145,7 +145,7 @@ typedef enum { SectionDetailSummary } DetailRows;
                     //case SectionHeaderAuthor:
                         //cell.textLabel.text = item.author ? item.author : @"[No Author]";
                         
-                        //NSLog(@"%@", item.summary);
+                        ////NSLog(@"%@", item.summary);
                         //break;
                 }
                 break;
@@ -155,12 +155,12 @@ typedef enum { SectionDetailSummary } DetailRows;
                 
                 NSString *fixedSummary;
                 NSString *CDATA = @"!<[CDATA[";
-                //NSLog(@"Summary:%@", item.summary);
+                ////NSLog(@"Summary:%@", item.summary);
                 // Removes CDATA Info from summary.
                 
                 //if ([item.summary hasPrefix:CDATA]) { // Expression not working
                 if (item.summary) {
-                    //NSLog(@"has the prefix");
+                    ////NSLog(@"has the prefix");
                     fixedSummary = [item.summary substringWithRange:NSMakeRange([CDATA length], [item.summary length]-[CDATA length]-3)];
                 }
                 
@@ -168,7 +168,7 @@ typedef enum { SectionDetailSummary } DetailRows;
                 //cell.textLabel.text = item.summary;
                 cell.textLabel.font = [cell.textLabel.font fontWithSize:14];
                 cell.textLabel.text = fixedSummary;
-//                NSLog(@"%@", fixedSummary);
+//                //NSLog(@"%@", fixedSummary);
                 cell.textLabel.numberOfLines = 0; // Multiline
                 break;
             }
@@ -209,7 +209,7 @@ typedef enum { SectionDetailSummary } DetailRows;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSLog(@"%ld %ld", (long)indexPath.section, (long)indexPath.row);
+    //NSLog(@"%ld %ld", (long)indexPath.section, (long)indexPath.row);
     
     // Open URL
     if (indexPath.section == SectionHeader && indexPath.row == SectionHeaderURL) {

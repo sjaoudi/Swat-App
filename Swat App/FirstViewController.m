@@ -56,7 +56,7 @@
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     //[self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [[UITabBar appearance] setTintColor:[UIColor redColor]];
     
     //AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -121,7 +121,7 @@
     cell.textLabel.textColor = [UIColor colorWithRed:(51/255.f) green:(51/255.f) blue:(51/255.f) alpha:1.0f];
     NSString *imagePath = [menuImages objectAtIndex:indexPath.row];
     
-    //NSLog(@"%@", imagePath);
+    ////NSLog(@"%@", imagePath);
     cell.imageView.image = [UIImage imageNamed:imagePath];
     
     cell.textLabel.backgroundColor = [UIColor clearColor];
@@ -183,7 +183,7 @@
     formatter.dateFormat = @"EEEE, MMMM d";
     NSString *dateString = [formatter stringFromDate:[NSDate date]];
     [title stringByAppendingString:dateString];
-    NSLog(@"%@", dateString);
+
     titleLabel.textAlignment = NSTextAlignmentCenter;
     titleLabel.text = title;
     titleLabel.font = [UIFont fontWithName:@"Avenir" size:22];

@@ -24,11 +24,11 @@
 @synthesize mapView;
 @synthesize csvDict;
 @synthesize navbar;
-@synthesize shapes;
+@synthesize shapes, paths;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"map loaded");
+    //NSLog(@"map loaded");
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     [self loadMap];
@@ -38,12 +38,15 @@
     //[self.mapView addTileSource:addedTileSource];
     
     self.mapView.delegate = self;
-    self.mapView.zoom = 16;
+    self.mapView.zoom = 15.3;
     
     CLLocationCoordinate2D center = CLLocationCoordinate2DMake(39.9055000,-75.3538000);
     self.mapView.centerCoordinate = center;
-    self.mapView.maxZoom = 18;
+    self.mapView.maxZoom = 16.4;
     self.mapView.minZoom = 15.3;
+    
+    self.mapView.userTrackingMode = RMUserTrackingModeFollow;
+    //self.navigationItem.rightBarButtonItem = [[RMUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
     
     // make map expand to fill screen when rotated
     self.mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight |
@@ -83,12 +86,27 @@
                                                                                                 nil]
                                                                                         forState:UIControlStateNormal];
 
+    UINavigationBar *locationBar = [[UINavigationBar alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, 44)];
+    locationBar.backgroundColor = [UIColor clearColor];
+    [locationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    locationBar.shadowImage = [UIImage new];
+    locationBar.translucent = YES;
+    //self.navigationController.view.backgroundColor = [UIColor clearColor];
+    //self.navigationController.navigationBar.backgroundColor = [UIColor clearColor];
     //[navbar setTranslucent:NO];
-
+    //self.navbar.topItem.rightBarButtonItem = [[RMUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    RMUserTrackingBarButtonItem *trackingButton = [[RMUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    UINavigationItem *navItem = [[UINavigationItem alloc] init];
+    [navItem setRightBarButtonItem:trackingButton];
+    
+    locationBar.items = [NSArray arrayWithObject:navItem];
+    
+    [self.view addSubview:locationBar];
     [self.view addSubview:self.navbar];
     [self.view addSubview:searchBar];
 
     searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    
     
     searchDisplayController.delegate = self;
     searchDisplayController.searchResultsDataSource = self;
@@ -98,25 +116,50 @@
     originalData = [csvDict objectForKey:@"places"];
     
     
-    
-    //convert `boat.geojson` to an NSDIctionary
-    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"boat" ofType:@"geojson"];
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:[[NSData alloc]
-                                                                  initWithContentsOfFile:jsonPath]
+    //convert geojson to an NSDIctionary
+    NSString *buildingsJsonPath = [[NSBundle mainBundle] pathForResource:@"building" ofType:@"geojson"];
+    NSDictionary *buildingsJson = [NSJSONSerialization JSONObjectWithData:[[NSData alloc]
+                                                                  initWithContentsOfFile:buildingsJsonPath]
                                                          options:0
                                                            error:nil];
     
+    NSString *pathsJsonPath = [[NSBundle mainBundle] pathForResource:@"path" ofType:@"geojson"];
+    NSDictionary *pathsJson = [NSJSONSerialization JSONObjectWithData:[[NSData alloc]
+                                                                           initWithContentsOfFile:pathsJsonPath]
+                                                                  options:0
+                                                                    error:nil];
+    
+    
+    
+    [self initShapes :buildingsJson :self.shapes :@"buildings"];
+    [self initShapes:pathsJson :self.paths :@"paths"];
+    
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    if (kCLAuthorizationStatusDenied) {
+        self.mapView.userTrackingMode = RMUserTrackingModeNone;
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    self.mapView.userTrackingMode = RMUserTrackingModeNone;
+}
+
+- (void)initShapes :(NSDictionary *)json :(NSMutableArray *)shapesToDraw :(NSString *)type {
+
     NSArray *features = json[@"features"];
     
     // create an empty array
-    NSMutableArray *theshapes = [[NSMutableArray alloc] init];
-    self.shapes = theshapes;
+    //NSMutableArray *theshapes = [[NSMutableArray alloc] init];
+    //self.shapes = theshapes;
+    shapesToDraw = [[NSMutableArray alloc] init];
     
     // set the current shape
     for (NSUInteger i = 0; i < [features count]; i++) {
         
         // add an empty array to the shapes array to hold the coordinates
-        [self.shapes addObject:[[NSMutableArray alloc] init]];
+        [shapesToDraw addObject:[[NSMutableArray alloc] init]];
         
         // get the current shape out of the feature array
         NSDictionary *currentNode = (NSDictionary *)features[i];
@@ -133,37 +176,12 @@
                                longitude:lon];
             
             // add the location object (with both coordinates) to the array
-            [[self.shapes lastObject] addObject:loc];
+            [[shapesToDraw lastObject] addObject:loc];
         }
     }
     
-    //NSLog(@"Shapes: %@", self.shapes);
-
-//    RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:self.mapView
-//                                                          coordinate:self.mapView.centerCoordinate
-//                                                            andTitle:@"My Path"];
-//    
-//    // add the shapes to the mapView
-//    [self.mapView addAnnotation:annotation];
-//    //[annotation setBoundingBoxFromLocations:[self.shapes objectAtIndex:0]];
-    
-//    NSArray *locations1 = [NSArray arrayWithObjects:
-//                          [[CLLocation alloc] initWithLatitude:39.902755 longitude:-75.354446],
-//                          [[CLLocation alloc] initWithLatitude:39.902823 longitude:-75.354410],
-//                          [[CLLocation alloc] initWithLatitude:39.902850 longitude:-75.354531],
-//                          [[CLLocation alloc] initWithLatitude:39.902863 longitude:-75.354528],
-//                           [[CLLocation alloc] initWithLatitude:39.902882 longitude:-75.354614],
-//                           [[CLLocation alloc] initWithLatitude:39.902798 longitude:-75.354645],
-//                           [[CLLocation alloc] initWithLatitude:39.902755 longitude:-75.354446],
-//                          nil];
-    
-    //NSArray *locations = [NSArray arrayWithArray:self.shapes[0]];
-    NSLog(@"%@", self.shapes);
-    
-    //NSArray *locations = self.shapes[0];
-    
-    for (int i=0; i < [self.shapes count]; i++) {
-        NSArray *locations = [NSArray arrayWithArray:self.shapes[i]];
+    for (int i=0; i < [shapesToDraw count]; i++) {
+        NSArray *locations = [NSArray arrayWithArray:shapesToDraw[i]];
         RMAnnotation *annotation = [[RMAnnotation alloc] initWithMapView:mapView
                                                               coordinate:((CLLocation *)[locations objectAtIndex:0]).coordinate
                                                                 andTitle:@"Home"];
@@ -171,10 +189,10 @@
         annotation.userInfo = locations;
         
         [annotation setBoundingBoxFromLocations:locations];
+        annotation.title = type;
         
         [mapView addAnnotation:annotation];
     }
-    
 }
 
 - (RMMapLayer *)mapView:(RMMapView *)mapView layerForAnnotation:(RMAnnotation *)annotation
@@ -185,9 +203,18 @@
     RMShape *shape = [[RMShape alloc] initWithView:self.mapView];
     
     // set line color and width
-    shape.lineColor = [UIColor colorWithRed:(221/255.f) green:(221/255.f) blue:(221/255.f) alpha:1.000];
-    shape.lineWidth = 1.0;
-    shape.fillColor = [UIColor colorWithRed:(238/255.f) green:(238/255.f) blue:(238/255.f) alpha:1.000];
+    if ([annotation.title isEqualToString:@"buildings"]) {
+        shape.lineColor = [UIColor colorWithRed:(221/255.f) green:(221/255.f) blue:(221/255.f) alpha:1.000];
+        shape.lineWidth = 1.0;
+        shape.fillColor = [UIColor colorWithRed:(238/255.f) green:(238/255.f) blue:(238/255.f) alpha:1.000];
+    }
+    
+    if ([annotation.title isEqualToString:@"paths"]) {
+        shape.lineColor = [UIColor colorWithRed:(198/255.f) green:(214/255.f) blue:(243/255.f) alpha:1.000];
+        shape.lineWidth = 3.0;
+        shape.fillColor = [UIColor colorWithRed:(188/255.f) green:(204/255.f) blue:(233/255.f) alpha:1.000];
+        
+    }
     
     for (CLLocation *location in (NSArray *)annotation.userInfo)
         [shape addLineToCoordinate:location.coordinate];
@@ -200,7 +227,7 @@
     [[RMConfiguration sharedInstance] setAccessToken:@"pk.eyJ1Ijoic2phb3VkaSIsImEiOiIzMWNjNjdjMTRmOTQ2MjUwYzA0OTdjYmM2MTIzZTRhYyJ9.VHYjLmLq9AeTgjQE_X16lg"];
     //RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.ef0b6517"];
     
-    RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.n7eh1di1"];
+    RMMapboxSource *tileSource = [[RMMapboxSource alloc] initWithMapID:@"sjaoudi.n8c77k19"];
     self.mapView = [[RMMapView alloc] initWithFrame:self.view.bounds
                                       andTilesource:tileSource];
 }
@@ -214,6 +241,9 @@
         frame.size.width = self.view.bounds.size.width;
     }
     self.navbar.frame = frame;
+    
+    self.mapView.maxZoom = 16.4;
+    self.mapView.minZoom = 15.3;
 }
 
 - (UIImage *)imageWithColor:(UIColor *)color {
@@ -233,13 +263,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
     NSString *place = [searchData objectAtIndex:indexPath.row];
-    NSLog(@"%@", place);
+    ////NSLog(@"%@", place);
     [self.searchDisplayController setActive:NO];
     
     CLLocationCoordinate2D coord = [[[csvDict objectForKey:@"locations"] objectForKey:place] coordinate];
-    [self.mapView setCenterCoordinate:coord animated:YES];
-    [self.mapView setZoom:17];
-    NSLog(@"%@, %f %f", place, coord.latitude, coord.longitude);
+    
+    ////NSLog(@"%@, %f %f", place, coord.latitude, coord.longitude);
+    
+    [self.mapView setCenterCoordinate:coord animated:NO];
+    ////NSLog(@"%@, %f %f", place, coord.latitude, coord.longitude);
+    [self.mapView setZoom:16.4];
+    
 }
 
 - (NSDictionary *)parseCSV {
@@ -287,7 +321,7 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
-    //NSLog(@"%@", searchString);
+    ////NSLog(@"%@", searchString);
     NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:
                                     @"SELF contains[cd] %@", searchString];
     
@@ -311,10 +345,23 @@
         currentValue = [originalData objectAtIndex:indexPath.row];
     }
     
-    [[cell textLabel]setText:currentValue];
+    ////NSLog(@"%@", currentValue);
+    
+    if ([currentValue rangeOfString:@"/"].location != NSNotFound)
+    {
+        NSArray *hasSubtitle = [currentValue componentsSeparatedByString:@"/"];
+        cell.textLabel.text = [hasSubtitle firstObject];
+        cell.detailTextLabel.text = [hasSubtitle lastObject];
+        cell.detailTextLabel.textColor = [UIColor colorWithRed:(51/255.f) green:(51/255.f) blue:(51/255.f) alpha:1.0f];
+        [cell.textLabel setFont:[UIFont fontWithName:@"Avenir" size:11]];
+    }
+    else {
+        cell.textLabel.text = currentValue;
+        cell.detailTextLabel.text = @"";
+    }
     
     cell.textLabel.textColor = [UIColor colorWithRed:(51/255.f) green:(51/255.f) blue:(51/255.f) alpha:1.0f];
-    [cell.textLabel setFont:[UIFont fontWithName:@"Avenir" size:18]];
+    [cell.textLabel setFont:[UIFont fontWithName:@"Avenir" size:16]];
     
     cell.backgroundColor = [UIColor clearColor];
     

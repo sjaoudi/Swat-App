@@ -18,7 +18,7 @@
 #import <CoreLocation/CoreLocation.h>
 
 
-@interface MapViewController : UIViewController <RMMapViewDelegate, UISearchControllerDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDelegate, UITableViewDataSource>  {
+@interface MapViewController : UIViewController <RMMapViewDelegate, UISearchControllerDelegate, UISearchBarDelegate, UISearchDisplayDelegate, UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>  {
 //@interface MapViewController : UIViewController <> {
     
     NSMutableArray *originalData;
@@ -43,6 +43,8 @@
 @property (nonatomic) UINavigationBar *navbar;
 
 @property (nonatomic, strong) NSMutableArray *shapes;
+@property (nonatomic, strong) NSMutableArray *paths;
+
 
 
 - (NSDictionary *)parseCSV;

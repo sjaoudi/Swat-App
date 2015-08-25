@@ -24,7 +24,7 @@
     
     loadedHoursInfo = [NSArray array];
     
-    NSLog(@"HoursTableViewController Loaded");
+    //NSLog(@"HoursTableViewController Loaded");
     
     FirstViewController *firstView = [[FirstViewController alloc] init];
     self.navigationItem.titleView = [firstView createNavbarTitle:@"Hours" :NO];
@@ -132,13 +132,23 @@
     
     NSString *sectionString = [NSString stringWithFormat: @"%ld", (long)indexPath.section];
     
-    cell.textLabel.text = [[hoursDict objectForKey:sectionString] objectAtIndex:indexPath.row][0];
+    NSString *cellText = [[hoursDict objectForKey:sectionString] objectAtIndex:indexPath.row][0];
+    
+    cell.textLabel.text = cellText;
+    //NSLog(@"%@", cellText);
+
     
     NSString *hours = [[hoursDict objectForKey:sectionString] objectAtIndex:indexPath.row][1];
     hours = [hours stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
     hours = [hours stringByReplacingOccurrencesOfString:@"midnight" withString:@"12am"];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if ([cellText isEqualToString:@"Women's Resource Center:"]) {
+        cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
+        cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir" size:18];
+        
+    }
     cell.detailTextLabel.text = hours;
     cell.detailTextLabel.numberOfLines = 0;
     
@@ -176,7 +186,7 @@
         
         NSMutableString *placeRegexMutableString = [[NSMutableString alloc] init];
         if ([places[i] isEqualToString:@"Paces Cafe"]) {
-            //NSLog(@"PACES");
+            ////NSLog(@"PACES");
             //[placeRegexMutableString appendString:@"<strong>:\\W?<\\/strong>(.+)<"];
             [placeRegexMutableString appendString:@"<strong>:\\W?<\\/strong>(?:<ul>)?(?:<li>)?(.*?)<"];
             [placeRegexMutableString insertString:places[i] atIndex:8];

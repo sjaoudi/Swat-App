@@ -68,7 +68,7 @@
     feedParser.connectionType = ConnectionTypeAsynchronously;
     [feedParser parse];
     
-    //NSLog(@"%@", eventsDictionary);
+    ////NSLog(@"%@", eventsDictionary);
     
     dateRangeToParse = [self dateRangeFromStrings:todayString :twoWeekString];
     
@@ -100,11 +100,11 @@
 }
 
 - (void)feedParserDidStart:(MWFeedParser *)parser {
-    //NSLog(@"Started Parsing: %@", parser.url);
+    ////NSLog(@"Started Parsing: %@", parser.url);
 }
 
 - (void)feedParser:(MWFeedParser *)parser didParseFeedInfo:(MWFeedInfo *)info {
-    //NSLog(@"Parsed Feed Info: “%@”", info.title);
+    ////NSLog(@"Parsed Feed Info: “%@”", info.title);
     //self.title = info.title;
     self.title = @"Events";
     [self.navigationController.navigationBar setTitleTextAttributes:
@@ -115,9 +115,9 @@
 }
 
 - (void)feedParser:(MWFeedParser *)parser didParseFeedItem:(MWFeedItem *)item {
-    //NSLog(@"Parsed Feed Item: “%@”", item.title);
+    ////NSLog(@"Parsed Feed Item: “%@”", item.title);
     if (item) {
-        //NSLog(@"%@", parsedItems);
+        ////NSLog(@"%@", parsedItems);
         //[parsedItems addObject:item];
         NSMutableArray *itemDatesArray = [self createDateRange:item.content];
         
@@ -133,7 +133,7 @@
                     if ([dateRangeToParse[j] isEqualToDate:itemDatesArray[i]]) {
                         //append to corresponding date array
                         //item.date = itemDatesArray[i];
-                        //NSLog(@"%@", item);
+                        ////NSLog(@"%@", item);
                         //item.date = dateRangeToParse[j];
                         
                         //somehow fix the date of each object
@@ -147,14 +147,14 @@
 }
 
 - (void)feedParserDidFinish:(MWFeedParser *)parser {
-    //NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
+    ////NSLog(@"Finished Parsing%@", (parser.stopped ? @" (Stopped)" : @""));
     
     // Populate eventsDictionary with events
     for (int i = 0; i < dateRangeToParse.count; i++) {
         NSArray *dateArray = dateArrays[i];
-        //NSLog(@"%d", dateArray.count);
+        ////NSLog(@"%d", dateArray.count);
         if (dateArray.count) {
-            //NSLog(@"%lu", dateArray.count);
+            ////NSLog(@"%lu", dateArray.count);
             [eventsDictionary setObject:dateArrays[i] forKey:dateRangeToParse[i]];
             //[self updateTableWithParsedItems:dateArrays[i]];
         }
@@ -181,14 +181,14 @@
     
     eventSectionTitlesStrings = [self createStringDateRange:eventSectionTitles];
     
-    //NSLog(@"%@", eventsDictionary);
+    ////NSLog(@"%@", eventsDictionary);
     [self.tableView reloadData];
     //[self updateTableWithParsedItems:parsedItems];
 }
 
 
 - (void)feedParser:(MWFeedParser *)parser didFailWithError:(NSError *)error {
-    NSLog(@"Finished Parsing With Error: %@", error);
+    //NSLog(@"Finished Parsing With Error: %@", error);
     if (parsedItems.count == 0) {
         self.title = @"Failed"; // Show failed message in title
     } else {
@@ -212,13 +212,13 @@
 
 // Number of rows in table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //NSLog(@"%d", section);
+    ////NSLog(@"%d", section);
     
     NSString *sectionTitle = [eventSectionTitles objectAtIndex:section];
 
     NSArray *sectionEvents = [eventsDictionary objectForKey:sectionTitle];
     //return itemsToDisplay.count;
-    //NSLog(@"%l", sectionEvents.count);
+    ////NSLog(@"%l", sectionEvents.count);
     return [sectionEvents count];
     //return 3;
 }
@@ -312,8 +312,8 @@
     
     // Configure the cell.
     //MWFeedItem *item = [dateArrays objectAtIndex:indexPath.row];
-    //NSLog(@"%u", [[dateArrays objectAtIndex:indexPath.section] count]);
-    //NSLog(@"%ld, %ld", indexPath.section, indexPath.row);
+    ////NSLog(@"%u", [[dateArrays objectAtIndex:indexPath.section] count]);
+    ////NSLog(@"%ld, %ld", indexPath.section, indexPath.row);
     MWFeedItem *item = [[dateArrays objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
     if (item) {
@@ -360,7 +360,7 @@
         cell.detailTextLabel.text = subtitle;
         //NSArray *dateRange = [self createStringDateRange:eventSectionTitles];
         //NSString *string = [dateRange objectAtIndex:indexPath.section];
-//        NSLog(@"%@", string);
+//        //NSLog(@"%@", string);
 //        eventDate = string;
         
     }
@@ -407,7 +407,7 @@
 
 - (NSMutableArray *)createDateRangeArray :(NSDate *)startDate :(NSDate *)endDate{
     
-    //NSLog(@"%@, %@", startDate, endDate);
+    ////NSLog(@"%@, %@", startDate, endDate);
     NSMutableArray *dateRangeArray = [[NSMutableArray alloc] init];
     
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier: NSCalendarIdentifierGregorian];
@@ -442,7 +442,7 @@
     NSDate *date2 = [dateFormatter dateFromString:dateString2];
     
     NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
-    //NSLog(@"%@", datesArray);
+    ////NSLog(@"%@", datesArray);
     return datesArray;
     
 }
@@ -488,13 +488,13 @@
     
     [startEndDates addObject:endDate];
     
-    //NSLog(@"%@", startEndDates);
+    ////NSLog(@"%@", startEndDates);
     return startEndDates;
 }
 
 - (NSMutableArray *)createDateRange :(NSString *)content {
     NSMutableArray *dates = [self determineDateRange:content];
-    //NSLog(@"%@", dates);
+    ////NSLog(@"%@", dates);
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"MM/d/yyyy"];
     
@@ -503,7 +503,7 @@
     NSDate *date1 = [dateFormatter dateFromString:dates[0]];
     NSDate *date2 = [dateFormatter dateFromString:dates[1]];
     
-    //NSLog(@"%@, %@", date1, date2);
+    ////NSLog(@"%@, %@", date1, date2);
     
     NSMutableArray *datesArray = [self createDateRangeArray:date1 :date2];
     
@@ -539,7 +539,7 @@
         
         [emptyDateArray addObject:dateArray];
     }
-    //NSLog(@"%ul", emptyDateArray.count);
+    ////NSLog(@"%ul", emptyDateArray.count);
     return emptyDateArray;
 }
 

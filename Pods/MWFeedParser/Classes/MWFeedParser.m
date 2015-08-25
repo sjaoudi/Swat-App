@@ -34,7 +34,7 @@
 
 // NSXMLParser Logging
 #if 0 // Set to 1 to enable XML parsing logs
-#define MWXMLLog(x, ...) NSLog(x, ## __VA_ARGS__);
+#define MWXMLLog(x, ...) //NSLog(x, ## __VA_ARGS__);
 #else
 #define MWXMLLog(x, ...)
 #endif

@@ -1,24 +1,24 @@
 name,latitude,longitude
 Trotter Hall, 39.906419, -75.353973
 Pearson Hall, 39.906879, -75.353657
-Business Office (Pearson Hall), 39.906869, -75.353623
-Human Resources (Pearson Hall), 39.906869, -75.353623
+Business Office /Pearson Hall, 39.906869, -75.353623
+Human Resources /Pearson Hall, 39.906869, -75.353623
 Hicks Hall, 39.906884, -75.354389
 Beardsley Hall, 39.906462, -75.354768
-ITS Help Desk (Beardsley Hall), 39.906462, -75.354768
+ITS Help Desk /Beardsley Hall, 39.906462, -75.354768
 Papazian Hall, 39.907308, -75.353977
 Kohlberg Hall, 39.905877, -75.354855
 Lang Performing Arts Center, 39.905369, -75.355483
-List Gallery (LPAC), 39.905336, -75.355429
+List Gallery /LPAC, 39.905336, -75.355429
 Martin Biological Laboratory, 39.905883, -75.355745
 Science Center, 39.905883, -75.355745
 Parrish Hall, 39.905182, -75.354169
 Shane Lounge, 39.905300, -75.354375
-Admissions Office (Parrish Hall - 2nd Floor), 39.905182, -75.354169
-Office of Student Engagement (Parrish Hall - Ground Floor), 39.905182, -75.354169
-Dean's Office (Parrish Hall - Ground Floor), 39.905182, -75.354169
+Admissions Office /Parrish Hall - 2nd Floor, 39.905182, -75.354169
+Office of Student Engagement /Parrish Hall - Ground Floor, 39.905182, -75.354169
+Dean's Office /Parrish Hall - Ground Floor, 39.905182, -75.354169
 Clothier Hall, 39.904381, -75.354761
-Upper Tarble (Clothier Hall - 2nd Floor), 39.904381, -75.354761
+Upper Tarble /Clothier Hall - 2nd Floor, 39.904381, -75.354761
 Bookstore, 39.904261, -75.354889
 Essie Mae's, 39.904161, -75.355200
 Sproul Alumni House, 39.903875, -75.355251
@@ -32,7 +32,7 @@ Worth Health Center, 39.904495, -75.351378
 McCabe Library, 39.905346, -75.352781
 The Barn, 39.900866, -75.352888
 Benjamin West House, 39.905123, -75.351419
-Black Cultural Center (Robinson House), 39.906953, -75.351480
+Black Cultural Center /Robinson House, 39.906953, -75.351480
 Bond Memorial Hall, 39.905430, -75.350847
 Cornell Library, 39.906251, -75.356222
 Faulkner Tennis Courts, 39.902987, -75.355744
