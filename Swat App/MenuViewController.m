@@ -129,7 +129,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CGSize menuSize = [[menus objectAtIndex:indexPath.section] sizeWithFont:[UIFont fontWithName:@"Avenir" size:15]
-                   constrainedToSize:CGSizeMake(self.view.bounds.size.width + 20, MAXFLOAT)  // - 40 For cell padding
+                   constrainedToSize:CGSizeMake(self.view.bounds.size.width, MAXFLOAT) // removed +20 from size.width
                        lineBreakMode:NSLineBreakByWordWrapping];
     
     ////NSLog(@"%f", menuSize.height);
@@ -138,9 +138,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize menuSize = [[menus objectAtIndex:indexPath.section] sizeWithFont:[UIFont fontWithName:@"Avenir" size:15]
-                                                      constrainedToSize:CGSizeMake(self.view.bounds.size.width + 20, MAXFLOAT)  // - 40 For cell padding
-                                                          lineBreakMode:NSLineBreakByWordWrapping];
+    //CGSize menuSize = [[menus objectAtIndex:indexPath.section] sizeWithFont:[UIFont fontWithName:@"Avenir" size:15]
+    //                                                  constrainedToSize:CGSizeMake(self.view.bounds.size.width + 20, MAXFLOAT)  // - 40 For cell padding
+    //                                                      lineBreakMode:NSLineBreakByWordWrapping];
     
     ////NSLog(@"%f", menuSize.height);
     //return menuSize.height;
