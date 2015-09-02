@@ -133,7 +133,7 @@
                        lineBreakMode:NSLineBreakByWordWrapping];
     
     ////NSLog(@"%f", menuSize.height);
-    return menuSize.height;
+    return menuSize.height + 10;
     //return 130;
 }
 
