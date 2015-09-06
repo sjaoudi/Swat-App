@@ -152,15 +152,15 @@
     
     NSString *hours = [[hoursDict objectForKey:sectionString] objectAtIndex:indexPath.row][1];
     hours = [hours stringByReplacingOccurrencesOfString:@"," withString:@"\n"];
-    hours = [hours stringByReplacingOccurrencesOfString:@"midnight" withString:@"12am"];
+    hours = [hours stringByReplacingOccurrencesOfString:@"midnight" withString:@"12:00am"];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    if ([cellText isEqualToString:@"Women's Resource Center:"]) {
-        cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
-        cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir" size:18];
-        
-    }
+    //if ([cellText isEqualToString:@"Women's Resource Center:"]) {
+    //    cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
+    //    cell.detailTextLabel.font = [UIFont fontWithName:@"Avenir" size:18];
+    //
+    //}
     cell.detailTextLabel.text = hours;
     cell.detailTextLabel.numberOfLines = 0;
     
@@ -216,7 +216,9 @@
             
             NSString *hoursRegexString = @"<\\/strong>\\s?(.+)\\s?<a";
             NSString *placeHours = [self findRegex:hoursRegexString :placeToParse];
+            //NSString *placeHours = @"12:30pm-12:30pm"; // for testing width
             [hoursArray addObject:placeHours];
+            
         }
         
         

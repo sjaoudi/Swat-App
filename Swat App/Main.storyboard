@@ -55,13 +55,13 @@
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Guo-2b-zHW">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14.300000190734863"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13.600000381469727"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="y2F-iY-Uza">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14.300000190734863"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13.600000381469727"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -542,7 +542,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8Mw-bP-KPu"/>
+        <segue reference="VAo-dU-jHh"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.72449100379999998" green="0.088215492409999999" blue="0.2352978563" alpha="1" colorSpace="calibratedRGB"/>
 </document>
