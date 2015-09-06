@@ -32,7 +32,7 @@
     
     AppDelegate *appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     loadedHoursInfo = appDelegate.hours;
-    NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
+    NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Matchbox", @"Lamb-Miller Field House", @"Mullan Tennis Center", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
     
     NSDictionary *hoursSectionDict = [[NSDictionary alloc] initWithObjects:loadedHoursInfo forKeys:places];
     
@@ -48,6 +48,11 @@
                          @[@"Cornell: ", [hoursSectionDict valueForKey:@"Cornell"]]
                          ];
     
+    NSArray *athleticDict = @[@[@"Matchbox: ", [hoursSectionDict valueForKey:@"Matchbox"]],
+                              @[@"Lamb-Miller Field House: ", [hoursSectionDict valueForKey:@"Lamb-Miller Field House"]],
+                              @[@"Mullan Tennis Center: ", [hoursSectionDict valueForKey:@"Mullan Tennis Center"]]
+                              ];
+    
     NSArray *itsDict = @[@[@"Help Desk: ", [hoursSectionDict valueForKey:@"Help Desk Walk-In Hours"]],
                          @[@"Media Center: ", [hoursSectionDict valueForKey:@"Media Center"]],
                          ];
@@ -60,17 +65,18 @@
     
     hoursDict = [[NSDictionary alloc] initWithObjectsAndKeys:foodDict, @"0",
                                                              libDict, @"1",
-                                                             itsDict, @"2",
-                                                             moreDict, @"3",
+                                                             athleticDict, @"2",
+                                                             itsDict, @"3",
+                                                             moreDict, @"4",
                                                              nil];
 
-    hoursDictSections = @[@"Food and Coffee", @"Libraries", @"ITS", @"More Services"];
+    hoursDictSections = @[@"Food and Coffee", @"Libraries", @"Athletic Facilities", @"ITS", @"More Services"];
     
 }
 
 - (NSArray *)HoursViewLoad :(NSString *)dashString{
     
-    NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
+    NSArray *places = @[@"Sharples", @"Essie Mae's", @"Kohlberg", @"Science Center", @"Paces Cafe", @"McCabe", @"Underhill", @"Cornell", @"Matchbox", @"Lamb-Miller Field House", @"Mullan Tennis Center", @"Help Desk Walk-In Hours", @"Media Center", @"Women's Resource Center", @"Post Office", @"Bookstore", @"Credit Union", @"Athletic Facilities"];
     
     NSString *hoursInfo = [self getHoursInfo:dashString];
     NSArray *hoursInfoArray = [self getHours:hoursInfo :places];
@@ -100,7 +106,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 5;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -112,10 +118,16 @@
             break;
         case 1:
             return 3;
+            break;
         case 2:
-            return 2;
+            return 3;
+            break;
         case 3:
+            return 2;
+            break;
+        case 4:
             return 4;
+            break;
         default:
             return 0;
             break;
