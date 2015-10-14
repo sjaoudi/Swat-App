@@ -75,6 +75,11 @@
     //create array of empty arrays, each corresponding to a date
     dateArrays = [self createEmptyDateArrays];
     
+    //if ([self.tableView respondsToSelector:@selector(setSectionIndexColor:)]) {
+    //    self.tableView.sectionIndexColor = [UIColor colorWithRed:205/255.0 green:42/255.0 blue:80/255.0 alpha:1.0]; // some color
+        //self.tableView.sectionIndexTrackingBackgroundColor = [UIColor redColor]; // some other color
+    //}
+    
 
     [self.tableView reloadData];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
@@ -239,9 +244,18 @@
     }
 }
 
+
+
 //- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-//
-//    return [self createStringDateRange:dateRangeToParse];
+    
+    
+    
+//    NSMutableArray *indexTitles = [[NSMutableArray alloc] init];
+//    for (int i=0; i< [eventSectionTitles count]; i++) {
+//        [indexTitles addObject:@"."];
+//    }
+    //return [self createStringDateRange:dateRangeToParse];
+//    return indexTitles;
 //}
 
 //- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -273,6 +287,7 @@
     [label setFont:[UIFont fontWithName:@"Avenir" size:15]];
     NSArray *dateRange = [self createStringDateRange:eventSectionTitles];
     NSString *string = [dateRange objectAtIndex:section];
+    
     /* Section header is in 0th index... */
     
     [label setText:string];
@@ -283,7 +298,7 @@
 
 -(NSMutableArray *)createStringDateRange :(NSArray *)dateRange {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MMMM d"];
+    [dateFormatter setDateFormat:@"EEEE, MMMM d"];
     
     [dateFormatter setLocale:[NSLocale currentLocale]];
     [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
